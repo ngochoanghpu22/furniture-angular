@@ -1,0 +1,22 @@
+<div class="map" (click)="documentClick($event)">
+  <ng-container *ngIf="!loading; else loader">
+    <ng-container *ngIf="seatArchitecture; else noSeatArchitecture">
+      <fxt-map-seat [timeSlotTemplates]="timeSlotTemplatesByDay" [seatArchitecture]="seatArchitecture"
+        [currentDayStatus]="currentDayStatus" [mapSeatUsers]="mapSeatUsers" [disableBookState]="disableBookState"
+        [mapOccupationRules]="mapOccupationRules" (inviteClicked)="onInviteClicked($event)"
+        (bookClicked)="onBookClicked($event)" [currentUser]="currentUser" [mapSeatUsers]="mapSeatUsers"
+        [mapSeatTimeslots]="mapSeatTimeslots">
+      </fxt-map-seat>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #noSeatArchitecture>
+  no map here
+</ng-template>
+
+<ng-template #loader>
+  <div class="loader">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

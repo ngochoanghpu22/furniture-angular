@@ -1,0 +1,102 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+  padding: 12px 15px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 5.0753px;
+
+  justify-content: space-between;
+
+  .status-icon {
+    &.Info {
+      color: #2f80ed;
+    }
+
+    &.Warning {
+      color: #f2994a;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 7px;
+    flex-grow: 1;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 7px;
+      justify-content: space-between;
+
+      .body {
+        display: flex;
+        flex-direction: row;
+        column-gap: 7px;
+        justify-content: space-between;
+
+        .title {
+          color: $color-dark;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+      }
+
+      .sub {
+        color: #666666;
+        font-size: 13px;
+      }
+
+      .btn-close {
+        color: #525252;
+        > span {
+          padding: 5px;
+          border-radius: 50%;
+          width: 28px;
+          text-align: center;
+          display: flex;
+          height: 28px;
+          justify-content: center;
+          @include hover-active-btn();
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .date {
+        color: #cccccc;
+        font-size: 10px;
+        line-height: 12px;
+      }
+
+      button {
+        height: 25px;
+        font-size: 11px;
+        line-height: 13px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1355px) {
+  :host {
+    .actions {
+      display: contents !important;
+      .date {
+        text-align: end;
+      }
+    }
+  }
+}

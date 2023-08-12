@@ -1,0 +1,46 @@
+<section id="profile" *transloco="let t; read: 'profile'">
+  <h1>hoang</h1>
+  <header class="row">
+    <div class="profile-img col-4">
+      <fxt-avatar (click)="dropdown.isOpen = !dropdown.isOpen" [imageSrc]="currentUser.tinyPicture" [initial]="currentUser.fullName" [size]="73"></fxt-avatar>
+      <button (click)="dropdown.isOpen = !dropdown.isOpen" class="change-img"><i class="fad fa-camera"></i></button>
+      <div dropdown #dropdown="bs-dropdown">
+        <div class="dropdown-menu" *dropdownMenu role="menu">
+          <div class="dropdown-item px-3" role="button" (click)="dropdown.isOpen = false; uploader.click(); ">
+            <span for="file">{{ "profile.upload_image" | transloco }}</span>
+            <input hidden #uploader type="file" id="file" (change)="handleInputChange($event)" >
+          </div>
+          <div class="dropdown-item px-3" role="button" (click)="openTakePicture(); dropdown.isOpen = false">{{ "profile.take_a_photo" | transloco }}</div> 
+        </div>
+      </div>
+    </div>
+    <div class="profile-name col-8">
+      <h5>{{currentUser.fullName}}</h5>
+      <p class="profile-role">{{currentUser.coreTeamName}}</p>
+    </div>
+  </header>
+  <main>
+    <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" (click)="activeTab = 1" [class.active]="activeTab == 1" role="tab"
+          aria-controls="remote-profil" aria-selected="true">{{t('my_remote_profile')}}</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" (click)="activeTab = 2" [class.active]="activeTab == 2" role="tab"
+          aria-controls="other-info" aria-selected="false">{{t('other_info')}}</a>
+      </li>
+    </ul> -->
+    <div class="tab-content" id="pills-tabContent">
+      <fxt-my-remote-profil [user]="currentUser" [halfDayEnabled]="halfDayEnabled"></fxt-my-remote-profil>
+      <!-- <div class="tab-pane fade show active" *ngIf="activeTab == 1" role="tabpanel" aria-labelledby="remote-profil-tab">
+        <fxt-my-remote-profil [user]="currentUser" [halfDayEnabled]="halfDayEnabled"></fxt-my-remote-profil>
+      </div> -->
+
+      <!-- <div class="tab-pane fade show active" *ngIf="activeTab == 2" role="tabpanel" aria-labelledby="other-info-tab">
+
+        <fxt-other-info [user]="currentUser"></fxt-other-info>
+
+      </div> -->
+    </div>
+  </main>
+</section>

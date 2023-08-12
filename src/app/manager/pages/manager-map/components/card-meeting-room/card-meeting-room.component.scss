@@ -1,0 +1,55 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  will-change: border-top;
+  font-size: 14px;
+
+  .bloc-image {
+    margin-left: -16px;
+    margin-right: -16px;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .bloc-name {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      display: block;
+    }
+
+    span:first-child {
+      cursor: pointer;
+      @include hover-active-btn();
+    }
+
+    span:first-child {
+      font-weight: bold;
+      color: $grey-color60;
+      max-width: 150px;
+    }
+
+    span:nth-child(2) {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  .bloc-amenities {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+}

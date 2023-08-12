@@ -1,0 +1,94 @@
+<form [formGroup]="form">
+
+  <div class="edit-office">
+
+    <div class="image" [class.no-image]="!contextualPicture">
+      <fxt-file-preview-input (fileChanged)="onFileChanged($event)" [selected]="contextualPicture"
+        buttonText="{{'manager.add_photo' | transloco}}"></fxt-file-preview-input>
+    </div>
+
+    <div class="bloc bloc-name">
+      <span>{{'main.name' | transloco}}</span>
+      <input formControlName="name" class="form-control" type="text" (keyup.enter)="save()">
+    </div>
+
+    <div class="bloc bloc-location">
+      <span>{{'main.location' | transloco}}</span>
+      <input formControlName="location" class="form-control" type="text" (keyup.enter)="save()">
+    </div>
+
+    <div class="bloc bloc-capacity">
+      <span>
+        <span class="people mr-1"><i class="fal fa-user-friends"></i></span>
+        {{'manager.capacity' | transloco}}
+      </span>
+      <input formControlName="capacity" class="form-control" type="number" (keyup.enter)="save()">
+    </div>
+
+    <div class="bloc bloc-capacity">
+      <span>
+        <span class="people mr-1"><i class="fal fa-user-friends"></i></span>
+        {{'manager.desks' | transloco}}
+      </span>
+      <input formControlName="numberOfDesks" class="form-control" type="number" (keyup.enter)="save()">
+    </div>
+
+    <div class="bloc bloc-allowed-load">
+      <span>
+        <span class="people mr-1"><i class="fal fa-user-friends"></i></span>
+        {{'manager.allowed_load' | transloco}}
+      </span>
+      <input formControlName="allowedLoad" class="form-control" type="number" (keyup.enter)="save()">
+    </div>
+
+    <div class="bloc bloc-amenities">
+
+      <div>
+        <span class="mr-1"><i class="far fa-route"></i></span>
+        <span>{{'manager.informations' | transloco}}</span>
+      </div>
+
+      <ul>
+        <li *ngFor="let item of equipments">{{item}}
+          <i (click)="removeEquipment(item)" class="fal fa-trash c-pointer"></i>
+        </li>
+      </ul>
+
+      <div class="button-add-wrapper">
+        <input (keydown.enter)="addNewEquiment($event)" type="text" class="form-control"
+          placeholder="Add (equipement, wifi code, etc)" formControlName="newEquipment">
+        <span *ngIf="form.get('newEquipment').value" (click)="addNewEquiment()" class="c-pointer"><i
+            class="fal fa-plus"></i></span>
+      </div>
+
+    </div>
+
+    <ng-container *ngIf="office.type == OfficeTypeEnum.MeetingRoom">
+
+      <div class="bloc bloc-link" *ngIf="office.msUniqueId">
+        <div class="">
+          <i class="fas fa-link"></i>&nbsp;
+          <img src="assets/icons/microsoft_mini_logo.png" width="21">
+        </div>
+      </div>
+
+      <div class="bloc bloc-link" *ngIf="office.googleUniqueId">
+        <div class="">
+          <i class="fas fa-link"></i>&nbsp;
+          <img src="assets/icons/google_mini_logo.png" width="21">
+        </div>
+      </div>
+
+    </ng-container>
+
+    <div class="bloc bloc-actions">
+      <button type="button" class="btn btn-light" (click)="cancel()">{{'main.cancel' | transloco}}</button>
+      <button type="button" [disabled]="form.pristine || form.invalid" class="btn btn-primary"
+        (click)="save()">{{'main.save_changes' |
+        transloco}}</button>
+    </div>
+
+
+  </div>
+
+</form>

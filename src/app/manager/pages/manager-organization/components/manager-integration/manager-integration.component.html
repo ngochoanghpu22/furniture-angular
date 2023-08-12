@@ -1,0 +1,40 @@
+<div class="data">
+
+  <div class="tools">
+    <h6>{{ "organization.communication_tools" | transloco }}</h6>
+    <ng-container *ngFor="let integration of integrations">
+      <div *ngIf="integration.type === OrganizationTypeEnum.CommunicationTools" class="integration d-flex">
+        <div class="name">
+          <span class="icon btn">
+            <img src="assets/images/logos/{{integration.icon}}" />
+          </span>
+          <span class="name">{{ integration.name }}</span>
+        </div>
+        <fxt-switch style="float: right;" [ngModel]="integration.isActive"
+          (ngModelChange)="changeActive(integration, $event)" *ngIf="!integration.isLocked"
+          class="fxt-switch-design-margin"></fxt-switch>
+        <span *ngIf="integration.isLocked" class="action lock text-center d-inline-block btn"><i
+            class="fas fa-lock-alt"></i></span>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="tools mt-3">
+    <h6>{{ "organization.HRIS" | transloco }}</h6>
+    <ng-container *ngFor="let integration of integrations">
+      <div *ngIf="integration.type === OrganizationTypeEnum.HRIS" class="integration d-flex">
+        <div class="name">
+          <span class="icon btn">
+            <img src="assets/images/logos/{{integration.icon}}" />
+          </span>
+          <span class="name">{{ integration.name }}</span>
+        </div>
+        <fxt-switch [ngModel]="integration.isActive" (ngModelChange)="changeActive(integration, $event)"
+          *ngIf="!integration.isLocked" class="fxt-switch-design-margin"></fxt-switch>
+        <span *ngIf="integration.isLocked" class="action lock text-center d-inline-block btn"><i
+            class="fas fa-lock-alt"></i></span>
+      </div>
+    </ng-container>
+  </div>
+
+</div>

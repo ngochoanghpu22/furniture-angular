@@ -1,0 +1,113 @@
+@import "abstracts/variables";
+
+$width-card-office: 225px;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  flex-direction: column;
+  row-gap: 16px;
+  position: relative;
+  height: 100%;
+
+  .bloc-search-bar {
+    width: calc(75vw - 250px);
+  }
+
+  .btn-navigator {
+    will-change: opacity;
+    transition: opacity linear 0.3s;
+
+    &.disabled {
+      background: none;
+      opacity: 0;
+    }
+  }
+
+  .bloc-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: 8px;
+    width: 100%;
+    height: calc(100% - 75px);
+
+    &.mode-modal {
+      .bloc-offices {
+        height: calc(100vh - 336px);
+      }
+    }
+
+    .bloc-offices {
+      width: $width-card-office;
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+      overflow-y: auto;
+      padding: 0 4px;
+      height: calc(100vh - 136px);
+
+      fxt-manager-map-card-office,
+      fxt-manager-map-card-meeting-room {
+        background-color: white;
+        box-shadow: 0px 2px 12px rgb(0 0 0 / 8%);
+        border-radius: 4px;
+        padding: 0 16px 16px 16px;
+      }
+    }
+  }
+
+  .bloc-map {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100vh - 136px);
+    width: 100%;
+    align-items: center;
+    position: relative;
+    flex: 2;
+
+    .fxt-btn-action {
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      position: absolute;
+      z-index: 2;
+
+      &.up {
+        top: 0;
+      }
+
+      &.down {
+        bottom: 0;
+      }
+
+      .map-wrapper {
+        flex-grow: 2;
+      }
+    }
+  }
+
+  .bloc-infos {
+    position: absolute;
+    bottom: 50px;
+    right: 15px;
+    width: 200px;
+
+    .title {
+      font-size: 12px;
+      color: $grey-color80;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .users {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+}

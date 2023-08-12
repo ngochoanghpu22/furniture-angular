@@ -1,0 +1,44 @@
+<section id="plan" class="container top-container page-plan" *ngIf="!selectDay">
+  <header class="row justify-content-between">
+    <div class="col-4 toggle-wrapper col-md-3 col-lg-2 col-xl-2">
+      <!--<button class="btn-question-icon" (click)="openModalById('modal-toggle-question')">
+        <i class="far fa-question-circle"></i>
+      </button>
+      <toggle-button (changed)="hideGauge = !hideGauge"> </toggle-button>-->
+    </div>
+
+    <div class="col-3 col-md-3 col-lg-1 col-xl-1 month-year">
+      <h1>{{ month }}</h1>
+      <h5 class="grey">{{ year }}</h5>
+    </div>
+
+    <div class="col-5 col-md-3 col-lg-2 col-xl-2">
+      <fxt-calendar-nav buttonText="{{'main.today' | transloco}}" (prev)="onPrevious()" (next)="onNext()"
+        (today)="onGetToday()"></fxt-calendar-nav>
+    </div>
+  </header>
+
+  <main>
+
+    <fxt-calendar #calendarRef [slides]="slides" [hideGauge]="hideGauge" [activeDayInCalendar]="activeDayInCalendar"
+      (slideChanged)="onSlideChange()" (dayClicked)="onDayClick($event)"
+      [canEdit]="true"></fxt-calendar>
+
+    <div class="main-footer">
+
+      <fxt-bloc-chips-person (questionClicked)="openModalById('modal-who-is-office-that-day')" *ngIf="!hideGauge"
+        [hideIconSearch]="true" [currentSelection]="currentSelection" title="{{'plan.office_presence' | transloco}}"
+        (chipClicked)="onChipClicked($event)"
+        descriptionHtml="<span class='count-of-users'>{{NbUser}}</span> {{'plan.persons_displayed_in_your_selection' | transloco}}"
+        (click)="openModalEditQuickDisplay();$event.preventDefault();">
+      </fxt-bloc-chips-person>
+
+      <fxt-bloc-chips-person *ngIf="hideGauge" [currentSelection]="currentSelection"
+        title="{{'plan.your_daily_location' | transloco}}"
+        descriptionHtml="{{'plan.define_where_you_want_to_work_each_day' | transloco}}"
+        (search)="openModalEditQuickDisplay()" [hideSearch]="true"></fxt-bloc-chips-person>
+    </div>
+
+  </main>
+
+</section>

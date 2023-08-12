@@ -1,0 +1,11 @@
+.modal-add-edit {
+  width: 500px;
+  .actions {
+    display: flex;
+    column-gap: 16px;
+    justify-content: flex-end;
+  }
+  button {
+    width: 100px;
+  }
+}

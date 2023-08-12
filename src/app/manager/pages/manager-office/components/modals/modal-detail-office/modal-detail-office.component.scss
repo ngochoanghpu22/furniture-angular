@@ -1,0 +1,72 @@
+@import "../../../manager-office-common";
+
+div.detail-office {
+  margin: auto;
+  width: 800px;
+  @include borderRadius(8px);
+  .image {
+    height: 180px;
+  }
+
+  .bloc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    input[type="text"],
+    input[type="number"] {
+      flex: 1;
+      text-align: left;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0;
+      margin-left: 8px;
+
+      &:focus {
+        box-shadow: none;
+        border-color: transparent;
+      }
+    }
+
+    input[type="number"] {
+      max-width: 60px !important;
+    }
+
+    &-title {
+      color: $grey-color80;
+
+      input[type="text"] {
+        font-weight: 600;
+      }
+
+      .actions {
+        position: relative;
+        span {
+          background-color: $main-color;
+          color: white;
+        }
+      }
+    }
+
+    &-capacity {
+      .capacity {
+        color: $color-capacity;
+      }
+    }
+  }
+}
+
+.button-add-wrapper {
+  display: flex;
+  align-items: center;
+  input {
+    margin-right: 12px;
+    height: 32px;
+    margin-left: 15px;
+  }
+}

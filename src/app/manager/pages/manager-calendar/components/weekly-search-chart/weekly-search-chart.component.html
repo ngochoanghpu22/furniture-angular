@@ -1,0 +1,11 @@
+<div class="bars-wrapper">
+  <ng-container *ngFor="let item of data; let index = index">
+    <fxt-weekly-chart-progress-bar (barClicked)="barClicked.emit(item)" [@fadeOut]="'in'" 
+    [currentSort]="currentSort"
+    [value]="item.value" [name]="item.name" [total]="total"
+    [statusOrderInList]="item.orderInList" 
+    [statusColor]="item.color"
+    *ngIf="!item.hidden">
+    </fxt-weekly-chart-progress-bar>
+  </ng-container>
+</div>

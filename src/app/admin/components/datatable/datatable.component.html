@@ -1,0 +1,36 @@
+<input type="text" class="form-control filter ml-0" placeholder="Type to filter the displayed column..."
+  (keyup)="updateFilter($event)" />
+
+<ngx-datatable class="bootstrap striped" [rows]="rows" [columnMode]="ColumnMode.force" [headerHeight]="50"
+  [footerHeight]="50" [rowHeight]="45" [externalPaging]="true" [count]="page.totalCount" [offset]="page.pageNumber"
+  [limit]="page.pageSize" [selectionType]="SelectionType.single" (page)="setPage($event)"
+  (select)="onSelect($event.selected[0])">
+  <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [prop]="column.prop" [pipe]="column.pipe"
+    [sortable]="!column.disableSort" [cellTemplate]="column.cellTemplate">
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="Action" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+    [resizeable]="false" *ngIf="canEdit">
+    <ng-template ngx-datatable-header-template> </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <div class="actions">
+        <span title="Archived" (click)="archive(row)" *ngIf="canImpersonate&& !row.isArchived">
+          <i class="fas fa-box"></i>
+        </span>
+        <span title="Unarchived" (click)="unarchive(row)" *ngIf="canImpersonate&& row.isArchived">
+          <i class="fas fa-box-open"></i>
+        </span>
+        <span title="Impersonate" (click)="impersonate(row)" *ngIf="canImpersonate">
+          <i class="fas fa-people-arrows"></i>
+        </span>
+        <span title="Resend onboarding" (click)="resendOnboarding(row)" *ngIf="canImpersonate">
+          <i class="fas fa-paper-plane"></i>
+        </span>
+        <span (click)="edit(row)"><i class="far fa-pencil"></i></span>
+        <span (click)="remove(row)"><i class="far fa-trash-alt" hidden></i></span>
+      </div>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+
+<button *ngIf="canEdit && showAdd" type="button" class="btn btn-primary mt-3" (click)="add()">Add</button>

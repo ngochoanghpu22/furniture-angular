@@ -1,0 +1,9 @@
+<div class="title" (click)="select(floor)">
+  <span class="name"><i [ngClass]="'fas fa-' + floor.name.toLowerCase()"></i> {{floor.location}}</span>
+  <span class="load">{{floor.actualLoad}} / {{floor.capacity}}</span>
+</div>
+
+<fxt-map-info-block-users [users]="users" (avatarClicked)="select(floor, $event)"
+[highlightUserIds]="highlightUserIds"></fxt-map-info-block-users>
+
+<img (click)="select(floor, null)" *ngIf="seatArchitectureUrl" [src]="seatArchitectureUrl" alt="">

@@ -1,0 +1,51 @@
+@import 'abstracts/variables';
+
+@mixin add-spinner-color($name, $color) {
+    :host[color='#{$name}'] .path {
+        stroke: $color;
+    }
+}
+
+// TODO: css-variabiliser le component
+:host {
+    min-width: 3rem;
+
+    display: inline-block;
+}
+
+.spinner {
+    animation: rotate 2s linear infinite;
+    transform-origin: center center;
+
+    .path {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        animation: dash 1.5s ease-in-out infinite;
+        animation-delay: 0.75s;
+        stroke-linecap: round;
+        stroke: inherit;
+
+        stroke: $color-black;
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+}

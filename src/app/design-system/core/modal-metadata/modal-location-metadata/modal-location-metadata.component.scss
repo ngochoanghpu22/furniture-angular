@@ -1,0 +1,117 @@
+@import "abstracts/variables";
+
+div.building {
+  margin: auto;
+  background-color: $main-bg-color;
+  border-radius: 8px;
+  padding: 16px;
+
+  div.name-location {
+    position: relative;
+
+    .form-row {
+      margin: 0;
+      column-gap: 16px;
+    }
+
+    input {
+      padding-right: 32px;
+    }
+
+    .bloc-name {
+      position: relative;
+      .btn-icon-picker {
+        position: absolute;
+        right: 8px;
+        top: 38px;
+        cursor: pointer;
+        width: 26px;
+        display: flex;
+        align-items: center;
+        height: 26px;
+        justify-content: center;
+        &.border {
+          border: 1px solid #ced4da;
+        }
+        &.error-border {
+          border: 1px solid #ffbbbb;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    column-gap: 16px;
+    button {
+      flex: 1;
+    }
+  }
+}
+
+.modal-location-metadata-wrapper {
+  margin: auto;
+  border-radius: 8px;
+  background-color: #fafafa;
+
+  fieldset {
+    border: 1px solid rgba(2, 156, 85, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0px 2px 12px rgb(0 0 0 / 8%);
+    border-radius: 8px;
+
+    &:first-child {
+      margin-top: 0 !important;
+    }
+
+    legend {
+      padding: 8px 16px;
+      font-size: 1.1em;
+    }
+
+    div.metadata-form {
+      position: relative;
+
+      .form-row {
+        margin: 0;
+        column-gap: 16px;
+      }
+
+      input {
+        padding-right: 32px;
+      }
+    }
+  }
+
+  .form-error {
+    color: #ff0000;
+  }
+
+  .add-metadata {
+    color: $main-color;
+    padding: 16px;
+  }
+
+  .buttons {
+    display: flex;
+    column-gap: 16px;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .metadata-wrapper {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    .btn-map-picker {
+      position: relative;
+      left: 14px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<div class="fxt-chip" [ngClass]="{
+  'active':_selected,
+  'removable': removable, 
+  'is-all-company': isAllCompany, 
+'default': isIndividual,
+'core': isCore,
+'social':isSocial,
+'work':isWork,
+'org':isOrg
+}">
+
+  <ng-container *ngIf="!hideIcon">
+    <span class="icon" *ngIf="_icon; else imgRef">
+      <i class="fas {{_icon}}"></i>
+    </span>
+  </ng-container>
+
+  <span class="name">{{_text}}</span>
+
+  <span *ngIf="removable" class="icon-remove"
+    (click)="onCrossClick.emit(_id);$event.preventDefault();$event.stopPropagation(); ">
+    <i class="fas fa-times"></i>
+  </span>
+</div>
+
+<ng-template #imgRef>
+  <span *ngIf="_imageUrl; else avatarRef">
+    <img [src]="_imageUrl" alt="profile-img">
+  </span>
+</ng-template>
+
+<ng-template #avatarRef>
+  <ngx-avatar class="d-inline-block" size="20.96" [name]="_text"></ngx-avatar>
+</ng-template>

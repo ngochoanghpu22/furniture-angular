@@ -1,0 +1,30 @@
+<div class="container">
+
+  <form [formGroup]="form" (ngSubmit)="upload()">
+
+    <div class="form-group">
+      <label>{{'organization.xls_import_note' | transloco}}</label>
+    </div>
+
+    <div class="form-group">
+      <label>{{'organization.xls_import_label' | transloco}}</label>
+      <input type="file" formControlName="userfile" (change)="onFileChange($event)" />
+    </div>
+
+    <div class="form-group">
+      <label>{{'directory.invitation_email_tooltip' | transloco}}</label> <br />
+      <input type="checkbox" formControlName="isInvitedByEmail" />
+      <label class="ml-1" title="{{'directory.invitation_email_tooltip' | transloco}}">{{'directory.invitation_email' |
+        transloco}}</label>
+    </div>
+
+    <div *ngIf="hasError" class="alert alert-warning" role="alert">
+      {{('an_error_has_occurred' | transloco)}}
+    </div>
+    <button [disabled]="form.invalid || loading" type="submit" class="btn btn-primary float-right fxt-button">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>&nbsp;{{'organization.xls_import_btn' |
+      transloco}}
+    </button>
+  </form>
+
+</div>

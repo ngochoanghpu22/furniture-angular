@@ -1,0 +1,57 @@
+<div class="zone">
+  <div class="add">
+    <h5 class="new" *ngIf="form.controls.type.value == OfficeTypeEnum.Normal">{{'manager.add_new_zone' | transloco}}
+    </h5>
+    <h5 class="new" *ngIf="form.controls.type.value == OfficeTypeEnum.MeetingRoom">{{'main.add_meeting_room' |
+      transloco}}</h5>
+  </div>
+  <form [formGroup]="form">
+
+    <div class="file-wrapper">
+      <fxt-file-preview-input (fileChanged)="onFileChanged($event)"></fxt-file-preview-input>
+    </div>
+
+    <div class="info">
+
+      <div class="name line">
+        <label for="" class="name">{{'main.name' | transloco}}</label>
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+
+      <div class="capacity-load line">
+        <label for="" class="capacity"><span class="icon"><i class="fal fa-user-friends"></i></span>
+          {{'manager.capacity' | transloco}}</label>
+        <input type="number" class="form-control" formControlName="capacity">
+      </div>
+
+      <div class="equipments">
+        <div class="form-row">
+          <div class="col">
+            <label for="" class="capacity"><span class="icon"><i class="far fa-route"></i></span>
+              {{'manager.informations' | transloco}}</label>
+            <ul *ngIf="equipments?.length > 0">
+              <li *ngFor="let item of equipments">{{item}} <i (click)="removeEquipment(item)"
+                  class="fal fa-trash c-pointer"></i></li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <input (keydown.enter)="addNewEquiment($event)" type="text" class="form-control"
+                placeholder="{{'manager.add_equipments_wifi' | transloco}}" formControlName="newEquipment">
+              <span *ngIf="form.controls.newEquipment.value" (click)="addNewEquiment()"
+                class="btn-add-equipment border-light btn-sm btn btn-outline-primary btn-outline-success c-pointer ml-2 rounded-circle"><i
+                  class="fal fa-plus"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="btn btn-light" (click)="cancel()">{{'main.cancel' |
+          transloco}}</button>
+        <button type="button" class="btn btn-primary" (click)="ok()" [disabled]="form.invalid">{{'main.create'
+          | transloco}}</button>
+      </div>
+
+    </div>
+
+  </form>
+</div>

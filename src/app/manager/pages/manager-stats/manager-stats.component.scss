@@ -1,0 +1,101 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+.app-manager-stats {
+  padding: 64px;
+  height: 100%;
+  .middle-content {
+    background-color: white;
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 18px;
+
+    .bloc-times {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .bloc-tabs {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      column-gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+
+      .tab {
+        cursor: pointer;
+        text-align: center;
+        line-height: 18px;
+        padding: 4px;
+        color: $grey-color40;
+        border-bottom: 4px solid transparent;
+
+        &:hover {
+          background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #ffffff;
+        }
+
+        &:active {
+          background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), #ffffff;
+        }
+
+        &.active {
+          border-bottom-color: $main-color;
+          color: $grey-color80;
+        }
+      }
+    }
+
+    .bloc-chart {
+      flex-grow: 1;
+      max-height: calc(100vh - 300px);
+      position: relative;
+    }
+  }
+}
+
+.calendar-wrapper {
+  .left-arrow,
+  .right-arrow {
+    background: white;
+    border-radius: 50%;
+    border: 1px solid #efefef;
+    height: 32px;
+    width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    @include hover-active-btn;
+  }
+
+  .calendar {
+    color: black;
+  }
+}
+
+.btn-export-xls {
+  color: rgba(0, 0, 0, 0.48);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 14px;
+  @include hover-active-btn;
+}
+
+.loader {
+  padding: 2rem;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, .05);
+}

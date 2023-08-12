@@ -1,0 +1,83 @@
+@import 'abstracts/variables';
+
+.stat-item-wrapper {
+    padding: 18px 17px;
+    background: #ffffff;
+    box-shadow: 0px 4.06024px 14.2108px rgba(0, 0, 0, 0.15);
+    border-radius: 5.0753px;
+    margin-top: 12px;
+
+    .stat-body {
+        p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 10.6667px;
+            line-height: 140%;
+            letter-spacing: 0.266667px;
+            text-transform: uppercase;
+            color: rgba(24, 24, 25, 0.42);
+            margin-bottom: 4px;
+        }
+
+        .stat-data {
+            padding-left: 9px;
+            display: flex;
+            align-items: center;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14.2222px;
+            line-height: 120%;
+            letter-spacing: -0.355556px;
+            color: rgba(24, 24, 25, 0.9);
+
+            i {
+                font-size: 22px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .co2-stat {
+        background-image: url('../../../../assets/icons/cloud-icon.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 33px;
+        height: 20px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 8.55263px;
+        line-height: 10px;
+        text-align: center;
+        color: $color-dark;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 2px;
+        margin-right: 10px;
+    }
+
+    .diagrama-block {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10.6667px;
+            line-height: 140%;
+            text-align: right;
+            letter-spacing: -0.444444px;
+            margin-bottom: 7px;
+
+            &.down {
+                color: #dd425a;
+            }
+
+            &.up {
+                color: #4caf50;
+            }
+        }
+    }
+}

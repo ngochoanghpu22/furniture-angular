@@ -1,0 +1,209 @@
+@import "abstracts/variables";
+
+$size: 20px;
+
+:host {
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $size;
+    width: $size;
+    background: linear-gradient(180deg, #029c55 0%, #56e0a0 100%);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+
+    &.mode-halfday {
+      height: $size * 1.5;
+      width: $size * 1.5;
+      position: relative;
+
+      background: linear-gradient(to top left, #f55b1d 0%, #f55b1d calc(50% - 2px),
+       white 50%, #f55b1d calc(50% + 2px), #f55b1d 100%) !important;
+
+      fxt-avatar {
+        position: absolute;
+
+        &.first {
+          top: -6px;
+          left: -2px;
+        }
+
+        &.last {
+          right: -2px;
+          bottom: -4px;
+        }
+      }
+    }
+
+    box-shadow: 0px 0px 0px 2px rgba(2, 156, 85, 0.4);
+
+    &:hover {
+      box-shadow: 0px 0px 0px 4px rgba(2, 156, 85, 0.4);
+    }
+  }
+
+  &.disabled {
+    .wrapper {
+      background: linear-gradient(180deg, #ff9970 0%, #f55b1d 100%);
+      box-shadow: 0px 0px 0px 2px rgba(255, 61, 61, 0.4);
+
+      &:hover {
+        box-shadow: 0px 0px 0px 4px rgba(255, 61, 61, 0.4);
+      }
+    }
+  }
+
+  &.booked {
+    .wrapper {
+      background: linear-gradient(180deg, #ff9970 0%, #f55b1d 100%);
+      box-shadow: 0px 0px 0px 2px rgba(255, 61, 61, 0.4);
+
+      &:hover {
+        box-shadow: 0px 0px 0px 4px rgba(255, 61, 61, 0.4);
+      }
+    }
+  }
+
+  &.highlight {
+    .wrapper {
+      transform: scale(1.2);
+      background: rgb(152, 222, 234);
+      box-shadow: 0px 0px 0px 3px rgba(151, 222, 234, 0.5);
+
+      &:hover {
+        box-shadow: 0px 0px 0px 5px rgba(151, 222, 234, 0.5);
+      }
+    }
+  }
+}
+
+.card-seat {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  row-gap: 4px;
+  padding: 4px;
+
+  .image {
+    height: 100px;
+    width: 100%;
+    background-color: grey;
+  }
+
+  .bloc-rules {
+    display: flex !important;
+    row-gap: 4px;
+    flex-direction: column;
+
+    ::ng-deep fxt-chip {
+      box-shadow: none !important;
+
+      .fxt-chip {
+        border: none;
+        max-width: 160px;
+        justify-content: space-between;
+
+        .name {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      &.is-blocked {
+        .fxt-chip {
+          background-color: rgba(200, 28, 28, 0.2);
+          color: $color-capacity;
+        }
+      }
+
+      &.is-reserved {
+        .fxt-chip {
+          background-color: rgba(2, 156, 85, 0.6);
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .name,
+  .office {
+    color: $grey-color80;
+    font-weight: 500;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  .office {
+    font-size: 14px;
+    padding-bottom: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  .actions {
+    padding: 16px 0px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    .hours {
+      white-space: nowrap;
+      margin-right: 4px;
+      font-weight: bold;
+      width: 140px;
+      font-size: 12px;
+    }
+
+    &.mode-edit {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 8px;
+
+      button {
+        height: auto;
+      }
+    }
+
+    ::ng-deep fxt-chip {
+      .name {
+        text-overflow: ellipsis;
+        max-width: 70px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  button {
+    border: 1px solid #029c55;
+    border-radius: 4px;
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    margin: 5px;
+
+    &:hover {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #ffffff;
+    }
+
+    &:active {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), #ffffff;
+    }
+
+    &.btn-leave-seat {
+      border: 1px solid $color-red;
+    }
+  }
+
+  .btn-exit-seat {
+    width: auto;
+    border-radius: 50%;
+    min-width: 32px;
+    border: transparent !important;
+    background-color: transparent !important;
+  }
+}

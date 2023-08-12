@@ -1,0 +1,53 @@
+<div class="manager-user-row" [class.can-edit]="canEdit">
+  <span class="team" *ngIf="!isCurrentUser">
+    <fxt-chip [item]="selectionItem" image="{{selectionItem?.image}}" [selected]="true">
+    </fxt-chip>
+  </span>
+  <span class="team-empty" *ngIf="isCurrentUser"></span>
+  <span class="user">
+    <fxt-avatar (click)="openUserProfilePopup(user)" class="c-pointer mr-2"
+      [imageSrc]="user.id === currentUser?.id ? currentUser.tinyPicture: user.tinyPicture" [initial]="user.fullName"
+      [size]="32"></fxt-avatar>
+    <div class="name-role" [class.not-onboarded]="!user.isOnboarded">
+      <div class="name d-flex">
+        <div >
+          <span>{{user.fullName}}</span> <span *ngIf="!user.isOnboarded && user.fullName">- </span> <span
+            *ngIf="!user.isOnboarded">{{user.email}}
+          </span>
+        </div>
+      </div>
+      <span class="role" [title]="user.roleSerialized">{{user.roleSerialized}}</span>
+    </div>
+
+  </span>
+
+  <span *ngFor="let day of user.days;trackBy: trackbyFn; let index = index; let last = last;" class="day day-icon">
+    <fxt-location-status [canViewAllInfos]="canEdit" [popover]="popPanelLocationTemplate" container="body"
+      [placement]="last ? 'left': 'bottom'" [outsideClick]="true" #popPanelLocation="bs-popover"
+      [adaptivePosition]="true"
+      [popoverContext]="{day: day, date: days[index].date, pop: popPanelLocation, canEdit: canEdit}"
+      containerClass="popover-change-location-container  {{ last ? 'position-left' : '' }} " [item]="day" 
+      [disabled]="(index === currentSortIndex && currentSort && currentSort !== day[0].selectedRemoteLocation)
+            || (day[0].dayDate | isPastDatePipe)">
+    </fxt-location-status>
+  </span>
+
+  <span class="day day-icon checkbox-confirm" [style.visibility]="isCurrentUser || canEdit ? 'visible': 'hidden'">
+    <fxt-checkbox #checkboxConfirmWeek *ngIf="isCurrentUser || canEdit" [ngModel]="isWeekConfirmed"
+      (ngModelChange)="onConfirmDaysClicked(null)"
+      [tooltip]="isWeekConfirmed ? textWeekIsConfirmed : textConfirmWholeWeek" placement="left"></fxt-checkbox>
+  </span>
+
+</div>
+
+<ng-template #popPanelLocationTemplate let-day="day" let-date="date" let-pop="pop" let-canEdit="canEdit">
+  <fxt-location-panel [trigger]="LocationChangedTriggersEnum.Calendar" [locations]="locations" [user]="user"
+    [date]="date" [timeSlotTemplates]="timeSlotTemplates" [canEdit]="canEdit" [halfDayEnabled]="halfDayEnabled"
+    [isConfirmed]="isDayConfirmed(day)" [enableMap]="true" (seatClicked)="onSeatClicked($event);"
+    (locationInfoClicked)="onLocationInfoClicked($event, day);pop.hide()"
+    (locationChanged)="pop.hide()"
+    (outsideClicked)="pop.hide()"
+    (locationOfficeClicked)="onLocationOfficeClicked($event, day);pop.hide()"
+    >
+  </fxt-location-panel>
+</ng-template>

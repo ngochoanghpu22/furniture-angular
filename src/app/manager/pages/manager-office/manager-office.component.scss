@@ -1,0 +1,186 @@
+@import "./manager-office-common";
+
+$padding: 16px;
+
+.middle-content {
+  height: 100%;
+  padding: $padding;
+
+  background-color: $page-content-bg-color;
+
+  .bloc-buildings {
+    margin-bottom: $padding;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    column-gap: $padding;
+
+    .sortable-zone {
+      display: flex;
+      column-gap: 16px;
+    }
+
+    div.add-building {
+      min-height: 90px;
+      background-color: $grey-bg;
+      cursor: pointer;
+      padding: $padding / 2;
+      border-radius: $padding / 2;
+      width: 170px;
+      min-width: 155px;
+      &:hover {
+        box-shadow: 0px 3px 5px rgb(0 0 0 / 16%);
+      }
+    }
+  }
+
+  .data {
+    column-gap: $padding;
+    display: flex;
+    padding: $padding;
+    background-color: #fff;
+    justify-content: space-between;
+
+    .bloc-floors {
+      display: flex;
+      flex-direction: column;
+      row-gap: $padding;
+
+      .sortable-zone {
+        display: flex;
+        flex-direction: column;
+        row-gap: $padding;
+      }
+
+      .add-floor {
+        cursor: pointer;
+        background-color: $grey-bg;
+        padding: $padding / 2;
+        border-radius: $padding / 2;
+        min-width: 155px;
+        width: 170px;
+        min-height: 80px;
+
+        &:hover {
+          box-shadow: 0px 3px 5px rgb(0 0 0 / 16%);
+        }
+      }
+    }
+
+    .offices-map {
+      display: flex;
+      justify-content: space-between;
+      flex: 2;
+      flex-direction: row;
+      padding: $padding;
+      background-color: $sec-color;
+
+      ::ng-deep fxt-manager-office-floor-map {
+        width: 400px;
+      }
+
+      &.mode-desk {
+        .bloc-offices {
+          max-width: 265px;
+          .zone {
+            max-height: calc(100vh - 285px);
+            overflow-y: auto;
+            padding-top: 16px;
+            padding-bottom: 16px;
+          }
+        }
+
+        ::ng-deep fxt-manager-office-floor-map {
+          flex: 2;
+          max-height: initial;
+          transition: all 0.3s linear;
+        }
+      }
+    }
+
+    .bloc-offices {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      row-gap: $padding;
+      padding: $padding;
+      padding-top: 0;
+      border-radius: $padding;
+
+      .actions {
+        color: rgba(0, 0, 0, 0.48);
+        font-weight: 400 !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 0.75em;
+
+        span {
+          cursor: pointer;
+          padding: 5px 10px;
+          @include hover-active-btn();
+        }
+      }
+
+      .sortable-zone {
+        gap: $padding;
+        flex-wrap: wrap;
+        display: grid;
+
+        @media screen and (min-width: 1200px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media screen and (min-width: 1600px) {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+
+      .zone {
+        .add-zone {
+          cursor: pointer;
+          max-width: 250px;
+          width: 220px;
+          min-height: 152px;
+          display: flex;
+          flex-direction: column;
+          border-radius: 8px;
+
+          .image {
+            width: 100%;
+            height: 90px;
+            background-color: $grey-bg;
+            @include borderRadius(8px 8px 0px 0px);
+
+            span.icon {
+              color: rgba(255, 255, 255, 0.48);
+              font-size: 42px !important;
+              margin: 25px 85px 25px 86px;
+            }
+          }
+
+          .add {
+            background-color: $main-bg-color;
+            padding: $padding / 2;
+            flex: 1;
+            @include borderRadius(0px 0px 8px 8px);
+
+            span {
+              @include heading4();
+              color: rgba(0, 0, 0, 0.72);
+            }
+          }
+
+          &:hover {
+            box-shadow: 0px 3px 5px rgb(0 0 0 / 16%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.loader {
+  width: 100%;
+  text-align: center;
+}

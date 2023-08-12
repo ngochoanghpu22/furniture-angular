@@ -1,0 +1,16 @@
+<div class="container stat-item-wrapper">
+  <div class="row">
+    <div class="col-7 stat-body">
+      <p>{{title}}</p>
+      <div class="stat-data"><i class="far fa-clock fa-2x"></i>{{time}}</div>
+    </div>
+    <div class="col-5 diagrama-block">
+      <p [ngClass]="_down ? 'down' : 'up'">
+        <img *ngIf="!_down" src="../../../../assets/icons/up-diagarama-icon.png">
+        <img *ngIf="_down" src="../../../../assets/icons/down-diagrama-icon.png">
+         {{percentage}}
+      </p>
+      <img src="../../assets/icons/vector-icon.png">
+    </div>
+  </div>
+</div>

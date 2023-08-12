@@ -1,0 +1,43 @@
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+.dropdown-menu {
+  padding: 0;
+
+  border: none;
+
+  .notifications {
+    width: 350px;
+    max-height: 450px;
+    overflow-y: auto;
+
+    ::ng-deep fxt-notification {
+      box-shadow: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 0;
+    }
+  }
+}
+
+.btn-bell {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  @include hover-active-btn();
+  color: $main-color;
+  background-color: white;
+  position: relative;
+  .badge {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+  }
+}
+
+.no-data {
+  white-space: nowrap;
+  padding: 0 16px;
+}

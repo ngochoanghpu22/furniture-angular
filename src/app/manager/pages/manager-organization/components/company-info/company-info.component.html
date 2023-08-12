@@ -1,0 +1,61 @@
+<div class="org">
+
+  <div class="org-name">
+    <div class="name">
+      <p>{{'organization.organization_name' | transloco}}</p>
+      <div class="form-group">
+        <input [value]="companyName" type="text" readonly="readonly" class="form-control">
+      </div>
+    </div>
+    <div class="approved">
+      <p>{{'organization.approved_domains' | transloco}}</p>
+      <div class="flex">
+        <span *ngFor="let approvedDomain of companyInfo.approvedDomains; let i = index" class="team d-inline-block btn mb-3">
+          {{approvedDomain}}
+          <i (click)="openDialogRemoveDomain(i)" class="fal fa-times c-pointer"></i>
+        </span>
+        <input *ngIf="isAdding" (change)="onChangeDomain($event)" type="text" class="form-control inp-domain" />
+        <span (click)="isAdding = true" class="new d-inline-block btn">{{'main.add_new' | transloco}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bloc-working">
+    <p>{{'organization.working_statuses' | transloco}} </p>
+
+    <ng-container *ngIf="workingStatuses; else loader">
+      <div class="status-wrapper" [sortablejs]="workingStatuses" [sortablejsOptions]="sortablejsOptions">
+        <div *ngFor="let status of workingStatuses; let i = index" class="status-line" [class.sortable-line]="i >= 2">
+
+          <fxt-location-status [item]="status" [disableUnconfirmed]="true" class="btn-sort-handle"></fxt-location-status>
+
+          <div class="form-group btn-sort-handle">
+            <input [value]="status.address" readonly="readonly" class="form-control">
+          </div>
+
+          <span (click)="openModalAddOrUpdateLocationMetatadata(status)" class="btn btn-rounded-action">
+            <i class="far fa-pencil" title="Location Metadata"></i>
+          </span>
+
+          <span (click)="onIconDeleteClicked(status.id)" [style.visibility]="!status.isDeletable ? 'hidden': 'visible'"
+            class="btn btn-rounded-action">
+            <i class="far fa-trash-alt" title="Delete"></i>
+          </span>
+
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="new-status text-center">
+      <button class="btn text-center d-inline-block" data-toggle="button"
+        (click)="openModalAddOrUpdateLocationMetatadata(null)">
+        <span><i class="fal fa-plus mr-1"></i>{{'organization.add_new_status' | transloco}}</span>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <fxt-placeholder-loading [height]="38"></fxt-placeholder-loading>
+</ng-template>

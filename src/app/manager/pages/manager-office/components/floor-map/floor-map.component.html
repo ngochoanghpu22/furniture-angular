@@ -1,0 +1,39 @@
+<div class="floor-map">
+  <div class="title">
+    <h4 class="floor">
+      {{ "manager.floor_map" | transloco }}
+      <span *ngIf="contextualPicture" class="c-pointer" (click)="fileInput.click()"><i class="far fa-pencil"></i></span>
+    </h4>
+    <input #fileInput style="display: none" type="file" accept="image/*" (change)="changeFloorMap(fileInput.files)" />
+  </div>
+
+  <ng-container *ngIf="contextualPicture && seatArchitecture; else noSeatArchitectureTmp">
+    <fxt-dnd-map-seats #dndMapSeats [seats]="seatArchitecture.seats" [meetingRooms]="meetingRooms"
+      [base64Image]="seatArchitecture.base64Image" [hideMarkers]="!floor.isDeskBookingEnabled" [disableGrid]="!floor.isDeskBookingEnabled"
+      (changed)="onMapSeatsChanged($event)" (editSeatClicked)="onEditSeatClicked($event)"
+      (deleteSeatClicked)="onDeleteSeatClicked($event)" [hoveredSeats]="hoveredSeats" [clickedSeats]="clickedSeats">
+    </fxt-dnd-map-seats>
+  </ng-container>
+
+  <div class="pl-2 py-2 actions" [class.justify-content-between]="floor.isDeskBookingEnabled" *ngIf="contextualPicture">
+    <div class="d-flex align-items-center" *ngIf="floor.isDeskBookingEnabled" >
+      <button [disabled]="!hasChanges" class="btn btn-primary mr-2" (click)="saveSeats()">
+        {{'main.save' | transloco}}
+      </button>
+    </div>
+    <div class="toggle d-flex justify-content-end">
+      <span class="mr-2 no-wrap" *ngIf="!floor.isDeskBookingEnabled">{{'manager.activate_desk_booking' | transloco}}</span>
+      <span class="mr-2 no-wrap" *ngIf="floor.isDeskBookingEnabled">{{'manager.deactivate_desk_booking' | transloco}}</span>
+      <fxt-switch [(ngModel)]="floor.isDeskBookingEnabled" (ngModelChange)="onModeDeskChanged($event)"></fxt-switch>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #noSeatArchitectureTmp>
+  <div class="map-default">
+    <div class="camera"><i class="fal fa-camera"></i></div>
+    <div class="text">{{'manager.add_your_own_floor_map' | transloco}}</div>
+    <button class="btn btn-primary" (click)="fileInput.click()">{{'manager.add_map' | transloco}}</button>
+  </div>
+</ng-template>

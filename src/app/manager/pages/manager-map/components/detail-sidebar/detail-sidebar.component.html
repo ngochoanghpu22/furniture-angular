@@ -1,0 +1,37 @@
+<div class="buildings-date-wrapper" *ngIf="modeModal">
+  <strong class="bloc-date">
+    {{selectedDate | date: formatDate }}
+  </strong>
+  <div class="bloc-buildings">
+    <ng-container *ngFor="let item of buildings">
+      <div class="bloc-name" [class.selected]="item.id === building?.id" (click)="selectBuilding(item)">
+        <div class="name">
+          <span>{{item?.name}}</span>
+          <span>{{item?.location}}</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="zone-floors">
+  <fxt-manager-map-nav-date *ngIf="!modeModal" (dateChanged)="onDateChanged($event)" [selectedDate]="selectedDate">
+  </fxt-manager-map-nav-date>
+
+  <div class="bloc-name" *ngIf="!modeModal" (click)="back()">
+    <span>
+      <i class="fas fa-chevron-left"></i>
+    </span>
+
+    <div class="name">
+      <span>{{building?.name}}</span>
+      <span>{{building?.location}}</span>
+    </div>
+  </div>
+
+  <div class="bloc-floors">
+    <fxt-manager-map-card-floor [floor]="item" [selectedDate]="selectedDate" [selected]="item.id === selectedFloor?.id"
+      [id]="item.id" (clicked)="onFloorClicked(item)" *ngFor="let item of floors">
+    </fxt-manager-map-card-floor>
+  </div>
+</div>

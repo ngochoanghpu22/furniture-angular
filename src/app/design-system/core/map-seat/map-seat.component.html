@@ -1,0 +1,27 @@
+<div class="map">
+
+  <ng-container *ngIf="isMapLoaded">
+
+    <fxt-seat *ngFor="let seat of seatArchitecture.seats; let i = index;" [style.top.px]="seat.yParam * mapHeight"
+      [style.left.px]="seat.xParam * mapWidth" [seat]="seat"
+      [currentUser]="currentUser"
+      [occupationRules]="mapOccupationRules.get(seat.officeId)"
+      [highlight]="objHighlightSeatUser[seat.id] || highlightSeatIds.includes(seat.id)" 
+      [user]="mapSeatUsers.get(seat.id)"
+      [timeslotStates]="mapSeatTimeslots.get(seat.id)"
+      (bookClicked)="onBookClicked($event)" (popoverShown)="onPopoverShown($event)"
+      (inviteClicked)="onInviteClicked($event)" 
+      (popoverHidden)="onPopoverHidden()" (chipClicked)="chipClicked.emit($event)"
+      [disableBook]="disableBookState[seat.officeId]"
+      [canEditAsManager]="canEditAsManager"
+      [currentDayStatus]="currentDayStatus"
+      [halfDayEnabled]="halfDayEnabled" [timeSlotTemplates]="timeSlotTemplates"></fxt-seat>
+
+    <fxt-meeting-room *ngFor="let room of meetingRooms; let i = index;"
+      [style.top.px]="room.coordinate.yParam * mapHeight" [style.left.px]="room.coordinate.xParam * mapWidth"
+      [meetingRoom]="room" (clicked)="onMeetingRoomClicked($event)"></fxt-meeting-room>
+
+  </ng-container>
+
+  <img #map (load)="onLoadImg(map)" [src]="seatArchitecture?.base64Image">
+</div>

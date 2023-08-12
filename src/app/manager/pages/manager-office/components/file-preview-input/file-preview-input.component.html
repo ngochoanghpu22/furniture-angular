@@ -1,0 +1,20 @@
+<div class="photo">
+  <div class="details text-center" [class.has-photo]="imgURL">
+
+    <div class="bloc-img">
+
+      <div class="bloc-no-image">
+        <span class="icon"><i class="far fa-file-image"></i></span>
+        <div class="photo-button">
+          <button class="btn" (click)="fileInput.click()">{{buttonText}}</button>
+        </div>
+      </div>
+
+      <img [src]="imgURL" *ngIf="imgURL" height="100%" width="100%" title="Click to change" (click)="fileInput.click()">
+
+    </div>
+
+
+    <input #fileInput style="display: none;" type="file" accept="image/*" (change)="preview(fileInput.files)">
+  </div>
+</div>

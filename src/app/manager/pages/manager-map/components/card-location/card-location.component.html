@@ -1,0 +1,41 @@
+<div class="bloc-name" (clickOutside)="editMode = false">
+
+  <fxt-location-status [item]="location" [selected]="hasCurrentUser" [class.disabled-select]="!canChangeTo"
+    [disabled]="!canChangeTo" (click)="toggleEditMode()" [disableUnconfirmed]="true"></fxt-location-status>
+
+  <span *ngIf="!editMode">&nbsp;{{location.address}} ({{users.length}})</span>
+  <ng-container *ngIf="editMode">
+    <span>&nbsp;{{'main.change_to' | transloco}}&nbsp;</span>
+    <span>{{location.address}}&nbsp;?</span>
+    <div class="actions">
+      <span (click)="confirm()"><i class="fas fa-check-circle"></i></span>
+      <span (click)="editMode = false;"><i class="fas fa-times-circle"></i></span>
+    </div>
+  </ng-container>
+</div>
+
+<div class="bloc-users">
+  <ng-container *ngIf="users">
+    <ng-container *ngIf="users.length > 0; else noUser">
+      <ng-container *ngFor="let user of users">
+        <ng-container *ngTemplateOutlet="userTemplateRef; context: {user: user}">
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #userTemplateRef let-item="user">
+  <fxt-avatar class="c-pointer" [imageSrc]="item.id === currentUser?.id ? currentUser.tinyPicture: item.tinyPicture"
+    [initial]="item.fullName" [size]="24" [isCurrentUser]="item.id == currentUser?.id"
+    (click)="onAvatarClicked(item, $event)" [tooltip]="'manager.on_boarding_not_done_tooltip' | transloco"
+    [isDisabled]="item.isOnboarded"></fxt-avatar>
+</ng-template>
+
+<ng-template #loader>
+  <fxt-placeholder-loading [height]="25"></fxt-placeholder-loading>
+</ng-template>
+
+<ng-template #noUser>
+  <div class="no-user">{{'manager.no_user' | transloco}}</div>
+</ng-template>

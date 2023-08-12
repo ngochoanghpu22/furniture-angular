@@ -1,0 +1,56 @@
+<form [formGroup]="form">
+
+  <h5 *ngIf="!seat.id">{{'manager.new_desk_in_office' | transloco:{officeName: office.name} }}</h5>
+  <h5 *ngIf="seat.id">{{'manager.desk_in_office' | transloco:{officeName: office.name} }}</h5>
+
+  <div class="mb-2">
+    <label for="" class="name">{{'main.name' | transloco}}</label>
+    <input type="text" class="form-control" formControlName="name">
+  </div>
+
+  <div class="equipments mb-4">
+    <div class="form-row">
+      <div class="col">
+        <label for="" class="capacity"><span class="icon"><i class="far fa-route"></i></span>
+          {{'manager.informations' | transloco}}</label>
+        <ul *ngIf="equipments?.length > 0">
+          <li *ngFor="let item of equipments">{{item}} <i (click)="removeEquipment(item)"
+              class="fal fa-trash c-pointer"></i></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <input (keydown.enter)="addNewEquiment($event)" type="text" class="form-control"
+            placeholder="{{'manager.add_equipments_wifi' | transloco}}" formControlName="newEquipment">
+          <span *ngIf="form.controls.newEquipment.value" (click)="addNewEquiment()"
+            class="btn-add-equipment border-light btn-sm btn btn-outline-primary btn-outline-success c-pointer ml-2 rounded-circle"><i
+              class="fal fa-plus"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="equipments mb-4">
+    <div class="form-row">
+      <div class="col">
+        <label for="" class="capacity">
+          <span class="icon"><i class="fas fa-laptop-house"></i></span>
+          {{'main.office' | transloco}}
+        </label>
+        <div class="align-items-center">
+          <ng-select formControlName="officeId" appendTo="body" [items]="officeList" bindLabel="name" bindValue="id" [clearable]="false"
+            [searchable]="false">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons d-flex align-items-center justify-content-end">
+    <button type="button" class="btn btn-light" (click)="close()">
+      {{'main.cancel' |transloco}}</button>
+    <button type="button" class="btn btn-primary ml-2" (click)="save()" [disabled]="form.invalid">
+      <span *ngIf="!seat.id"> {{'main.create'| transloco}}</span>
+      <span *ngIf="seat.id"> {{'main.edit'| transloco}}</span>
+    </button>
+  </div>
+
+</form>

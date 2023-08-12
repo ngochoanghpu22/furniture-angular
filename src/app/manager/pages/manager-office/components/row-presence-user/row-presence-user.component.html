@@ -1,0 +1,40 @@
+<div class="row-office">
+  <div class="name">
+    <span><i [ngClass]="'fas fa-' + office.name.toLowerCase()"></i> {{office.address}}</span>
+    <span class="capacity" [class.is-overload]="office.actualLoad > office.capacity">{{office.actualLoad}} /
+      {{office.capacity}}</span>
+    <span class="badge" *ngIf="office.actualLoad > office.capacity">{{ 'manager.overload' | transloco }}</span>
+  </div>
+  <div class="users">
+    <ng-container *ngIf="users.length > 0; else noUser">
+      <ng-container *ngFor="let user of users">
+        <ng-container *ngTemplateOutlet="userTemplateRef; context: {user: user, office: office}">
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #userTemplateRef let-item="user" let-office="office">
+  <div class="row-user" [class.is-overload]="item.isOverload" [class.is-edit-mode]="isEditMode"
+    [class.is-prefered]="item.isPrefered">
+
+    <fxt-avatar [imageSrc]="item.tinyPicture" [initial]="item.fullName" [size]="30"></fxt-avatar>
+
+    <div class="name">
+      <span>{{item.fullName}}</span>
+      <span>{{item.teamName}}</span>
+    </div>
+
+    <span class="actions c-pointer">
+      <a href="mailto:{{item.email}}"> <i *ngIf="!isEditMode" class="far fa-paper-plane"></i></a>
+      <i (click)="removeUser(office, item)" *ngIf="isEditMode" class="far fa-times"></i>
+    </span>
+
+  </div>
+</ng-template>
+
+<ng-template #noUser>
+  <div class="no-user">{{'manager.no_user' | transloco}}</div>
+</ng-template>

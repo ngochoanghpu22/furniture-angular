@@ -1,0 +1,33 @@
+<div class="bloc-search-input">
+
+  <ng-select [items]="items" bindLabel="name" bindValue="id" groupBy="group" (change)="onChange($event)"
+    (search)="onSearch($event.term)" [placeholder]=" 'main.search_teams_persons' | transloco ">
+
+    <ng-template ng-optgroup-tmp let-item="item">
+      {{ 'main.selection_groups.' + SelectGroupTypesEnum[item.group] | transloco }}
+    </ng-template>
+
+    <ng-template ng-option-tmp let-item="item">
+
+      <div [ngClass]="{selected: item.selected}" class="item-option">
+        <fxt-avatar [imageSrc]="item.image" [initial]="item.name" [size]="40"></fxt-avatar>
+        <div class="name">
+          <span>{{item.name}}</span>
+          <span *ngIf="item.name !== item.teamName">{{item.teamName}}</span>
+        </div>
+      </div>
+
+    </ng-template>
+  </ng-select>
+
+
+</div>
+
+<div class="bloc-chips">
+
+  <ng-container *ngFor="let item of chips">
+    <fxt-chip [item]="item" image="{{item.image}}" [removable]="true" (onCrossClick)="deleted.emit(item)">
+    </fxt-chip>
+  </ng-container>
+
+</div>

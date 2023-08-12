@@ -1,0 +1,81 @@
+@import "../common";
+@import "abstracts/variables";
+
+:host {
+    .page-container {
+        overflow-y: auto;
+        .bloc {
+            &-body {
+                .grid {
+                    display: grid;
+                    grid-template-areas:
+                        ". lastname firstname"
+                        "button email email";
+                    gap: 20px;
+                    align-items: flex-end;
+
+                    .lastname {
+                        grid-area: lastname;
+                    }
+
+                    .firstname {
+                        grid-area: firstname;
+                    }
+
+                    .email {
+                        grid-area: email;
+                    }
+
+                    button {
+                        grid-area: button;
+                    }
+
+                    .line {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+                .selection {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 11px;
+                    justify-content: flex-end;
+
+                    .item {
+                        display: flex;
+                        align-items: center;
+                        background: #f1f1f1;
+                        border-radius: 116px;
+
+                        min-width: 50px;
+                        padding: 5px 8px;
+
+                        span:first-child {
+                            margin-right: 8px;
+                            svg {
+                                height: 14px;
+                                width: 14px;
+                            }
+                        }
+                    }
+                }
+
+                .helper {
+                    color: #666666;
+                    font-size: 18px;
+                    line-height: 21px;
+                    margin-top: 35px;
+                    margin-bottom: 15px;
+                    text-align: right;
+                }
+
+                .team{
+                    width: 60%;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}

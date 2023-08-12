@@ -1,0 +1,40 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+div.tip {
+  @include borderRadius(8px);
+
+  div.info {
+    background-color: #fff;
+    padding: 8px;
+    white-space: nowrap;
+    @include hover-active-btn();
+
+    h6 {
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    span {
+      vertical-align: text-bottom;
+      color: $main-color;
+      white-space: nowrap;
+    }
+  }
+
+  hr {
+    margin: 0;
+    background-color: #c4c4c4;
+  }
+
+  div.support {
+    padding: 0px;
+    background-color: #fff;
+    white-space: nowrap;
+
+    div {
+      padding: 8px;
+      @include hover-active-btn();
+    }
+  }
+}

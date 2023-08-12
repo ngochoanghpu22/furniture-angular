@@ -1,0 +1,13 @@
+@import "abstracts/variables";
+
+.bloc-users {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  min-height: 25px;
+}
+
+.no-user {
+  color: $grey-color50;
+  font-size: 10px;
+}

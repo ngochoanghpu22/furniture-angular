@@ -1,0 +1,36 @@
+<div class="manager-office-card-building-wrapper" [class.selected]="selected" aria-pressed="false">
+
+  <div class="dropdown-card" dropdown #dropdown="bs-dropdown" (clickOutside)="dropdown.hide()" container="body">
+    <span class="elipsis" (click)="dropdown.toggle(true);" aria-haspopup="true" aria-expanded="false">
+      <i class="far fa-ellipsis-v"></i>
+    </span>
+    <div class="dropdown-menu" *dropdownMenu role="menu">
+      <div class="dropdown-item px-3" (click)="showDetails();dropdown.hide();">
+        <i class="fas fa-align-left mr-2"></i>
+        {{'manager.details' | transloco}}
+      </div>
+    </div>
+  </div>
+
+  <div class="manager-office-card" (click)="select.emit(building)">
+    <div class="title">
+      <span class="building-name">{{building.name}}</span>
+    </div>
+
+    <div class="location">{{building.location}}&nbsp;</div>
+
+    <div class="info">
+      <div class="capacity">
+        <div class="label">{{'manager.capacity' | transloco}}</div>
+        <div>{{building.capacity}}</div>
+      </div>
+      <div class="load">
+        <div class="label">{{'manager.allowed_load' | transloco}}</div>
+        <div>{{building.capacity}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="indicator-selected"></div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="modal-window" (click)="onOverlayClicked($event)">
+  <div class="modal-body" [style.width]="width" [style.height]="height"
+    [style.max-height]="maxHeight" [class.overflow-y-initial]="overflowYInitial">
+    <button [hidden]="hideBtnClose" class="btn-modal-close" (click)="close($event)">
+      <i class="far fa-times-circle"></i>
+    </button>
+    <ng-template #insertion>
+    </ng-template>
+  </div>
+</div>
+<div class="modal-background"></div>

@@ -1,0 +1,6 @@
+<div class="image" *ngIf="imageSrc || !initial; else avatarRef">
+  <img class="img-avatar" fxtImageBase64 [image]="imageSrc" [height]="size" [width]="size" [shadow]="shadow" alt="profile-img">
+</div>
+<ng-template class="icon-user" #avatarRef>
+  <ngx-avatar [size]="size" name="{{initial}}"></ngx-avatar>
+</ng-template>

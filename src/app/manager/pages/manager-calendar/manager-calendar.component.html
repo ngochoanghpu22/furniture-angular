@@ -1,0 +1,49 @@
+<h1>hoang</h1>
+
+<div class="content">
+  <div class="container-fluid d-flex">
+    <div class="middle-content">
+
+      <div class="filters">
+        <fxt-manager-block-filters></fxt-manager-block-filters>
+      </div>
+
+      <div class="headers">
+        <span class="head head-team">{{'manager.team' | transloco}}</span>
+        <span class="head head-name">{{'manager.name' | transloco}}</span>
+        <span class="head head-day" *ngFor="let day of days" [class.today]="day.isToday">{{day.label}}</span>
+        <span class="head head-day action">
+        </span>
+      </div>
+
+      <div class="data">
+        <ng-container *ngIf="!loading; else loader">
+
+          <fxt-manager-user-row *ngFor="let user of sortedData;trackBy:trackByFn" [user]="user" [locations]="locations"
+            [canEdit]="user.canEdit" [currentUser]="currentUser" [halfDayEnabled]="halfDayEnabled" [days]="days"
+            (locationInfoClicked)="showMetadataDialog($event)"
+            (locationOfficeClicked)="onLocationOfficeClicked($event)"
+            (confirmDaysClicked)="onConfirmDaysClicked(user, $event)" 
+            (seatClicked)="onSeatClicked(user, $event)">
+          </fxt-manager-user-row>
+
+        </ng-container>
+      </div>
+
+      <div class="summary">
+        <ng-container *ngIf="weeklySearchCharts">
+          <fxt-manager-weekly-search-summary [data]="weeklySearchCharts"></fxt-manager-weekly-search-summary>
+        </ng-container>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #loader>
+  <div class="loader">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

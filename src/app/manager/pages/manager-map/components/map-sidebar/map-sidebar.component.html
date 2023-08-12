@@ -1,0 +1,12 @@
+<fxt-manager-map-nav-date (dateChanged)="onDateChanged($event)" [selectedDate]="selectedDate">
+</fxt-manager-map-nav-date>
+
+<div class="bloc-locations">
+
+  <manager-map-accordeon-in-office [users]="inOfficeLocationsWithUser?.users" [selectedDate]="selectedDate">
+  </manager-map-accordeon-in-office>
+
+  <fxt-manager-map-card-location [location]="item.location" [users]="item.users" [currentUser]="currentUser"
+    (confirmClicked)="onLocationConfirmClicked($event)" *ngFor="let item of otherLocationsWithUsers">
+  </fxt-manager-map-card-location>
+</div>

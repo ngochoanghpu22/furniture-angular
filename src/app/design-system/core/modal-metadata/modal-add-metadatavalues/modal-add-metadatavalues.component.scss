@@ -1,0 +1,49 @@
+.modal-add-metadatavalues-wrapper {
+  margin: auto;
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 16px;
+
+  div.metadata-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    .input-control {
+      label {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .form-error {
+    color: #ff0000;
+  }
+
+  .container-height {
+    max-height: 50vh;
+  }
+
+  .buttons {
+    display: flex;
+    column-gap: 16px;
+    justify-content: flex-end;
+    button {
+      flex: 1;
+      white-space: nowrap;
+      &.create {
+        flex: 210px 0 0;
+      }
+    }
+  }
+
+  .text-capitalize {
+    text-transform: capitalize;
+  }
+
+  .metadata-wrapper {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

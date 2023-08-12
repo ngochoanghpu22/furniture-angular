@@ -1,0 +1,100 @@
+@import "abstracts/mixins";
+
+/* MODAL STYLES
+-------------------------------*/
+modal {
+  /* modals are hidden by default */
+
+  .modal-window {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index must be higher than .modal-background */
+    z-index: 1032;
+
+    overflow: auto;
+
+    animation-name: modalAnimation;
+    animation-duration: 0.2s;
+
+    .modal-body {
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      margin: 10px;
+      position: relative;
+
+      flex: initial;
+      max-height: 80%;
+      overflow-y: auto;
+
+      &.overflow-y-initial {
+        overflow-y: initial;
+      }
+
+      .btn-modal-close {
+        background-color: transparent;
+        width: 32px;
+        height: 32px;
+        border: none;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        padding: 10px;
+        margin: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        @include hover-active-btn();
+        i {
+          font-size: 19px;
+          color: #666666;
+        }
+      }
+    }
+  }
+
+  .modal-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* semi-transparent black  */
+    background-color: #ccc;
+    opacity: 0.75;
+
+    /* z-index must be below .modal and above everything else  */
+    z-index: 1031;
+  }
+  &.modal-user-profile {
+    .modal-window .modal-body {
+      padding: 0;
+    }
+  }
+}
+
+body.modal-open {
+  /* body overflow is hidden to hide main scrollbar when modal window is open */
+  overflow: hidden;
+}
+
+@keyframes modalAnimation {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

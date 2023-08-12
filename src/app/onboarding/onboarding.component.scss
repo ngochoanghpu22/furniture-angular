@@ -1,0 +1,30 @@
+@import "abstracts/variables";
+
+:host {
+  .parent {
+    height: calc(100% - 40px);
+
+    transition: transform 0.2s linear;
+
+    display: flex;
+    > div {
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  .btn-back {
+    margin-top: 16px;
+    margin-left: 16px;
+    color: $color-helper;
+    z-index: 1003;
+    cursor: pointer;
+  }
+
+  .progress-bar {
+    height: 5px;
+    transition: width 0.5s;
+    will-change: width;
+    background-color: $main-color;
+  }
+}

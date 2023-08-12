@@ -1,0 +1,141 @@
+// Core
+$color-blue: #03dac5;
+$color-red: #f55b1d;
+$color-dark: #333333;
+$color-black: #000;
+$color-white: #fff;
+$color-grey: rgba(0, 0, 0, 0.4);
+$color-grey-light: #e1e1e1;
+$color-capacity: #c81c1c;
+
+$color-default-status: #dac5f9;
+$color-car: #ffef33;
+$color-office: #97deea;
+$color-absent: #f55b1d;
+$color-home: #fdb1cd;
+$color-graduation: #7f39fb;
+
+$color-one: #feb2cd;
+$color-two: #98deea;
+$color-three: #fff033;
+$color-four: #029c56;
+$color-five: #dac6fa;
+$color-six: #f55b1d;
+
+$main-color: #029c55;
+$sec-color: #c4c4c4;
+$main-bg-color: #fafafa;
+$page-content-bg-color: #f2f2f2;
+
+
+$grey-bg: rgba(196, 196, 196, 1);
+$grey-color08: rgba(0, 0, 0, 0.08);
+$grey-color12: rgba(0, 0, 0, 0.12);
+$grey-color16: rgba(0, 0, 0, 0.16);
+$grey-color40: rgba(0, 0, 0, 0.4);
+$grey-color48: rgba(0, 0, 0, 0.48);
+$grey-color50: rgba(0, 0, 0, 0.5);
+$grey-color32: rgba(0, 0, 0, 0.32);
+$grey-color60: rgba(0, 0, 0, 0.6);
+$grey-color64: rgba(0, 0, 0, 0.64);
+$grey-color80: rgba(0, 0, 0, 0.8);
+
+// For helper/description text
+$color-helper: #999999;
+
+// Common
+$base-color: #4dd6cb;
+
+//Chip
+$chip-box-shadow: 0px 3.6px 3.6px rgba(0, 0, 0, 0.25);
+$chip-height: 32px;
+$chip-border-radius: 104.81px;
+$chip-image-width: 24px;
+$chip-image-height: 24px;
+
+// Calendar
+$calendar-padding-lr: 0px;
+$calendar-header-margin-lr: 32px;
+$calendar-distance-text-icon: 5px;
+
+// From manager console
+$sec-color: #e9efe680;
+$progress1-color: #c5cae9;
+$progress2-color: #dcedc8;
+$red-icon: rgba(248, 187, 208, 1);
+$toggle-color: rgba(110, 0, 238, 0.32);
+
+// Placeholder grid calendar
+%grid-calendar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+  align-items: center;
+
+  padding-left: var(--fxt-calendar-header-padding);
+  padding-right: var(--fxt-calendar-header-padding);
+
+  gap: var(--fxt-calendar-row-icon-gap);
+}
+
+/* RESPONSIBLE
+    $xsmall: 320px;
+    $small: 544px;
+    $medium: 768px;
+    $large: 992px;
+    $xlarge: 1200px;
+*/
+:root {
+  --main-color: rgba(2, 156, 85, 1);
+  --red-color: rgba(248, 187, 208, 1);
+  --sec-color: rgba(0, 0, 0, 0.32);
+
+  --fxt-text-font-size: 15px;
+
+  --fxt-calendar-header-font-size: 15px;
+  --fxt-calendar-header-padding: 16px;
+  --fxt-calendar-row-icon-height: 40px;
+  --fxt-calendar-row-icon-gap: 10px;
+  --fxt-calendar-icon-font-size: 24px;
+  --fxt-calendar-row-week-gap: 10px;
+  --fxt-calendar-cirle-day-row-gap: 4px;
+  --fxt-calendar-gauge-size: 32px;
+
+  --fxt-gauge-padding-lr: 5px;
+  --fxt-gauge-color: #97deea;
+
+  --footer-search-icon-size: 16px;
+
+  --fxt-selected-day-font-size: 25px;
+
+  --fxt-onboarding-page-gap: 16px;
+
+  --fxt-manager-page-sidebar-width: 150px;
+
+  //ICON STATUS
+  --fxt-icon-status-size: 32px;
+  --fxt-icon-status-i-font-size: 20px;
+
+  // user schedule
+  --fxt-schedule-gauge-size: 32px;
+  --fxt-text-font-size: 15px;
+}
+
+@media (min-width: 544px) {
+  :root {
+    --fxt-text-font-size: 18px;
+
+    --fxt-calendar-header-font-size: 20px;
+    --fxt-calendar-header-padding: 32px;
+    --fxt-calendar-row-icon-height: 60px;
+    --fxt-calendar-row-icon-gap: 40px;
+    --fxt-calendar-icon-font-size: 35px;
+    --fxt-calendar-row-week-gap: 10px;
+    --fxt-calendar-cirle-day-row-gap: 15px;
+    --fxt-calendar-gauge-size: 60px;
+
+    --footer-search-icon-size: 25px;
+    --fxt-selected-day-font-size: 30px;
+
+    --fxt-onboarding-page-gap: 16px;
+  }
+}

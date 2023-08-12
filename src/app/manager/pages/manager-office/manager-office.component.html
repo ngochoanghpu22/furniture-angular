@@ -1,0 +1,97 @@
+<div class="middle-content">
+
+  <div class="bloc-buildings">
+
+    <div class="sortable-zone" [sortablejs]="buildings" [sortablejsOptions]="{ onEnd: onEndSortFn }">
+      <fxt-manager-office-card-building *ngFor="let building of buildings" [building]="building"
+        [selected]="building.id == selectedBuilding.id" (select)="onSelectBuilding($event)"
+        (detailsClicked)="openModalBuildingDetails($event)">
+      </fxt-manager-office-card-building>
+    </div>
+
+    <div class="add-building" (click)="openModalBuilding()">
+      <span>
+        <i class="fal fa-plus-circle"></i>&nbsp;{{ "manager.add_building" | transloco }}
+      </span>
+    </div>
+
+  </div>
+
+  <div class="data">
+    <div class="bloc-floors">
+
+      <ng-container *ngIf="!loadingFloors; else loader">
+        <div class="sortable-zone" [sortablejs]="floors" [sortablejsOptions]="{ onEnd: onEndSortFn }">
+          <fxt-manager-office-card-floor *ngFor="let floor of floors" [floor]="floor" (select)="onSelectFloor($event)"
+            (edit)="openModalFloor($event)" [selected]="floor.id == selectedFloor.id">
+          </fxt-manager-office-card-floor>
+        </div>
+      </ng-container>
+
+      <div class="add-floor" (click)="openModalFloor()">
+        <span>
+          <i class="fal fa-plus-circle"></i>&nbsp;{{ "manager.add_floor" | transloco }}
+        </span>
+      </div>
+
+    </div>
+
+    <div class="offices-map" [class.mode-desk]="selectedFloor?.isDeskBookingEnabled">
+
+      <div class="bloc-offices">
+        <div class="actions">
+          <span (click)="gotoArchivePage()">
+            <i class="far fa-archive"></i>&nbsp;{{'main.see_archived_office' | transloco}}
+          </span>
+          <span (click)="openModalAddMeetingRoom()">
+            <i class="far fa-plus"></i>&nbsp;{{'main.add_meeting_room' | transloco}}
+          </span>
+        </div>
+        <div class="zone d-flex flex-wrap">
+          <ng-container *ngIf="!loadingOffices && !loadingFloors; else loader">
+            <div class="sortable-zone d-grid d-md-flex" [sortablejs]="offices" [sortablejsOptions]="{
+              animation: 150,
+              filter: '.add-zone',
+              draggable: '.fxt-card-office',
+              onEnd: onEndSortFn
+            }">
+              <fxt-card-office *ngFor="let office of offices" [office]="office" (select)="onSelectOffice(office)"
+                [modeDesk]="selectedFloor?.isDeskBookingEnabled"
+                (addSeatClicked)="onAddSeatOrPlaceMapMeetingRoomClicked($event, null)"
+                (seatHovered)="onSeatHovered($event)" (seatClicked)="onSeatClicked($event)"
+                (edit)="onSelectOffice(office)" (archive)="archive(office)">
+              </fxt-card-office>
+
+              <div class="add-zone" (click)="openModalZone(OfficeTypeEnum.Normal)">
+                <div class="image">
+                  <span class="icon d-inline-block"><i class="fal fa-image-polaroid"></i></span>
+                </div>
+                <div class="add">
+                  <span>
+                    <i class="fal fa-plus-circle"></i>&nbsp;
+                    {{ "manager.add_zone" | transloco }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+      </div>
+
+      <fxt-manager-office-floor-map [floor]="selectedFloor" [seatArchitecture]="seatArchitecture"
+        [contextualPicture]="contextualPicture" (modeChanged)="onModeDeskChanged($event)"
+        (editSeatClicked)="openModalAddOrEditSeatComponent($event.office, $event)"
+        (deleteSeatClicked)="onDeleteSeatClicked(selectedFloor, $event)" [meetingRooms]="meetingRooms">
+      </fxt-manager-office-floor-map>
+
+    </div>
+
+  </div>
+</div>
+
+<ng-template #loader>
+  <div class="loader">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<div class="data">
+
+  <ng-container *ngIf="timeSlotTemplates; else loader">
+    <full-calendar #fxtFullCalendar [deepChangeDetection]="false" [options]="calendarOptions"></full-calendar>
+  </ng-container>
+</div>
+
+<ng-template #loader>
+  <div class="loader">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

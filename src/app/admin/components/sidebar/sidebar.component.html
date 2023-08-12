@@ -1,0 +1,36 @@
+<div class="manager-sidebar sidebar text-center">
+  <a class="logo text-center">Flexteam</a>
+  <div class="user role text-left pl-1 d-flex">
+    <fxt-avatar class="mr-1" [imageSrc]="user.avatar" [initial]="user.name" [size]="32"></fxt-avatar>
+    <span class="name-role">
+      <span class="name">{{ user.name }}</span>
+      <span class="role"> {{ user.roleSerialized }}</span>
+    </span>
+  </div>
+  <ul class="dashboard text-left mt-4 pl-2">
+    <li class="mb-5" routerLink="companies" routerLinkActive="active">
+      <span class=""><i class="fas fa-users"></i></span> Users
+    </li>
+
+    <li class="mb-5" routerLink="teams" routerLinkActive="active">
+      <span class=""><i class="fas fa-user-friends"></i></span> Teams
+    </li>
+
+    <li class="mb-5" routerLink="onboardings" routerLinkActive="active">
+      <span class=""><i class="fas fa-calendar-week"></i></span> Onboardings
+    </li>
+
+    <li class="mb-5" routerLink="joblogs" routerLinkActive="active">
+      <span class=""><i class="fas fa-clipboard"></i></span> Job Logs
+    </li>
+    <li class="mb-5" routerLink="triggers" routerLinkActive="active">
+      <span class=""><i class="fas fa-clipboard"></i></span> Triggers
+    </li>
+    <li class="mb-5" routerLink="check" routerLinkActive="active">
+      <span class=""><i class="fas fa-clipboard"></i></span> Check
+    </li>
+    <li class="mb-5" routerLink="seats" routerLinkActive="active">
+      <span class=""><i class="fas fa-clipboard"></i></span> Seats
+    </li>
+  </ul>
+</div>

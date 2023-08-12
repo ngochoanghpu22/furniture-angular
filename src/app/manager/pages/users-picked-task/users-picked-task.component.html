@@ -1,0 +1,25 @@
+<ngx-datatable class="bootstrap striped" [rows]="rows" [columnMode]="ColumnMode.force" [headerHeight]="50"
+  [footerHeight]="50" [rowHeight]="45" [externalPaging]="true" [count]="page.totalCount" [offset]="page.pageNumber"
+  [limit]="page.pageSize" (page)="setPage($event, oldSortProp, oldSortOrder)" [loadingIndicator]="loading"
+  [externalSorting]="true" (sort)="onSort($event)">
+  <ngx-datatable-column *ngFor="let column of columns" [name]="column.name" [prop]="column.prop"
+    [pipe]="column.pipe" [sortable]="column.sortable" [cellTemplate]="column.cellTemplate"
+    [cellClass]="column.cellClass" [headerClass]="column.headerClass">
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="action" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+    [resizeable]="false" cellClass="column-actions">
+    <ng-template ngx-datatable-header-template> </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #nameTmp let-row="row" let-value="value">
+    <a (click)="gotoTaskDetail(row)" style="cursor: pointer;">
+      {{row.taskName}}
+    </a>   
+</ng-template>
+

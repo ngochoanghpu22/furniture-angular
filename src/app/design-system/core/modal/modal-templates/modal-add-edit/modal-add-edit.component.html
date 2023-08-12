@@ -1,0 +1,14 @@
+<div class="modal-add-edit">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+
+    <div class="actions">
+      <button type="button" class="btn btn-light" (click)="close()">
+        {{'main.cancel' | transloco}}
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        {{'main.save' | transloco}}
+      </button>
+    </div>
+  </form>
+</div>

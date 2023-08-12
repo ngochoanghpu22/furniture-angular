@@ -1,0 +1,22 @@
+<div class="creation">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div class="form-group">
+      <label for="name"><strong>{{'organization.timeslot_name' | transloco}}</strong></label>
+      <input formControlName="name" type="text" class="form-control" id="timeSlot" placeholder="Time Slot Name"
+        [ngClass]="{ 'is-invalid': f.name.errors && f.name.touched}" />
+      <div *ngIf="f.name.errors && f.name.touched" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required;">
+          {{ "main.name_is_required" | transloco }}
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button [disabled]="form.invalid || loading || form.pristine" type="submit" class="btn btn-primary w-100">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        {{timeslot?.id ? ('main.update' | transloco): ('main.create' | transloco)}}
+      </button>
+    </div>
+  </form>
+</div>

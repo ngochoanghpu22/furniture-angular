@@ -1,0 +1,37 @@
+<div class="weekly-search-summary">
+  <div class="weekly-search">
+
+    <div class="bloc-summary">
+      <h3>{{'manager.weekly_search_summary' | transloco}}:</h3>
+      <div class="grid">
+
+        <ng-container *ngFor="let loc of locations">
+          <div class="icons" (click)="toggle(loc.name)">
+            <span class="circle" [class.hidden]="!showStates[loc.name]">
+              <i class="fas fa-circle"></i>
+            </span>
+            <fxt-location-status [item]="loc" [disableUnconfirmed]="true"></fxt-location-status>
+            <span class="text" [title]="loc.address">{{loc.address}}</span>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+
+    <div class="bloc-charts">
+      <div class="lines">
+        <hr>
+        <hr>
+        <hr>
+      </div>
+      <div class="progress-charts">
+        <fxt-manager-weekly-search-chart [data]="item.payload" [total]="item.total" [dayIndex]="index"
+          *ngFor="let item of data; let index = index;" (barClicked)="onBarClicked($event, index)">
+        </fxt-manager-weekly-search-chart>
+      </div>
+    </div>
+
+
+  </div>
+</div>

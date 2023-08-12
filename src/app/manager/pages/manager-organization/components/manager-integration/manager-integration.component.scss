@@ -1,0 +1,85 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+div.integration-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  .integration {
+    display: flex;
+    align-items: center;
+    .name {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+div.data {
+  div.tools {
+    p {
+      @include paragraph();
+    }
+  }
+}
+
+@mixin Flex {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+}
+span.toggle {
+color: $main-color;
+font-size: 22px;
+}
+span.lock {
+font-size: 20px;
+color: $grey-color40;
+float: right !important;
+}
+
+div.integration-container {
+.integration {
+  .name {
+    flex: 1 1 100%;
+  }
+  .action {
+    flex: 0 0 50px;
+  }
+}
+}
+div.data {
+div.tools {
+  p {
+    @include paragraph();
+  }
+  
+}
+hr {
+  margin: 36px 0;
+}
+div.human-resourses {
+  p {
+    @include paragraph();
+  }
+}
+
+}
+.x-icon {
+height: 1em;
+width: 1em;
+top: .125em;
+position: relative;
+}
+
+.fxt-switch-design-margin {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+img {
+  height:20px;
+  width:20px;
+  margin-right:12px;
+}
+.name {
+  margin-top: 5px;
+}

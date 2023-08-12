@@ -1,0 +1,55 @@
+<ngx-datatable class="bootstrap striped" [rows]="rows" [columnMode]="ColumnMode.force" [headerHeight]="50"
+  [footerHeight]="50" [rowHeight]="45" [externalPaging]="true" [count]="page.totalCount" [offset]="page.pageNumber"
+  [limit]="page.pageSize" (page)="setPage($event, oldSortProp, oldSortOrder)" [loadingIndicator]="loading"
+  [externalSorting]="true" (sort)="onSort($event)">
+  <ngx-datatable-column *ngFor="let column of columns" [name]="column.name | transloco" [prop]="column.prop"
+    [pipe]="column.pipe" [sortable]="column.sortable" [cellTemplate]="column.cellTemplate"
+    [cellClass]="column.cellClass" [headerClass]="column.headerClass">
+  </ngx-datatable-column>
+
+  <ngx-datatable-column name="action" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+    [resizeable]="false" cellClass="column-actions">
+    <ng-template ngx-datatable-header-template> </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<ng-template #linkYouTubeTmp let-row="row" let-value="value">
+  <span [tooltip]="'View YouTube'">
+    <a target="_blank" [href]="row.linkYouTube">
+      <i class='fas fa-eye text-success'></i>
+    </a>
+  </span>
+</ng-template>
+
+<ng-template #documentTmp let-row="row" let-value="value">
+  <span [tooltip]="'View Document'">
+    <a target="_blank" [href]="row.document">
+      <i class='fas fa-eye text-success'></i>
+    </a>
+  </span>
+</ng-template>
+
+<ng-template #nameTmp let-row="row" let-value="value">
+  <span (click)="openUserProfilePopup(row, $event)">{{row.name}}</span>
+</ng-template>
+
+<ng-template #statusTmp let-row="row" let-value="value">
+  <!-- <span class="mr-1">{{row.status}}</span> -->
+  <fxt-switch [(ngModel)]="row.isActive"></fxt-switch>
+</ng-template>
+
+<ng-template #actionTmp let-row="row" let-value="value">
+  <span [tooltip]="'View Task Detail'">   
+    <i (click)="gotoTaskDetail(row)" class='fas fa-eye text-success' style="cursor: pointer;"></i>
+  </span>
+  <span *ngIf="!isMyOwnTasks && !isFinishedTask(row)" class="pl-3" [tooltip]="'Finish Task'">   
+    <i (click)="finishTask(row)" class='fas fa-check text-success' style="cursor: pointer;"></i>
+  </span>
+  <span *ngIf="isMyOwnTasks" class="pl-3" [tooltip]="'View Users Picked Task'">   
+    <i (click)="viewUsersPickedTask(row)" class='fas fa-check text-success' style="cursor: pointer;"></i>
+  </span>
+</ng-template>

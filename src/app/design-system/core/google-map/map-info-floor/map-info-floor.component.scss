@@ -1,0 +1,36 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 5px;
+
+  span {
+    display: block;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    color: $grey-color50;
+    cursor: pointer;
+    @include hover-active-btn();
+
+    span.name {
+      font-size: 12px;
+    }
+
+    span.load {
+      font-size: 10px;
+    }
+  }
+
+  img {
+    cursor: pointer;
+  }
+}

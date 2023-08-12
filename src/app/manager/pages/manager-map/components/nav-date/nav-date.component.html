@@ -1,0 +1,11 @@
+<div class="bloc-nav-date">
+  <div class="date">
+    <span class="month" bsDatepicker #d="bsDatepicker" placement="bottom" (bsValueChange)="onBsValueChange($event)"
+      [bsValue]="_selectedDate" [bsConfig]="bsConfig">{{periodText}} <i class="fas fa-calendar-alt"></i></span>
+  </div>
+
+  <div class="arrows">
+    <span class="left-arrow" (click)="prev()"><i class="fas fa-chevron-left"></i></span>
+    <span class="right-arrow" (click)="next()"><i class="fas fa-chevron-right"></i></span>
+  </div>
+</div>

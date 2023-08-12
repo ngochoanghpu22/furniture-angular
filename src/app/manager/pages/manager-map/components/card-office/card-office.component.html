@@ -1,0 +1,144 @@
+<div class="bloc-image" *ngIf="office.contextualPicture" [class.desk-booking-enabled]="isDeskBookingEnabled">
+  <img fxtImageLinkApi [image]="office.contextualPicture" alt="" (click)="onOfficeNameClicked()">
+</div>
+
+<div class="bloc-name" [class.desk-booking-enabled]="isDeskBookingEnabled">
+  <span class="address" (click)="onOfficeNameClicked()">{{office.name}}</span>
+
+  <fxt-switch *ngIf="halfDayEnabled && canBookViaOffice" [(ngModel)]="modeHalfDay" (ngModelChange)="onHalfDayChanged()">
+  </fxt-switch>
+
+  <span *ngIf="!halfDayEnabled" class="capacity" [ngClass]="{'overload': office.actualLoad > office.capacity}">
+    {{office.actualLoad}} / {{office.capacity}}
+  </span>
+</div>
+
+<div class="bloc bloc-amenities" *ngIf="office.equipments.length > 0">
+  <span>{{'manager.equipments' | transloco}}</span>
+  <span class="btn-rounded-action" (click)="isEquipmentCollapsed = !isEquipmentCollapsed">
+    <i *ngIf="isEquipmentCollapsed" class="fas fa-angle-down"></i>
+    <i *ngIf="!isEquipmentCollapsed" class="fas fa-angle-up"></i>
+  </span>
+</div>
+
+<div class="bloc" id="collapseEquipment" [collapse]="isEquipmentCollapsed" [isAnimated]="true">
+  <ul class="mt-2 mb-2">
+    <li *ngFor="let item of office.equipments">{{item}}</li>
+  </ul>
+</div>
+
+<div class="bloc-amenities" *ngIf="occupationRules?.length > 0">
+  <span>{{'manager.booking_rules' | transloco}}</span>
+  <span class="btn-rounded-action" (click)="isRuleCollapsed = !isRuleCollapsed">
+    <i *ngIf="isRuleCollapsed" class="fas fa-angle-down"></i>
+    <i *ngIf="!isRuleCollapsed" class="fas fa-angle-up"></i>
+  </span>
+</div>
+
+<div class="bloc-rules" id="collapseEquipment" [collapse]="isRuleCollapsed" [isAnimated]="true">
+  <fxt-chip *ngFor="let item of occupationRules" [item]="item" [hideIcon]="false" [removable]="false"
+    [class.is-blocked]="item.occupationType == OccupationTypeEnum.Block"
+    [class.is-reserved]="item.occupationType == OccupationTypeEnum.Reserve">
+  </fxt-chip>
+</div>
+
+<ng-container *ngFor="let timeslot of timeSlots; let timeslotIndex = index">
+  <div class="bloc-users confirmed">
+
+    <span *ngIf="!halfDayEnabled || (halfDayEnabled && !modeHalfDay)"
+      class="text-small d-flex justify-content-between w-100">
+      <span>{{'main.booked_by' | transloco}}</span>
+    </span>
+
+    <span class="text-small w-100" *ngIf="timeslot?.label">
+      <span class="mr-1">{{timeslot.label}}</span>
+    </span>
+
+    <ng-container *ngIf="confirmedUsers && confirmedUsers[timeslotIndex]; else loader">
+      <ng-container *ngIf="confirmedUsers[timeslotIndex].users.length > 0; else noUser">
+        <ng-container *ngFor="let user of confirmedUsers[timeslotIndex].users; trackBy:trackByFn">
+          <ng-container *ngTemplateOutlet="userTemplateRef; context: {user: user, office: office}">
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <div class="w-100">
+      <button *ngIf="modeHalfDay && canBookViaOffice && !loading  
+      && !selectedStatesByTimeslot.get(timeslot.id)" class="btn btn-book" (click)="onOfficeClicked(timeslotIndex)">
+        {{'main.book' | transloco}}
+      </button>
+    </div>
+
+  </div>
+</ng-container>
+
+<div class="bloc-users confirmed overflow" *ngIf="overflowUsers?.length > 0">
+  <span class="text-small w-100">
+    <span class="mr-1">{{'manager.user_in_overflow' | transloco}}</span>
+    <i [tooltip]="'manager.user_in_overflow_tooltip' | transloco" class="far fa-info-circle" container="body"
+      placement="right" [adaptivePosition]="false"></i>
+  </span>
+
+  <ng-container *ngIf="overflowUsers; else loader">
+    <ng-container *ngIf="overflowUsers.length > 0;">
+      <ng-container *ngFor="let user of overflowUsers; trackBy:trackByFn">
+        <ng-container *ngTemplateOutlet="userTemplateRef; context: {user: user, office: office}">
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="bloc-users unconfirmed" *ngIf="unconfirmedUsers?.length > 0">
+  <span class="text-small w-100">
+    <span class="mr-1">{{'main.unconfirmed' | transloco}}</span>
+    <i [tooltip]="'manager.unconfirmed_according' | transloco" container="body" placement="right"
+      class="far fa-info-circle" [adaptivePosition]="false"></i>
+  </span>
+
+  <ng-container *ngIf="unconfirmedUsers; else loader">
+    <ng-container *ngIf="unconfirmedUsers.length > 0; else noUser">
+      <ng-container *ngFor="let user of unconfirmedUsers; trackBy:trackByFn">
+        <ng-container *ngTemplateOutlet="userTemplateRef; context: {user: user, office: office}">
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="w-100 d-flex justify-content-between" *ngIf="doCurrentUserBookThisOffice">
+  <fxt-chip [item]="{ name: currentUser?.fullName}" [image]="currentUser?.tinyPicture" [selected]="true">
+  </fxt-chip>
+  <button class="btn-rounded-action btn-exit-seat" [tooltip]="'main.free_the_desk' | transloco"
+    (click)="onButtonLeaveClicked()">
+    <i class="fas fa-sign-out"></i>
+  </button>
+</div>
+
+<div class="bloc-action" *ngIf="!loading && canBookViaOffice && !doCurrentUserBookThisOffice">
+
+  <button *ngIf="!modeHalfDay" class="btn btn-book ml-1" (click)="onOfficeClicked(null)">
+    {{'main.book' | transloco}}
+  </button>
+  <button class="btn btn-invite" (click)="onInviteClicked()">
+    {{'main.invite' | transloco}}
+  </button>
+</div>
+
+<div class="bloc-capacity d-flex justify-content-end mt-2">
+  <span class="text-small"> {{office.actualLoad}} / {{office.capacity}}</span>
+</div>
+
+<ng-template #userTemplateRef let-item="user" let-office="office">
+  <fxt-avatar class="c-pointer" [id]="item.id" [imageSrc]="item.tinyPicture" [initial]="item.fullName" [size]="24"
+    [highlight]="highlightUserIdsObj[item.id]" (click)="onAvatarClicked(item, $event)"></fxt-avatar>
+</ng-template>
+
+<ng-template #loader>
+  <fxt-placeholder-loading [height]="25"></fxt-placeholder-loading>
+</ng-template>
+
+<ng-template #noUser>
+  <div class="no-user">{{'manager.no_user' | transloco}}</div>
+</ng-template>

@@ -1,0 +1,90 @@
+
+.bs-datepicker, bs-datepicker-inline {
+
+  margin-bottom: 15px;
+  margin-top: 15px;
+
+  .bs-datepicker-body table.days{
+    tbody{
+      tr{
+        height: 40px;
+      }
+    }
+  }
+
+  .bs-datepicker-body table.days span {
+
+    color: rgba(0, 0, 0, 0.64);
+    background: #FAFAFA;
+
+    &.disabled{
+      background: #FFFFFF;
+      color: rgba(0, 0, 0, 0.24);
+    }
+
+    &:hover {
+      background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.04),
+          rgba(0, 0, 0, 0.04)
+        ),
+        #fafafa;
+    }
+
+    &:active {
+      background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.08),
+          rgba(0, 0, 0, 0.08)
+        ),
+        #fafafa;
+    }
+
+    &.selected {
+      background: #FAFAFA;
+      border: 1px solid $main-color;
+    }
+
+    &.today {
+      background: rgba(2, 156, 85, 0.32);
+
+      &.selected {
+        background: rgba(2, 156, 85, 0.32);
+        border: 1px solid $main-color;
+      }
+    }
+
+    &.date-is-overload {
+      background-color: rgba(245, 91, 29, 0.48);
+
+      &:hover {
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.04),
+            rgba(0, 0, 0, 0.04)
+          ),
+          rgba(245, 91, 29, 0.48);
+      }
+
+      &:active {
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.04),
+            rgba(0, 0, 0, 0.04)
+          ),
+          rgba(245, 91, 29, 0.48);
+      }
+
+      &.selected {
+        border: 1px solid #f55b1d;
+      }
+
+      &.today {
+        background: rgba(245, 91, 29, 0.75);
+        &.selected {
+          background: 1px solid #f55b1d;
+        }
+      }
+    }
+  }
+}

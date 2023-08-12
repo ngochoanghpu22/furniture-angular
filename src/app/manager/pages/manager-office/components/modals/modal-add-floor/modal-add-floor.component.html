@@ -1,0 +1,28 @@
+<div class="floor">
+  <h5 class="new">{{data?.id ? 'Edit': 'Add New'}}&nbsp;{{data?.name || 'Floor'}}</h5>
+  <form [formGroup]="form">
+
+    <div class="map">
+      <fxt-file-preview-input (fileChanged)="onFileChanged($event)" [selected]="form.controls.contextualPicture.value"
+        buttonText="{{'manager.add_map' | transloco}}"></fxt-file-preview-input>
+    </div>
+
+    <div class="bloc bloc-name">
+      <span class="name">{{'main.name' | transloco}}</span>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="bloc bloc-actions">
+      <button type="button" class="btn btn-light" (click)="cancel()">{{'main.cancel' | transloco}}</button>
+      <button type="button" class="btn btn-primary" (click)="ok()" [disabled]="form.pristine || form.invalid">
+        {{data?.id ? 'Confirm': 'Create'}}
+      </button>
+
+      <span class="btn-rounded-action" *ngIf="data?.id" (click)="archive()">
+        <i class="far fa-trash-alt"></i>
+      </span>
+
+    </div>
+  </form>
+
+</div>

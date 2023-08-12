@@ -1,0 +1,170 @@
+<div class="modal-location-metadata-wrapper pb-0">
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <div class="building p-3">
+      <div class="wrapper">
+        <h5 class="new">
+          <span *ngIf="data?.id">{{'organization.edit_working_status' | transloco}}</span>
+          <span *ngIf="!data?.id">{{'organization.add_new_status' | transloco}}</span>
+        </h5>
+        <form [formGroup]="form">
+          <div class="name-location">
+            <div class="form-row">
+
+              <div class="bloc-name">
+                <label for="" class="name">
+                  <span>{{'main.name' | transloco}}</span>
+                </label>
+                <input type="text" class="form-control" formControlName="address"
+                  [placeholder]="'main.status_name' | transloco">
+
+                <span *ngIf="canEditIcon" [style.color]="form.controls.color.value" [ngClass]="{
+                  'border': !form.controls.name.value && !showErrBorder,
+                  'error-border': !form.controls.name.value && showErrBorder
+                }" class="btn-icon-picker btn-rounded-action" [popover]="popTemplate" [outsideClick]="true"
+                  placement="bottom" #pop="bs-popover" container="body">
+                  <i class="fas fa-{{form.controls.name.value}}"></i>
+                </span>
+
+                <span *ngIf="!canEditIcon" [style.color]="form.controls.color.value" class="btn-icon-picker">
+                  <i class="fas fa-{{form.controls.name.value}}"></i>
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="d-flex align-items-baseline mt-2">
+              <input type="checkbox" formControlName="isRemoteWork" class="mr-1" />
+              <label for="">{{'organization.remote_work' | transloco}}</label>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="metadata-wrapper">
+
+      <ng-container formArrayName="metadataItems">
+        <ng-container *ngFor="let metadataForm of metadataArray.controls;  let i = index">
+          <fieldset class="mt-3">
+            <div class="row m-0">
+
+              <div class="metadata-form mt-3" [formGroupName]="i">
+                <div class="row m-0">
+
+                  <div class="d-none">
+                    <input id="control_{{i}}" type="text" class="form-control mr-0" [formControlName]="'id'">
+                  </div>
+
+                  <div class="col-6 align-items-center">
+                    <div class="bloc-location">
+                      <label for="control_{{i}}">
+                        <span class="required-star">{{'main.name' | transloco}}</span>
+                      </label>
+                      <input id="control_{{i}}" type="text" class="form-control" [formControlName]="'name'">
+                    </div>
+                    <label class="form-error mb-0"
+                      *ngIf="submitted && metadataArray.controls[i].get('name').errors?.required">
+                      <small> {{'main.name_is_required' | transloco}}</small>
+                    </label>
+                  </div>
+
+                  <div class="col-6 align-items-center">
+                    <label for="type">
+                      <span class="required-star">{{'main.type' | transloco}}</span>
+                    </label>
+
+                    <ng-select appendTo="body" [formControlName]="'type'" (change)="typeChanged(i, $event)"
+                      [clearable]="false">
+                      <ng-option *ngFor="let wp of typeOptions" [value]="wp.value">{{wp.label | transloco}}</ng-option>
+                    </ng-select>
+
+                    <label class="pl-2 form-error"
+                      *ngIf="submitted && metadataArray.controls[i].get('type').errors?.required">
+                      <small> {{'main.type' | transloco}} is required.</small>
+                    </label>
+                  </div>
+
+                  <div class="col-12 mt-2">
+
+                    <label for="defaultJson" class="name">
+                      <span class="required-star">{{'main.default_data' | transloco}}</span>
+                      <span class="btn-map-picker"
+                        *ngIf="metadataArray.controls[i].get('type').value === MetadataTypesEnum.Geodata"
+                        (click)="openModalGoogleMapSearchBox(i)"><i class="far fa-map"></i> </span>
+                    </label>
+
+                    <ng-container *ngIf="isFreeText(i);else ComboControl">
+                      <textarea *ngIf="metadataArray.controls[i].get('type').value === MetadataTypesEnum.FreeText"
+                        id="defaultData" class="form-control mr-0" rows="3" [formControlName]="'defaultData'">
+                      </textarea>
+                      <fxt-geodata-preview
+                        *ngIf="metadataArray.controls[i].get('type').value === MetadataTypesEnum.Geodata"
+                        [geodata]="metadataArray.controls[i].get('defaultData').value"
+                        (buttonAddClicked)="openModalGoogleMapSearchBox(i)">
+                      </fxt-geodata-preview>
+                    </ng-container>
+
+                    <ng-template #ComboControl>
+                      <ng-select *ngIf="metadataArray.controls[i].get('isShow').value" class="auto-grow"
+                        [items]="getData(i)" [addTag]="addTagFn.bind(this,i)" [hideSelected]="true" [multiple]="true"
+                        bindLabel="name" (change)="getData(i)" [formControlName]="'defaultData'">
+                      </ng-select>
+
+                      <ng-select *ngIf="!metadataArray.controls[i].get('isShow').value" class="auto-grow"
+                        [items]="getData(i)" [addTag]="addTagFn.bind(this,i)" [hideSelected]="true" [multiple]="true"
+                        bindLabel="name" (change)="getData(i)">
+                      </ng-select>
+                    </ng-template>
+
+                    <label class="pl-2 form-error"
+                      *ngIf="submitted && metadataArray.controls[i].get('defaultData').errors?.required">
+                      <small> {{'main.default_data_required' | transloco}}</small>
+                    </label>
+                  </div>
+                  <div class="col-12 mt-2">
+                    <input type="checkbox" formControlName="isMandatory" class="mr-1" />
+                    <label for="">{{'organization.answering_in_mandatory' | transloco}}</label>
+                  </div>
+                  <div class="col-12 mt-0">
+                    <input type="checkbox" formControlName="showAnswerToEveryone" class="mr-1" />
+                    <label for="">{{'organization.show_answer_to_everyone' | transloco}}</label>
+                  </div>
+                </div>
+              </div>
+
+              <legend class="col-form-label">
+                <span class="float-right c-pointer" (click)="deleteMetadata(i)"><i class="fa fa-trash-alt"></i>
+                </span>
+              </legend>
+
+            </div>
+          </fieldset>
+        </ng-container>
+      </ng-container>
+
+    </div>
+    <span class="d-block text-center c-pointer add-metadata">
+      <i [tooltip]="'organization.add_option' | transloco" (click)="addMetadata()" class="fa fa-plus-circle fa-2x"></i>
+    </span>
+
+    <div class="buttons">
+      <button type="button" class="btn btn-light" (click)="cancel()">
+        {{'main.cancel' | transloco}}
+      </button>
+      <button [disabled]="form.invalid || form.pristine" type="submit" class="btn btn-primary create mr-0">
+        {{data?.id ? ('main.confirm' | transloco): ('main.create' | transloco)}}
+      </button>
+    </div>
+  </form>
+
+</div>
+
+<ng-template #popTemplate>
+  <fxt-palette-icon (selected)="onIconSelected($event)" [color]="form.controls.color.value"
+    [icon]="form.controls.name.value"></fxt-palette-icon>
+</ng-template>

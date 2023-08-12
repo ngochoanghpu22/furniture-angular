@@ -1,0 +1,16 @@
+<div class="page-selection">
+
+  <div class="bloc-chips-container">
+    <div class="col">
+
+      <div class="d-flex title">
+        <h4>{{'plan.edit_quick_display' | transloco}}&nbsp;</h4>
+      </div>
+
+      <div class="search-container">
+        <fxt-search-persons-autocomplete [selections]="selections" [currentSelection]="currentSelection"
+          (selected)='selectEvent($event)' (deleted)='deleteFromList($event)'></fxt-search-persons-autocomplete>
+      </div>
+    </div>
+  </div>
+</div>

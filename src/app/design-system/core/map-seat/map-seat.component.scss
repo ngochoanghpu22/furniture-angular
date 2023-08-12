@@ -1,0 +1,15 @@
+:host {
+  .map {
+    position: relative;
+
+    fxt-seat,
+    fxt-meeting-room {
+      position: absolute;
+    }
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+}

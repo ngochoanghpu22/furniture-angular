@@ -1,0 +1,64 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  div.data {
+    min-height: 200px;
+    height: calc(100vh - 279px);
+    overflow-y: hidden;
+
+    .loader {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  full-calendar {
+    height: 100%;
+  }
+}
+
+::ng-deep {
+  .fc-col-header-cell-cushion {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .fc-day-today {
+    background: #fff !important;
+  }
+
+  .fc-timegrid-col-events {
+    margin: 0 !important;
+  }
+
+  .fc-event-time {
+    padding-left: 8px;
+    padding-top: 4px;
+    color: $main-color;
+  }
+
+  .fc-v-event {
+    background-color: #e1e1e1 !important;
+    border: 0px dashed #868686 !important;
+    border-radius: 0 !important;
+
+    &.fxt-timeslot-event {
+      @include hover-active-btn();
+    }
+  }
+
+  .fc .fc-highlight {
+    background-color: #ccebdd !important;
+    border: 0px dashed #7bcba7 !important;
+  }
+  .fc-v-event .fc-event-main {
+    color: #373737 !important;
+    cursor: pointer;
+  }
+  .fc-theme-standard .fc-scrollgrid {
+    border: none !important;
+  }
+}

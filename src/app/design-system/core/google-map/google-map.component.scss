@@ -1,0 +1,68 @@
+.fxt-google-map-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.map-info-user {
+  position: relative;
+  height: 50px;
+  width: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ::ng-deep fxt-location-status {
+    position: absolute;
+    top: -4px;
+    left: 22px;
+    z-index: 2;
+
+    .fxt-icon-status {
+      background: transparent;
+    }
+  }
+
+}
+
+.map-pin {
+  position: relative;
+  height: 300px;
+  width: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ::ng-deep fxt-location-status {
+    position: absolute;
+    top: -4px;
+    left: 22px;
+    z-index: 2;
+
+    .fxt-icon-status {
+      background: transparent;
+    }
+  }
+
+  .name {
+    color: #606771;
+  }
+
+  .address {
+    color: #606771;
+    font-size: 16px;
+  }
+
+  .icon {
+    float: right !important;
+    margin-top: -27px;
+  }
+
+  img {
+    height: 200px;
+    width: 300px;
+    margin-bottom: 5px;
+    display: block;
+
+  }
+
+}

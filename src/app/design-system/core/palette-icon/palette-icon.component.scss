@@ -1,0 +1,40 @@
+@import "abstracts/mixins";
+
+$item-size: 32px;
+$padding: 16px;
+
+:host {
+  width: 400px;
+
+  .icon-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($item-size, 1fr));
+
+    span {
+      width: $item-size;
+      height: $item-size;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $item-size / 2;
+      cursor: pointer;
+      @include hover-active-btn();
+    }
+  }
+
+  .color-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 215px;
+    span {
+      display: block;
+      height: 32px;
+      width: 32px;
+      cursor: pointer;
+      &.selected{
+        border: 3px solid white;
+      }
+    }
+  }
+}

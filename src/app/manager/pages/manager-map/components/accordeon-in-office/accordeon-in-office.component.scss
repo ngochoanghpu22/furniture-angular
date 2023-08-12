@@ -1,0 +1,42 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.bloc-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .name-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  span.name {
+    color: $grey-color80;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  span.arrow {
+    display: block;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    @include hover-active-btn();
+  }
+}
+
+.bloc-buildings {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}

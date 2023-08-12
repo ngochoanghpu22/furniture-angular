@@ -1,0 +1,8 @@
+<span class="btn-launch-picker" (click)="openModalEditQuickDisplay()"><i class="fas fa-cog"></i></span>
+
+<div class="bloc-chips">
+  <fxt-chip *ngFor="let item of currentSelection?.items" class="c-pointer" [item]="item" image="{{item.image}}"
+    [removable]="item.removable" (onCrossClick)="onChipCrossClicked(item)"
+    [selected]="!!item.selected" (click)="onChipClicked($event, item)">
+  </fxt-chip>
+</div>

@@ -1,0 +1,127 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+$padding: 8px;
+
+.btn-group {
+  position: absolute;
+  cursor: pointer;
+  right: 5px;
+  > span {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    @include hover-active-btn();
+  }
+}
+
+.office-card {
+  border-radius: $padding;
+  position: relative;
+  max-width: 250px;
+  width: 220px;
+  cursor: pointer;
+
+  &__dropdown {
+    position: absolute;
+    top: calc(90px + #{$padding});
+    right: $padding;
+  }
+  &:hover {
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.16);
+
+    .image img {
+      transform: scale(1.05);
+    }
+  }
+
+  &:hover {
+    .office-info {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), $main-bg-color !important;
+    }
+  }
+
+  &.selected.active {
+    .office-info {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), $main-bg-color !important;
+    }
+  }
+
+  .image {
+    height: 90px;
+
+    @include borderRadius(8px 8px 0px 0px);
+
+    &.no-image {
+      background-color: #c4c4c4;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.25s ease-in-out;
+    }
+  }
+
+  .office-info {
+    padding: $padding;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    row-gap: $padding / 2;
+    border-radius: $padding;
+
+    i.icon-link {
+      font-size: 10px;
+    }
+
+    .title {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: $grey-color80;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .location {
+      font-size: 0.75em;
+      color: $grey-color50;
+      padding-left: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .details {
+      font-weight: 400;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .label {
+        color: $grey-color50;
+      }
+      .capacity {
+        color: $color-capacity;
+      }
+    }
+
+    .seats-wrapper {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+
+      .seat-item{
+        padding: 0 8px;
+        &:hover{
+          background-color: white;
+        }
+      }
+    }
+  }
+}

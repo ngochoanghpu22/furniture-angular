@@ -1,0 +1,170 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+@mixin default {
+  border: 1px solid #999999;
+  &:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+@mixin organization {
+  background-color: $main-color;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+      #029c55;
+  }
+}
+@mixin work {
+  background-color: #97deea;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+      #97deea;
+  }
+}
+@mixin social {
+  background-color: #dac5f9;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+      #dac5f9;
+  }
+}
+@mixin core {
+  background-color: #f55b1d;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+      #f55b1d;
+  }
+}
+
+.fxt-chip {
+  @include borderRadius(16px);
+  @include boxShadow(0px 2px 12px rgba(0, 0, 0, 0.08));
+
+  min-width: 100px;
+
+  i {
+    margin-right: 3px;
+  }
+
+  &.default {
+    &.active,
+    &.removable {
+      @include default();
+    }
+  }
+
+  &.org {
+    &.active,
+    &.removable {
+      @include organization();
+    }
+  }
+
+  &.work {
+    &.active,
+    &.removable {
+      @include work();
+    }
+  }
+
+  &.social {
+    &.active,
+    &.removable {
+      @include social();
+    }
+  }
+
+  &.core {
+    &.active,
+    &.removable {
+      @include core();
+    }
+  }
+
+  i {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)),
+      $main-bg-color;
+  }
+}
+
+:host {
+  .fxt-chip {
+    display: flex;
+    align-items: center;
+    height: $chip-height;
+    width: fit-content;
+    padding: 4px;
+
+    @include borderRadius(16px);
+    @include boxShadow(0px 2px 12px rgba(0, 0, 0, 0.08));
+
+    background-color: $main-bg-color;
+    font-size: 16px;
+    color: $grey-color64;
+    font-weight: normal !important;
+
+    transition: background-color 0.3s ease;
+
+    &.is-all-company {
+      &:not(.active) {
+        background-color: #fafafa !important;
+        color: rgba(0, 0, 0, 0.64) !important;
+      }
+    }
+
+    img {
+      width: $chip-image-width;
+      height: $chip-image-height;
+      border-radius: 50%;
+    }
+
+    > span {
+      display: flex;
+      align-items: center;
+      column-gap: 3px;
+      justify-content: center;
+
+      &.icon{
+        margin-left: 4px;
+      }
+
+      &.name {
+        white-space: nowrap;
+        font-size: 14px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      &.icon-remove {
+        cursor: pointer;
+        margin-right: 0;
+      }
+
+      ::ng-deep {
+        ngx-avatar {
+          .avatar-container {
+            .avatar-content {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(small) {
+  :host {
+    .fxt-chip {
+      font-size: 15px;
+    }
+  }
+}

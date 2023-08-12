@@ -1,0 +1,32 @@
+<h1>hoang</h1>
+
+<section id="section-manager-directory">
+  <div class="content">
+
+    <div class="bloc-search-bar">
+      <fxt-search-bar (selectionChanged)="onSelectionChanged($event)" [tags]="tags"></fxt-search-bar>
+    </div>
+
+    <div class="info">
+      <div class="tabs">
+        <div class="btn-group" role="group">
+          <a class="btn company" routerLink="current-users" routerLinkActive="active">
+            {{'directory.current_users' | transloco}}
+          </a>
+          <a *ngIf="canEdit" class="btn policy" routerLink="pending-invitation" routerLinkActive="active">
+            {{'directory.pending_invitation' | transloco}}
+          </a>
+          <a *ngIf="canEdit" class="btn policy" routerLink="archived-users" routerLinkActive="active">
+            {{'directory.archived_users' | transloco}}
+          </a>
+          <a *ngIf="canEdit" class="btn policy" routerLink="user-provisioned" routerLinkActive="active">
+            {{'directory.user_provisioned' | transloco}}
+          </a>
+        </div>
+      </div>
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+@import "../../manager-office-common";
+
+.fxt-manager-office-card-floor-wrapper {
+  @extend %manager-office-card-location;
+
+  .manager-office-card {
+    background-color: $sec-color;
+  }
+
+  &.selected {
+    opacity: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    .indicator-selected {
+      width: 16px;
+      min-width: 16px;
+    }
+  }
+}
+
+.indicator-selected {
+  position: absolute;
+  width: 100%;
+  right: -16px;
+  top: 0;
+  background-color: $sec-color;
+  width: 0;
+  height: 76px;
+  transition: width 0.2s linear;
+  will-change: width;
+}

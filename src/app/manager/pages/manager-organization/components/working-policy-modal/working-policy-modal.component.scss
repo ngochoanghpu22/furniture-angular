@@ -1,0 +1,34 @@
+@import "abstracts/variables";
+
+div.creation {
+	width: auto;
+	background-color: #fff;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		row-gap: 16px;
+		.form-group {
+			margin-bottom: 0;
+			.form-control {
+				&::placeholder {
+					font-weight: 400 !important;
+					color: $grey-color40;
+				}
+			}
+		}
+
+		div.remote {
+			height: 62px;
+			.form-control {
+				width: 110px;
+				height: 36px;
+				color: $grey-color40;
+			}
+		}
+
+		.text-helper {
+			font-style: italic;
+		}
+	}
+}

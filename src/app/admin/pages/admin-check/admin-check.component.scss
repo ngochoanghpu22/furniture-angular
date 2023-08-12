@@ -1,0 +1,26 @@
+@import "abstracts/variables";
+
+.middle-content {
+  background: white;
+  height: 100%;
+  padding: 15px;
+}
+
+ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li.success {
+  i {
+    margin-left: 5px;
+    color: $main-color;
+  }
+}
+
+li.error {
+  i {
+    margin-left: 5px;
+    color: $color-red;
+  }
+}

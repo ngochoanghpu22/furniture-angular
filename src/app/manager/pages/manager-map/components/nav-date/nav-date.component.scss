@@ -1,0 +1,53 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+%btn-has-icon {
+  height: 32px;
+  width: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+
+  @include hover-active-btn();
+}
+
+.bloc-nav-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  .date {
+    color: $grey-color80;
+    .month {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+    .hour {
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    > span {
+      padding-left: 5px;
+      padding-right: 5px;
+      cursor: pointer;
+      display: block;
+      &:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+  }
+
+  .arrows {
+    display: flex;
+    column-gap: 10px;
+    > span {
+      border: 1px solid #efefef;
+      @extend %btn-has-icon;
+    }
+  }
+}

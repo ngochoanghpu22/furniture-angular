@@ -1,0 +1,36 @@
+<div class="user-schedule">
+  <div class="header-nav">
+    <div class="left-arrow" (click)="onPrevious()"><i class="far fa-chevron-left"></i></div>
+    <div class="center">{{month}} {{year}}</div>
+    <div class="right-arrow" (click)="onNext()"><i class="far fa-chevron-right"></i></div>
+  </div>
+  <div class="container-schedule">
+    <fxt-calendar [canEdit]="canEdit" #calendarRef [slides]="slides" [hideGauge]="true"
+      [activeDayInCalendar]="activeDayInCalendar" (slideChanged)="onSlideChange()" (dayClicked)="onDayClicked($event)">
+    </fxt-calendar>
+  </div>
+  <div *ngIf="nextDaysInOffice.length" class="footer">
+    <div class="text">{{'user_profile.next_matching_days' | transloco}} <span>{{user?.fullName}}</span></div>
+    <div class="days">
+      <span *ngFor="let day of nextDaysInOffice" class="">{{day.dayDate | date: 'MMM dd':'':locale }}</span>
+    </div>
+  </div>
+
+  <div class="host-panel-location" [outsideClick]="true" [style.left.px]="popupLeft" [style.top.px]="popupTop"
+    [popover]="popTemplate" placement="left" triggers="" [isOpen]="isOpen" #pop="bs-popover" container="body"
+    (onHidden)="onPopLocationHidden()" [popoverContext]="{day: selectedDay, date: selectedDate, pop: pop}"
+    containerClass="popover-change-location-container position-left">
+  </div>
+
+</div>
+
+<ng-template #popTemplate let-pop="pop">
+  <fxt-location-panel [trigger]="LocationChangedTriggersEnum.UserProfile" [locations]="locations" [date]="selectedDate"
+    [user]="userData" [canEdit]="canEdit" [timeSlotTemplates]="timeSlotTemplates" [halfDayEnabled]="halfDayEnabled"
+    [isConfirmed]="selectedDay[0]?.isConfirmed" [enableMap]="true" (mapSeatShown)="pop.hide();"
+    (seatClicked)="onSeatClicked();pop.hide();isOpen = false;"
+    (locationInfoClicked)="showMetadataDialog($event);pop.hide()"
+    (locationOfficeClicked)="onLocationOfficeClicked($event);pop.hide()"
+    >
+  </fxt-location-panel>
+</ng-template>

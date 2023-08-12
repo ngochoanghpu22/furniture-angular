@@ -1,0 +1,39 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  .bloc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .title-favorite {
+    margin-bottom: 16px;
+  }
+
+  .users {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+}
+
+.loader {
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-add {
+  height: 32px;
+  width: 32px;
+  display: inline-block;
+  background-color: $main-color;
+  color: #fff;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+}

@@ -1,0 +1,129 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+$white-color48: rgba(255, 255, 255, 0.48);
+$light-grey: rgba(0, 0, 0, 0.32);
+$red-color: rgba(255, 187, 187, 1);
+$green-color: rgba(126, 255, 123, 1);
+
+$padding: 8px;
+
+@mixin heading4 {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: $grey-color64;
+}
+@mixin heading6 {
+  font-size: 10px !important;
+  color: rgba(0, 0, 0, 0.64);
+  font-weight: 500 !important;
+  margin-bottom: 0 !important;
+}
+
+input.form-control.ng-touched.ng-invalid {
+  border-color: $red-color;
+}
+
+%manager-office-card-location {
+  position: relative;
+  min-width: 155px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: $padding;
+  opacity: 0.9;
+  cursor: pointer;
+  .manager-office-card {
+    padding: $padding;
+  }
+
+  .dropdown-card {
+    position: absolute;
+    top: $padding;
+    right: $padding;
+    > span {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      @include hover-active-btn();
+    }
+  }
+
+  &:not(.selected):hover {
+    background-color: #d7eadf;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    color: #000000a3;
+    padding-right: 28px;
+    .building-name {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 600;
+    }
+
+    .floor-name {
+      font-weight: 600;
+    }
+  }
+
+  .location {
+    font-size: 0.75em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    color: $grey-color50;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    column-gap: $padding;
+    font-size: 0.75em;
+    color: $grey-color50;
+
+    .capacity,
+    .load {
+      .label {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 100px;
+        text-align: center;
+      }
+      div:nth-child(2) {
+        text-align: center;
+      }
+    }
+  }
+
+  .dropdown {
+    .dropdown-menu {
+      min-width: 8rem;
+      border-radius: 8px;
+    }
+    .dropdown-item {
+      i {
+        color: #4e4e4e;
+        width: 16px;
+      }
+      &:active {
+        color: white;
+        background-color: var(--main-color);
+        i {
+          color: white;
+        }
+      }
+    }
+  }
+}

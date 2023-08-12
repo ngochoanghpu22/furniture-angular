@@ -1,0 +1,83 @@
+<div class="search-bar" [ngClass]="{'opened': showSuggestions}" (clickOutside)="onClickOutside()"
+  [clickOutsideEnabled]="showSuggestions">
+
+  <div class="search-container">
+
+    <div class="search-input">
+
+      <div class="value">
+        <span class="bars"><i class="fas fa-search"></i></span>
+
+        <ng-container *ngIf="!disableQuickplayPicker">
+          <div class="tag" [ngClass]="{'team': tag.type == 0, 'user': tag.type == 1}"
+            *ngFor="let tag of tags; trackBy:trackByFn">
+            <span>{{tag.name}}</span>
+            <span class="icon" (click)="removeTag(tag)"><i class="fas fa-times"></i></span>
+          </div>
+        </ng-container>
+
+        <input (keydown.enter)="addEmail(input.value);input.blur();" #input class="form-control" placeholder="{{'manager.search_by_name_role_team_or_email' | transloco}}"
+          type="text" aria-label="Search">
+      </div>
+
+      <span class="clear" [class.active]="showSuggestions" (click)="clearTags()"><i class="fas fa-times"></i></span>
+
+      <span class="search-icon rounded-circle"><i class="fas fa-search"></i></span>
+    </div>
+
+    <div *ngIf="showSuggestions">
+      <div class="suggestions">
+        <div class="suggestions-button" *ngIf="!disableAllCompany">
+          <span (click)="onChipClicked(allCompanyChip)">All Company</span>
+        </div>
+        <div class="results" *ngIf="!loading; else loader">
+          <div>
+            <div class="title">{{'main.teams' | transloco}}</div>
+            <div class="items">
+              <div *ngFor="let item of data?.teams; trackBy:trackByFn" (click)="addTag(item)">{{item.name}}</div>
+            </div>
+
+            <div class="title">{{'main.groups' | transloco}}</div>
+            <div class="items">
+              <div *ngFor="let item of data?.groups; trackBy:trackByFn" (click)="addTag(item)">{{item.name}}</div>
+            </div>
+          </div>
+
+          <div class="users">
+            <div class="title">{{'main.users' | transloco}}</div>
+            <div class="items">
+              <div *ngFor="let user of data?.users; trackBy:trackByFn">
+                <ng-container [ngTemplateOutlet]="userTmp" [ngTemplateOutletContext]="{ $implicit: user } ">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-template #loader>
+          <span class="p-3 text-center">{{'manager.searching' | transloco}}</span>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="groups text-center" *ngIf="!disableQuickplayPicker">
+
+    <fxt-quickplay-picker (changed)="onQuickPlayChanged()" [currentSelection]="currentSelection" [isolated]="false"
+      (chipClicked)="onChipClicked($event)" (chipCrossClicked)="chipCrossClicked($event)">
+    </fxt-quickplay-picker>
+
+  </div>
+</div>
+
+<ng-template #userTmp let-user>
+  <div class="user-row" (click)="addTag(user)">
+    <fxt-avatar class="mr-2" [imageSrc]="user.image" [initial]="user.name" [size]="24"></fxt-avatar>
+    <span class="name d-inline-block">
+      <span *ngIf="user.name">{{user.name}}</span><span
+        *ngIf="!user.name && user.emails.length > 0">{{user.emails[0]}}</span>
+    </span>
+    <span class="title">{{user.role}}</span>
+  </div>
+</ng-template>

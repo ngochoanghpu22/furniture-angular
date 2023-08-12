@@ -1,0 +1,37 @@
+@import '../../common';
+
+:host {
+  &.mode-modal {
+
+    height: calc(100vh - 300px);
+
+    .left {
+      width: 350px;
+
+      ::ng-deep fxt-manager-map-detail-sidebar {
+        height: 100%;
+
+        .bloc-buildings {
+          max-height: 100%;
+          overflow-y: auto;
+        }
+      }
+    }
+
+    .right {
+      ::ng-deep fxt-manager-map-detail-content {
+        .bloc-content {
+          .bloc-map {
+            height: 100%;
+          }
+
+          .bloc-offices {
+            height: 100%;
+          }
+        }
+      }
+    }
+
+
+  }
+}

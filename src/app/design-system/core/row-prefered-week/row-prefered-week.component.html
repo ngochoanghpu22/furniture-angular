@@ -1,0 +1,35 @@
+<div class="row-week">
+  <div class="row-day">
+    <div class="day" *ngFor="let d of workingDays">
+      {{d}}
+    </div>
+  </div>
+
+  <div class="row-icon" *ngIf="!hideRowWeek">
+    <ng-container *ngIf="canEdit; else readonlyWeekTmp">
+      <ng-container *ngFor="let day of preferedWeek;trackBy:trackByFn; let index = index;let last = last;">
+        <span class="icon-wrapper">
+          <fxt-location-status [item]="day" [disableUnconfirmed]="true" [popover]="popTemplate" [placement]="last ? 'left': 'bottom'"
+            [outsideClick]="true" #pop="bs-popover" [popoverContext]="{day: day, dayIndex: index, pop: pop}"
+            (onShown)="dayIndex = index" (onHidden)="dayIndex = null" container="body"
+            containerClass="popover-change-location-container {{ last ? 'position-left' : '' }} "></fxt-location-status>
+        </span>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #popTemplate let-day="day" let-dayIndex="dayIndex" let-pop="pop">
+  <fxt-location-panel [trigger]="LocationChangedTriggersEnum.PreferedWeek" [locations]="locations" [user]="data" placementPanelOffices="top" [canEdit]="true"
+    [enableMap]="false" [date]="dates[dayIndex]" [disableConfirm]="true" [disableMetadata]="true"
+    [halfDayEnabled]="halfDayEnabled" [timeSlotTemplates]="timeSlotTemplates">
+  </fxt-location-panel>
+</ng-template>
+
+<ng-template #readonlyWeekTmp>
+  <ng-container *ngFor="let day of preferedWeek;trackBy:trackByFn; let index = index;let last = last;">
+    <span class="icon-wrapper">
+      <fxt-location-status [item]="day"></fxt-location-status>
+    </span>
+  </ng-container>
+</ng-template>

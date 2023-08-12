@@ -1,0 +1,48 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+:host {
+  display: block;
+  padding: 16px;
+
+  .bloc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .title-favorite {
+    margin-bottom: 16px;
+  }
+
+  .users {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+}
+
+.loader {
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-helper {
+  color: $color-helper;
+  font-size: 14px;
+}
+
+.user-add {
+  height: 32px;
+  width: 32px;
+  margin-left: 4px;
+  display: inline-block;
+  background-color: $main-color;
+  color: #fff;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+}

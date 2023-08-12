@@ -1,0 +1,48 @@
+$box-shadow-color-highlight: #03dac5;
+$box-shadow-color-current-user: rgba(2, 156, 85, 0.5);
+
+:host {
+  &.highlight {
+    ::ng-deep {
+      ngx-avatar {
+        .avatar-content {
+          box-shadow: 0px 0px 0px 3px $box-shadow-color-highlight;
+          &:hover {
+            box-shadow: 0px 0px 0px 5px $box-shadow-color-highlight;
+          }
+        }
+      }
+    }
+
+    .image {
+      .img-avatar {
+        box-shadow: 0px 0px 0px 3px $box-shadow-color-highlight;
+        &:hover {
+          box-shadow: 0px 0px 0px 5px $box-shadow-color-highlight;
+        }
+      }
+    }
+  }
+
+  &.is-current-user{
+    ::ng-deep {
+      ngx-avatar {
+        .avatar-content {
+          box-shadow: 0px 0px 0px 3px $box-shadow-color-current-user;
+          &:hover {
+            box-shadow: 0px 0px 0px 5px $box-shadow-color-current-user;
+          }
+        }
+      }
+    }
+
+    .image {
+      .img-avatar {
+        box-shadow: 0px 0px 0px 3px $box-shadow-color-current-user;
+        &:hover {
+          box-shadow: 0px 0px 0px 5px $box-shadow-color-current-user;
+        }
+      }
+    }
+  }
+}

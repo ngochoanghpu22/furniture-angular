@@ -1,0 +1,27 @@
+<div class="bloc-image" *ngIf="meetingRoom.contextualPicture">
+  <img fxtImageLinkApi [image]="meetingRoom.contextualPicture" alt="" (click)="onMeetingRoomClicked()">
+</div>
+
+<div class="bloc-name">
+  <span class="address" (click)="onMeetingRoomClicked()">
+    {{meetingRoom.name}}
+    &nbsp;<i class="fas fa-users icon-link"></i>
+    &nbsp;<i *ngIf="meetingRoom.msUniqueId || meetingRoom.googleUniqueId" class="fas fa-link icon-link"></i>
+  </span>
+  <span class="capacity"> {{meetingRoom.capacity}}
+  </span>
+</div>
+
+<div class="bloc bloc-amenities" *ngIf="meetingRoom.equipments.length > 0">
+  <span>{{'manager.equipments' | transloco}}</span>
+  <span class="btn-rounded-action" (click)="isEquipmentCollapsed = !isEquipmentCollapsed">
+    <i *ngIf="isEquipmentCollapsed" class="fas fa-angle-down"></i>
+    <i *ngIf="!isEquipmentCollapsed" class="fas fa-angle-up"></i>
+  </span>
+</div>
+
+<div class="bloc" id="collapseEquipment" [collapse]="isEquipmentCollapsed" [isAnimated]="true">
+  <ul class="mt-2 mb-2">
+    <li *ngFor="let item of meetingRoom.equipments">{{item}}</li>
+  </ul>
+</div>

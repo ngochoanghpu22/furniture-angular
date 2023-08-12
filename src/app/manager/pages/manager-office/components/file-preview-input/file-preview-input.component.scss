@@ -1,0 +1,65 @@
+@import "../../manager-office-common";
+
+$padding: 16px;
+
+div.photo {
+  background-color: $grey-bg;
+  padding: 0;
+  height: 100%;
+
+  div.details {
+    height: 100%;
+    @include borderRadius(4px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &.has-photo {
+      .bloc-img {
+        height: 100%;
+
+        .bloc-no-image {
+          transition: opacity 0.2s ease;
+          opacity: 0;
+          background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+    }
+
+    .bloc-img {
+      width: 100%;
+      position: relative;
+
+      .bloc-no-image {
+        height: 100%;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: 100%;
+        width: 100%;
+
+        span.icon {
+          font-size: 48px;
+          color: $white-color48;
+        }
+
+        div.photo-button {
+          button {
+            border: 1px solid $white-color48;
+            @include borderRadius(8px);
+            padding: 8px;
+            color: $white-color48;
+          }
+        }
+      }
+    }
+  }
+}

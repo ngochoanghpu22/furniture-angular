@@ -1,0 +1,32 @@
+@import 'abstracts/variables';
+
+:host {
+    .manager-block-toggle {
+        margin: 0 -0.5rem;
+        box-shadow: 5px -1px 7px #aaa;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        height: 64px;
+        width: 1028px;
+
+        .working {
+            margin-left: 2rem;
+            padding-top: 1rem;
+            span.week {
+                font-size: 12px;
+            }
+            span.toggle-icon {
+                font-size: 24px;
+                color: $toggle-color;
+            }
+        }
+
+        .days {
+            margin-left: -3rem;
+            font-size: 14px;
+            span {
+                margin-right: 2rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<div class="fxt-meeting-scheduler">
+
+  <div class="header" *ngIf="contextualPicture">
+    <img [src]="contextualPicture" alt="meetingRoomImage" />
+  </div>
+
+  <div class="title mt-1">
+    <div><strong><i class="fas fa-users"></i>&nbsp;{{meetingRoom.name}}</strong></div>
+    <div class="capacity">{{'manager.capacity' | transloco}}: {{meetingRoom.capacity}}</div>
+  </div>
+
+  <div class="alert alert-warning" *ngIf="!editable">
+    {{'manager.book_meeting_warning' | transloco}}
+  </div>
+
+  <div class="info">
+    <h6 (click)="showInfo = !showInfo">
+      <i class="fas fa-chair-office"></i> {{'manager.equipments' | transloco}} <i
+        class="fas fa-sort-{{showInfo ? 'down': 'up'}}"></i>
+    </h6>
+    <div [collapse]="!showInfo" [isAnimated]="true">
+      <ul>
+        <li *ngFor="let eq of meetingRoom.equipments">{{eq}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="scheduler-wrapper">
+    <ng-container *ngIf="meetings; else loader">
+      <fxt-scheduler [editable]="editable" [meetings]="meetings" [selectedDate]="selectedDate" (dateSelect)="onDateSelect($event)"
+        (eventClick)="onEventClicked($event)"></fxt-scheduler>
+    </ng-container>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="loader">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

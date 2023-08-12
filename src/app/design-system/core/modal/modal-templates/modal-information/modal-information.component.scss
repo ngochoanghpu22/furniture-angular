@@ -1,0 +1,47 @@
+/* end global styling */
+.modal-information {
+  h4 {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.72);
+    margin-bottom: 12px;
+  }
+  h4 span.team {
+    height: 24px;
+    line-height: 23px;
+    font-size: 14px;
+    background-color: rgba(151, 222, 234, 1);
+    color: rgba(0, 0, 0, 0.48);
+    padding: 0 5px;
+  }
+  .group {
+    margin-top: 10px;
+    height: 32px;
+    text-align: right;
+  }
+  button {
+    color: #fff;
+    background-color: var(--main-color);
+    padding: 5px 10px;
+    height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+
+.errormessage {
+  background-color: #FEEFB3;
+  border-color: #ffeeba;
+  color: #9F6000;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.successmessage {
+  background-color: #DFF2BF;
+  color: #4F8A10;
+  border-radius: 5px;
+  padding: 5px;
+}

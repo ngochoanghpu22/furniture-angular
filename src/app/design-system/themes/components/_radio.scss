@@ -1,0 +1,54 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+$size-radio-btn: 16px;
+$size-radio-btn-after: 10px;
+
+.fxt-radio-group {
+  .checkcontainer {
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    padding: 0;
+
+    &:checked ~ .radiobtn {
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  .radiobtn {
+    position: absolute;
+    top: ($size-radio-btn - $size-radio-btn-after) / 2;
+    left: 0;
+    height: $size-radio-btn;
+    width: $size-radio-btn;
+    background-color: #dfdfdf;
+    border-radius: 50%;
+
+    &::after {
+      top: ($size-radio-btn - $size-radio-btn-after) / 2;
+      left: ($size-radio-btn - $size-radio-btn-after) / 2;
+      width: $size-radio-btn-after;
+      height: $size-radio-btn-after;
+      border-radius: 50%;
+      background: $main-color;
+      content: "";
+      position: absolute;
+      display: none;
+      transition: all 0.15s ease-out 0s;
+    }
+  }
+}

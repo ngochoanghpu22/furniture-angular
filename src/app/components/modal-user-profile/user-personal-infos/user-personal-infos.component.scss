@@ -1,0 +1,29 @@
+@import "abstracts/variables";
+
+:host {
+  display: block;
+  padding: 16px;
+  .bloc {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
+    .title {
+      font-size: 16px;
+      padding: 4px 0;
+    }
+    .line {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      > span:first-child {
+        color: $color-helper;
+
+        span.icon {
+          display: inline-flex !important;
+        }
+      }
+    }
+  }
+}

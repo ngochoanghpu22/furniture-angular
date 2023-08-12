@@ -1,0 +1,98 @@
+<section id="select-day" class="container page-plan-select-day">
+  <header>
+    <p *ngIf="!modeManager" (click)="goToPlan()" class="link-back"><i class="fas fa-chevron-left"></i>{{'main.back' |
+      transloco}}</p>
+
+    <div class="nav-by-calendar d-flex justify-content-between">
+      <div class="text-left">
+        <div class="day">{{selectedDays[0].dayOfMonth}}</div>
+        <div class="month-year">
+          <h1>{{selectedDate.monthShort}}</h1>
+          <h5 class="grey mb-0">{{selectedDate.year}}</h5>
+        </div>
+      </div>
+      <div class="nav-arrow-block">
+        <fxt-calendar-nav buttonText="{{'main.this_week' | transloco}}" (prev)="onPrevious()" (next)="onNext()"
+          (today)="onGetToday()"></fxt-calendar-nav>
+      </div>
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="body-wrapper">
+      <fxt-calendar #calendarRef [slides]="slides" [activeDayInCalendar]="activeDayInCalendar"
+        [daySelected]="selectedDays[0]" (slideChanged)="onSlideChange()" (dayClicked)="onChangeDay($event)"
+        [canEdit]="true"></fxt-calendar>
+
+      <div class="bloc-you">
+
+        <div class="title">
+          <h2>{{'main.you' | transloco}}</h2>
+
+          <div class="d-flex">
+            <div class="message mr-1">{{(isWeekConfirmed ? 'manager.week_is_confirmed' : 'manager.confirm_whole_week') |
+              transloco}} </div>
+            <fxt-checkbox #checkboxConfirmWeek [ngModel]="isWeekConfirmed" (ngModelChange)="onConfirmDaysClicked(null)">
+            </fxt-checkbox>
+          </div>
+        </div>
+
+        <fxt-location-selector class="dropdown-block" [locations]="selectableLocations" [selectedDays]="selectedDays"
+          [highlight]="false" [userId]="currentUserId" [selectedDate]="selectedDate" [enableMap]="enableMap"
+          [rootAtWork]="rootAtWork" (locationClicked)="onChangeLocation($event)" (seatInvited)="onSeatInvited($event)">
+        </fxt-location-selector>
+      </div>
+
+      <div class="bloc-selected-status-block">
+        <div class="title-wrapper">
+          <div class="title">
+            <h2 class="mb-0">{{'main.your_selection' | transloco}}</h2>
+
+            <button class="btn-question-icon" (click)="openModalById('modal-who-is-office-that-day')">
+              <i class="far fa-question-circle"></i>
+            </button>
+          </div>
+          <span class="btn-rounded-action" (click)="showModalGoogleMap()">
+            <i class="far fa-map"></i>
+          </span>
+        </div>
+
+        <div class="search-bar-wrapper">
+          <fxt-quickplay-picker (changed)="onQuickPlayChanged()"></fxt-quickplay-picker>
+        </div>
+
+        <div class="row selected-groups" *ngFor="let group of friendLocations">
+          <div class="col-2 group-title-icon">
+            <i [ngClass]="'fas fa-' + group.location.name" [style.color]="group.location.color"
+              [class.not-colored]="!selectedLocationIds.includes(group.location.id)"></i>
+          </div>
+          <div class="col-10">
+            <div class="row">
+              <div class="col-9 address">
+                <span *ngIf="group.location.inOffice">{{'manager.in_office' | transloco }}</span>
+                <span *ngIf="!group.location.inOffice">{{group.location.address}}</span>
+              </div>
+              <div class="col-3 text-right icon-plane c-pointer">
+                <a class="btn-envelope" href="mailto:{{group.mailTarget}}"><i class="far fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 group-bookings">
+            <ng-container *ngFor="let booking of group.bookings; let index = index">
+              <fxt-chip class="c-pointer" (click)="openUserProfilePopup(booking.user)" [selected]="true"
+                [item]="booking.user"
+                [image]="booking?.user?.id === currentUser?.id ? currentUser.tinyPicture: booking?.user?.tinyPicture">
+              </fxt-chip>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </main>
+
+</section>

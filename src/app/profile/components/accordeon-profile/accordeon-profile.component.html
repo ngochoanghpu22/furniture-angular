@@ -1,0 +1,23 @@
+<div class="row accordeon-profile">
+  <div class="col-12 accordeon__header">
+    <div class="row accordeon__header__inner" (click)="showContent = !showContent;">
+      <div class="col-2 col-md-1 col-lg-1 col-xl-1 icon-wrapper">
+        <i class="{{icon}}"></i>
+      </div>
+      <div class="col-8 col-md-10 col-lg-10 col-xl-10 title c-pointer">
+        <span>
+          {{title}}
+        </span>
+      </div>
+      <div class="col-2 col-md-1 col-lg-1 col-xl-1 icon-wrapper arrow" [@rotate]="showContent ? 'open' : 'closed'">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse accordeon__body" [ngClass]="{'show': showContent}" (click)="!showContent">
+    <div class="accordeon__body__inner">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

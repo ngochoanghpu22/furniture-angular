@@ -1,0 +1,142 @@
+<div class="detail-office">
+  <form [formGroup]="form">
+
+    <div class="image" [class.no-image]="!office.contextualPicture">
+      <fxt-file-preview-input (fileChanged)="onFileChanged($event)" [selected]="office.contextualPicture"
+        buttonText="{{'manager.add_photo' | transloco}}" [canEdit]="false"></fxt-file-preview-input>
+    </div>
+
+    <div class="bloc bloc-title">
+      <span>
+        <input formControlName="name" class="form-control ml-0 pl-0" type="text">
+      </span>
+      <div class="actions">
+        <div dropdown #dropdown="bs-dropdown" (clickOutside)="dropdown.hide()" container="body" *ngIf="canEdit">
+
+          <span class="btn-rounded-action" dropdownToggle aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-ellipsis-v"></i>
+          </span>
+
+          <div class="dropdown-menu" *dropdownMenu role="menu">
+            <div (click)="archive(office); dropdown.hide();" class="dropdown-item px-3 c-pointer">
+              <i class="far fa-trash-alt"></i>&nbsp;{{'manager.archive' | transloco}}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bloc bloc-capacity">
+      <div class="d-flex align-items-center">
+        <span>{{'manager.capacity' | transloco}}</span>
+        <input formControlName="capacity" class="form-control" type="number">
+      </div>
+    </div>
+
+    <div class="bloc bloc-amenities">
+      <span>{{'manager.equipments' | transloco}}</span>
+      <span class="btn-rounded-action" (click)="isEquipmentCollapsed = !isEquipmentCollapsed">
+        <i *ngIf="isEquipmentCollapsed" class="fas fa-angle-down"></i>
+        <i *ngIf="!isEquipmentCollapsed" class="fas fa-angle-up"></i>
+      </span>
+    </div>
+
+    <div class="bloc" id="collapseEquipment" [collapse]="isEquipmentCollapsed" [isAnimated]="true">
+      <ul class="mt-2 mb-2">
+        <li *ngFor="let item of equipments">{{item}} <i (click)="removeEquipment(item)"
+            class="fal fa-trash c-pointer"></i></li>
+      </ul>
+
+      <div class="button-add-wrapper">
+        <input (keydown.enter)="addNewEquiment($event)" type="text" class="form-control ml-4"
+          placeholder="Add (equipement, wifi code, etc)" [(ngModel)]="newEquipment"
+          [ngModelOptions]="{standalone: true}">
+        <span *ngIf="newEquipment" (click)="addNewEquiment()" class="btn-rounded-action"><i
+            class="fal fa-plus"></i></span>
+      </div>
+
+    </div>
+
+  </form>
+
+  <ng-container *ngIf="office.type !== OfficeTypeEnum.MeetingRoom">
+    <div class="bloc bloc-rules">
+      <span>{{'manager.rules' | transloco}}</span>
+      <span class="btn-rounded-action" (click)="isRuleCollapsed = !isRuleCollapsed">
+        <i *ngIf="isRuleCollapsed" class="fas fa-angle-down"></i>
+        <i *ngIf="!isRuleCollapsed" class="fas fa-angle-up"></i>
+      </span>
+    </div>
+
+    <div id="collapseRule" [collapse]="isRuleCollapsed" [isAnimated]="true">
+      <fxt-manager-office-occupation-rule [office]="office"></fxt-manager-office-occupation-rule>
+    </div>
+  </ng-container>
+
+
+  <ng-container *ngIf="office.type == OfficeTypeEnum.MeetingRoom">
+
+    <div class="row my-2" *ngIf="office.msUniqueId">
+      <div class="col-12">
+        <i class="fas fa-link"></i>&nbsp;
+        <img src="assets/icons/microsoft_mini_logo.png" width="21"> {{office.msUniqueId}}
+      </div>
+    </div>
+
+    <div class="row my-2" *ngIf="office.googleUniqueId">
+      <div class="col-12">
+        <i class="fas fa-link"></i>&nbsp;
+        <img src="assets/icons/google_mini_logo.png" width="21">
+        <span class="ml-2">{{office.name}}</span>
+        <br>
+        <small>{{office.googleUniqueId}}</small>
+      </div>
+    </div>
+
+    <div class="actions mt-2">
+
+      <ng-container *ngIf="authProvider === AuthProviderEnum.None">
+        <button disabled class="btn btn-primary" (click)="onLinkButtonClicked()">
+          <span>
+            {{'manager.link_office_to' | transloco:{provider: authProviderLabel} }}
+          </span>
+          <span class="ml-1">
+            <i [tooltip]="'manager.link_office_to_message' | transloco:{provider: authProviderLabel} "
+              class="fas fa-info-circle"></i>
+          </span>
+        </button>
+
+      </ng-container>
+
+      <ng-container *ngIf="authProvider === AuthProviderEnum.Microsoft">
+
+        <button *ngIf="!office.msUniqueId" class="btn btn-primary" (click)="onLinkButtonClicked()">
+          {{'manager.link_office_to' | transloco:{provider: authProviderLabel} }}
+        </button>
+
+        <button *ngIf="office.msUniqueId" class="btn btn-primary" (click)="unlinkButtonClicked()">
+          <img src="assets/icons/microsoft_mini_logo.png" width="21"> {{'manager.unlink_office_from' |
+          transloco:{provider: authProviderLabel} }}
+        </button>
+      </ng-container>
+
+
+      <ng-container *ngIf="authProvider === AuthProviderEnum.Google">
+
+        <button *ngIf="!office.googleUniqueId" class="btn btn-primary" (click)="onLinkButtonClicked()">
+          {{'manager.link_office_to' | transloco:{provider: authProviderLabel} }}
+        </button>
+
+        <button *ngIf="office.googleUniqueId" class="btn btn-primary" (click)="unlinkButtonClicked()">
+          <img src="assets/icons/google_mini_logo.png" width="21"> {{'manager.unlink_office_from' |
+          transloco:{provider: authProviderLabel} }}
+        </button>
+      </ng-container>
+
+    </div>
+
+  </ng-container>
+
+</div>

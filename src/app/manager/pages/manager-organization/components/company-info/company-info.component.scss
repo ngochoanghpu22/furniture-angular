@@ -1,0 +1,125 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+$padding: 16px;
+
+div.org {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 50px;
+
+  .inp-domain {
+    width: 150px;
+    float: left;
+    margin-right: 18px;
+  }
+
+  .status-icon {
+    flex: 60px 0 0;
+  }
+
+  div.org-name {
+    flex: 1;
+    div.name {
+      margin-bottom: 37px;
+      p {
+        @include paragraph();
+      }
+    }
+
+    div.approved {
+      margin-bottom: 37px;
+      p {
+        @include paragraph();
+      }
+      div.flex {
+        span {
+          background-color: $main-bg-color;
+          color: $grey-color64;
+          display: flex;
+          @include borderRadius(20px);
+          @include boxShadow(0px 2.2605px 13.563px rgba(0, 0, 0, 0.08));
+
+          &.team {
+            margin-right: 18px;
+            float: left;
+          }
+
+          &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), $main-bg-color;
+          }
+          &.active {
+            background-color: #999;
+            color: #fff;
+            &:hover {
+              background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #999999;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bloc-working {
+    flex: 1;
+    p {
+      @include paragraph();
+    }
+
+    div.status-wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: $padding;
+
+      .status-line {
+        cursor: pointer !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: $padding / 2;
+
+        ::ng-deep .fxt-icon-status {
+          &:hover {
+            background: unset;
+          }
+        }
+
+        input {
+          cursor: pointer;
+        }
+      }
+    }
+
+    ::ng-deep fxt-placeholder-loading {
+      .placeholder {
+        max-width: 100%;
+      }
+    }
+
+    div.new-status {
+      margin-top: $padding * 2;
+      button {
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        color: $grey-color80;
+        @include borderRadius(20px);
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+        &.active {
+          background-color: rgba(0, 0, 0, 0.08);
+        }
+      }
+    }
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    flex: 1;
+    .form-control {
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      &::placeholder {
+        color: $grey-color40;
+      }
+    }
+  }
+}

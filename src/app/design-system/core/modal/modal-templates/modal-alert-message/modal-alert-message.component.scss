@@ -1,0 +1,31 @@
+h5 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14.2108px;
+    line-height: 17px;
+    color: #333333;
+    margin-bottom: 11px;
+}
+
+p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12.1807px;
+    line-height: 14px;
+    color: #666666;
+    margin-bottom: 0;
+}
+.col-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    
+    i {
+        font-size: 36px;
+    }
+}
+
+.col-10 {
+    padding: 0 10px;
+}

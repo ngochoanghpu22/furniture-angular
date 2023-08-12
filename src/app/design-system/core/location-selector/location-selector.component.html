@@ -1,0 +1,44 @@
+<div class="container location-dropdown-wrapper">
+  <div class="location-item selected-location" (click)="toggleLocation()">
+
+    <fxt-location-status [item]="selectedDays" [disableUnconfirmed]="true">
+    </fxt-location-status>
+
+    <span class="title">{{selectedLocationNames}}</span>
+    <div class="arrow" [@rotate]="dropdown.isOpen? 'open' : 'closed'">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+  </div>
+  <fxt-dropdown #dropdown>
+    <div class="dropdown-body">
+      <ng-container *ngFor="let location of locations">
+        <ng-container *ngTemplateOutlet="locTemplateRef; context: {loc: location}">
+        </ng-container>
+      </ng-container>
+
+    </div>
+  </fxt-dropdown>
+</div>
+
+<ng-template #locTemplateRef let-location="loc" let-parent="parent">
+
+  <div class="location-item level-{{location.hierarchyLevel}}" [style.paddingLeft.px]="location.paddingLeft"
+    (click)="onChangeLocation(location, parent, $event);">
+
+    <fxt-location-status [item]="location" [disableUnconfirmed]="true"
+      [disabled]="location.inOffice && location.hierarchyLevel != HierarchyLevelEnum.Office"
+      [selected]="selectedLocationIds.includes(location.id)"></fxt-location-status>
+
+    <span class="title">{{location.address}}</span>
+    <span *ngIf="location.hierarchyLevel != null && location.hierarchyLevel == HierarchyLevelEnum.Office"
+      class="seat">{{location.consolidatedActualLoad[0]}}/{{location.maxPerson}}</span>
+  </div>
+
+  <ng-container *ngIf="location.children.length > 0">
+    <ng-template ngFor let-child [ngForOf]="location.children">
+      <ng-template [ngTemplateOutlet]="locTemplateRef" [ngTemplateOutletContext]="{loc: child, parent: location}">
+      </ng-template>
+    </ng-template>
+  </ng-container>
+
+</ng-template>

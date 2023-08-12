@@ -1,0 +1,114 @@
+@import "../abstracts/variables";
+
+.ngx-datatable.bootstrap {
+  .datatable-header {
+    .datatable-header-cell {
+      &.column-number {
+        text-align: center !important;
+      }
+      &.column-chip {
+        min-width: 200px !important;
+        text-align: left;
+        padding-left: 16px;
+      }
+      &.column-name {
+        min-width: 150px !important;
+        text-align: left;
+      }
+    }
+  }
+
+  .datatable-body {
+    .datatable-body-row {
+      border-top: none !important;
+
+      &.active{
+        background-color: $main-color;
+      }
+
+      .datatable-row-even {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .datatable-body-cell {
+        &.column-number {
+          text-align: center !important;
+        }
+
+        &.column-actions {
+          padding: 6px !important;
+          .datatable-body-cell-label {
+            > div {
+              display: flex;
+              justify-content: flex-end;
+            }
+          }
+        }
+
+        &.cell-avatar {
+          padding: 6px 12px !important;
+        }
+
+        &.column-name {
+          min-width: 150px !important;
+        }
+
+        &.column-check {
+          text-align: center !important;
+          span {
+            color: $main-color;
+          }
+        }
+
+        &.column-chip {
+          min-width: 200px !important;
+          padding: 6px 6px 6px 16px;
+          .datatable-body-cell-label {
+            display: flex;
+            justify-content: flex-start;
+
+            fxt-chip {
+              .fxt-chip {
+                box-shadow: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .datatable-footer {
+    background: none;
+    color: #545454;
+    .datatable-footer-inner {
+      min-height: 52px;
+      .page-count {
+        max-width: 200px;
+        border-top: 1px solid #c4c4c4;
+      }
+
+      .datatable-pager {
+        ul.pager {
+          li {
+            a {
+              color: #545454;
+            }
+            &:hover,
+            &.active {
+              a {
+                color: white;
+              }
+            }
+
+            &.disabled {
+              a {
+                color: #545454;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

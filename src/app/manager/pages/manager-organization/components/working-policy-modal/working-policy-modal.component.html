@@ -1,0 +1,80 @@
+<div class="creation">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-group mb-2">
+      <label for="name"><strong>{{'organization.profile_name' | transloco}}</strong></label>
+      <input formControlName="name" type="text" class="form-control" id="policyName" placeholder="100% remote"
+        [ngClass]="{ 'is-invalid': f.name.errors && f.name.touched}" />
+      <div *ngIf="f.name.errors && f.name.touched" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required;">
+          {{ "main.name_is_required" | transloco }}
+        </div>
+      </div>
+    </div>
+    <div class="office">
+      <input type="checkbox" formControlName="isLimitRemoteDaysPerWeekEnabled" class="mr-2" />
+      <label for="">{{'organization.limitRemoteDaysPerWeek' | transloco}}</label>
+      <div class="range">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-8">
+            <label for="">{{'organization.maxnoOfDays' | transloco}}</label>
+          </div>
+          <div class="col-4">
+            <ng-select appendTo="body" formControlName="maxNumberOfRemoteDaysPerWeek" [items]="optionsDayPerWeek"
+              [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="office">
+      <input type="checkbox" formControlName="isLimitOfficeDaysPerWeekEnabled" class="mr-2" />
+      <label for="">{{'organization.limitOfficeDaysPerWeek' | transloco}}</label>
+      <div class="range">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-8">
+            <label for="">{{'organization.maxnoOfDays' | transloco}}</label>
+          </div>
+          <div class="col-4">
+            <ng-select appendTo="body" formControlName="maxNumberOfOfficeDaysPerWeek" [items]="optionsDayPerWeek"
+              [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="office">
+      <input type="checkbox" formControlName="isLimitRemoteDaysPerMonthEnabled" class="mr-2" />
+      <label for="">{{'organization.limitRemoteDaysPerMonth' | transloco}}</label>
+      <div class="range">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-8">
+            <label for="">{{'organization.maxnoOfDays' | transloco}}</label>
+          </div>
+          <div class="col-4">
+            <ng-select appendTo="body" formControlName="maxNumberOfRemoteDaysPerMonth" [items]="optionsDayPerMonth"
+              [clearable]="false" [searchable]="false">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="office">
+      <input type="checkbox" formControlName="isAllowRemoteExceptionEnabled" class="mr-2" />
+      <label for="">{{'organization.allowRemoteException' | transloco}}</label>
+      <div>
+        <em>{{'organization.manager_validate_in_case_exception' | transloco}}</em>
+      </div>
+    </div>
+
+    <div class="create">
+      <button [disabled]="form.invalid || loading" type="submit" class="btn btn-primary w-100">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        {{policy?.id ? ('main.update' | transloco): ('main.create' | transloco)}} {{'organization.updateWorkingPolicy' |
+        transloco}}
+      </button>
+    </div>
+  </form>
+</div>

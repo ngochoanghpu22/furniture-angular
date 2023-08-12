@@ -1,0 +1,104 @@
+@import "../../../manager-office-common";
+
+div.edit-office {
+  margin: auto;
+  width: auto;
+  @include borderRadius(8px);
+  .image {
+    height: 200px;
+
+    &:not(.no-image) {
+      ::ng-deep fxt-file-preview-input {
+        .photo {
+          background-color: $color-white;
+          padding: 0;
+        }
+      }
+    }
+
+    &.no-image {
+      background-color: #c4c4c4;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      @include borderRadius(8px 8px 0 0);
+    }
+  }
+
+  .bloc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    input[type="text"],
+    input[type="number"] {
+      flex: 1;
+      text-align: right;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0;
+
+      &:focus{
+        box-shadow: none;
+        border-color: transparent;
+      }
+    }
+
+    input[type="number"] {
+      max-width: 60px !important;
+    }
+
+    &-title {
+      color: $grey-color80;
+      .actions {
+        position: relative;
+        span {
+          background-color: $main-color;
+          color: white;
+        }
+      }
+    }
+
+    &-capacity {
+      .capacity {
+        color: $color-capacity;
+      }
+    }
+
+    &-amenities {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      ul {
+        margin-bottom: 0;
+      }
+
+      .button-add-wrapper {
+        display: flex;
+        align-items: center;
+        input {
+          text-align: left;
+          margin-right: 12px;
+          height: 32px;
+          margin-left: 15px;
+        }
+      }
+    }
+
+    &-actions {
+      border-bottom: none;
+      column-gap: 8px;
+      button {
+        flex: 1;
+      }
+    }
+  }
+}

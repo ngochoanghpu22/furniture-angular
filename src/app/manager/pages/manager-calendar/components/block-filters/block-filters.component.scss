@@ -1,0 +1,107 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+$padding: 16px;
+
+:host {
+  .manager-block-filters {
+    .searchbar-date-wrapper {
+      display: flex;
+      flex-direction: row;
+      column-gap: 50px;
+      max-width: calc(100vw - 210px);
+      margin-bottom: 16px;
+
+      .search-input {
+        width: calc(100% - 210px);
+      }
+    }
+
+    .date {
+      width: 150px;
+      h6 {
+        &.day,
+        &.month,
+        &.year {
+          font-size: 18px;
+        }
+
+        &.day {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .calendar-wrapper {
+      margin-left: 4rem;
+
+      display: flex;
+      align-items: center;
+
+      .right-arrow,
+      .left-arrow {
+        background: white;
+        border-radius: 50%;
+        border: 1px solid #efefef;
+        height: 32px;
+        width: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        @include hover-active-btn;
+      }
+
+      span.calendar {
+        text-align: center;
+        background-color: #fff;
+        padding: 0.66rem 1.18rem;
+        font-size: 14px;
+        height: 40px;
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+        color: $grey-color50;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.card-date {
+  width: 100px;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+
+  > div {
+    width: 100%;
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .week-day {
+    background-color: $main-color;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .nb-date {
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .month {
+    color: $main-color;
+    padding-bottom: 4px;
+  }
+}

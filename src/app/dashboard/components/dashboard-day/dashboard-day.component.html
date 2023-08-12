@@ -1,0 +1,52 @@
+<section class="container top-container notification-day">
+  <header class="row">
+    <h1 class="title">{{title}}</h1>
+    <h5>{{todayDate}}</h5>
+  </header>
+  <main class="row">
+    <div class="col-12 location">
+      <ng-container *ngIf="todayLocation.id">
+        <i [ngClass]="'fas fa-' + todayLocation.name"></i>
+        <h6>
+          <span>{{'dashboard.you_are' | transloco}}</span><span *ngIf="todayLocation.inOffice">&nbsp;{{'dashboard.in' |
+            transloco}}</span>&nbsp;{{todayLocation.address}}
+        </h6>
+      </ng-container>
+      <h6 *ngIf="!todayLocation.id">
+        <span>{{'dashboard.you_are_not_working' | transloco}}</span>
+      </h6>
+    </div>
+    <div class="col-12 groupe-block">
+      <h3>{{'dashboard.your_groups' | transloco}}</h3>
+      <div class="shadow rounded">
+        <div class="notification-tabs">
+          <ul class="nav nav-notification-day mb-3" role="tablist">
+            <li class="nav-item" [class.active]="activeTab === 1" role="presentation">
+              <a class="nav-link" (click)="activeTab = 1" role="tab" aria-controls="notification-day-my-team"
+                aria-selected="true">{{teamName}}</a>
+            </li>
+            <li class="nav-item" [class.active]="activeTab === 2" role="presentation">
+              <a class="nav-link" (click)="activeTab = 2" role="tab" aria-controls="notification-day-favorites"
+                aria-selected="false">{{'dashboard.my_favorites' |
+                transloco}}</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" *ngIf="activeTab === 1" role="tabpanel"
+              aria-labelledby="notification-day-my-team-tab">
+              <fxt-friend-locations [currentDate]="currentDateAsDate" [teamType]="TeamTypes.Hierarchy">
+              </fxt-friend-locations>
+            </div>
+            <div class="tab-pane fade show active" *ngIf="activeTab === 2" role="tabpanel"
+              aria-labelledby="notification-day-favorites-tab">
+              <fxt-friend-locations [currentDate]="currentDateAsDate" [teamType]="TeamTypes.Prefered">
+              </fxt-friend-locations>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</section>

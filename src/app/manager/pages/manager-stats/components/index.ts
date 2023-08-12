@@ -1,0 +1,1 @@
+export * from './stats-chart/stats-chart.component';

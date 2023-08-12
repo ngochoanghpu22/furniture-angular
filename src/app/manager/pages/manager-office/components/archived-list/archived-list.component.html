@@ -1,0 +1,50 @@
+<section id="archived-list">
+  <button class="btn-modal-close" (click)="close()"><i class="far fa-times-circle"></i></button>
+  <div class="content">
+    <div class="info">
+      <div class="tabs">
+        <div class="btn-group" role="group">
+          <a [ngClass]="{active: type === HierarchyLevelEnum.Office}" class="btn company"
+            (click)="selectTab(HierarchyLevelEnum.Office)">{{'main.offices' | transloco}}</a>
+          <a [ngClass]="{active: type === HierarchyLevelEnum.Floor}" class="btn policy"
+            (click)="selectTab(HierarchyLevelEnum.Floor)">{{'main.floors' | transloco}}</a>
+          <a [ngClass]="{active: type === HierarchyLevelEnum.Building}" class="btn billing"
+            (click)="selectTab(HierarchyLevelEnum.Building)">{{'main.buildings' | transloco}}</a>
+        </div>
+      </div>
+
+      <div class="data table-wrapper" *ngIf="!loading; else loader">
+        <ngx-datatable [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [rowHeight]="45"
+          class="bootstrap striped" [rows]="items" [scrollbarV]="true" [scrollbarH]="false">
+
+          <ngx-datatable-column *ngFor="let column of columns" [name]="column.name | transloco" [prop]="column.prop"
+            [pipe]="column.pipe" [sortable]="column.sortable" [cellTemplate]="column.cellTemplate"
+            [cellClass]="column.cellClass">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="archivedDate" [sortable]="true" [resizeable]="false" cellClass="column-date">
+            <ng-template ngx-datatable-header-template>{{'archived_office.archived_date' | transloco}} </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <span>{{row.archivedDate | date: formatDateTime }}</span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column [name]="'main.restore' | transloco" [sortable]="false" [canAutoResize]="false"
+            [draggable]="false" [resizeable]="false" [width]="75">
+            <ng-template ngx-datatable-header-template>{{'main.restore' | transloco}}</ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <span (click)="restore(row.id)" class="btn btn-restore"><i class="far fa-trash-restore-alt"></i></span>
+            </ng-template>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loader>
+  <div class="loader d-flex align-items-center justify-content-center">
+    <fxt-spinner></fxt-spinner>
+  </div>
+</ng-template>

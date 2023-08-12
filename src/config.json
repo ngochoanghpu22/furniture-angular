@@ -1,0 +1,7 @@
+{
+  "googleClientId": "207413618050-fstq0olij11q52l7kq31ior6sr3k17lg.apps.googleusercontent.com",
+  "googleLoginScope": "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/admin.directory.resource.calendar https://www.googleapis.com/auth/admin.directory.resource.calendar.readonly",
+  "msalClientId": "179ec198-d14f-40ec-bc11-b0de1ecff5b5",
+  "googleMapAPIKey":"AIzaSyCGC4-LXvX7-Y0epOMPQEFy1Ok4acWjuCo",
+  "googleMapCustomId":"46f628b12a31eb87"
+}

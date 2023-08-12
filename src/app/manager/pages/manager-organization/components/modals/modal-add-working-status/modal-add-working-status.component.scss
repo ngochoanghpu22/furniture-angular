@@ -1,0 +1,51 @@
+@import "../../../../manager-office/manager-office-common";
+
+div.building {
+  margin: auto;
+  background-color: $main-bg-color;
+  border-radius: 8px;
+  padding: 16px;
+
+  div.name-location {
+    margin-bottom: 20px;
+    position: relative;
+
+    .form-row {
+      margin: 0;
+      column-gap: 16px;
+    }
+
+    input {
+      padding-right: 32px;
+    }
+
+    .bloc-name {
+      position: relative;
+      .btn-icon-picker {
+        position: absolute;
+        right: 8px;
+        top: 38px;
+        cursor: pointer;
+        width: 26px;
+        display: flex;
+        align-items: center;
+        height: 26px;
+        justify-content: center;
+        &.border {
+          border: 1px solid #ced4da;
+        }
+        &.error-border {
+          border: 1px solid #ffbbbb;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    column-gap: 16px;
+    button {
+      flex: 1;
+    }
+  }
+}

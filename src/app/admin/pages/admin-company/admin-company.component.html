@@ -1,0 +1,10 @@
+<div class="middle-content">
+
+  <h1>Companies</h1>
+  <fxt-admin-table-companies></fxt-admin-table-companies>
+  <hr>
+
+  <h1>Users of company {{selectedCompany?.name}} </h1>
+  <div *ngIf="!selectedCompany">Please select a company</div>
+  <fxt-admin-table-users [showAdd]="true" *ngIf="selectedCompany" [company]="selectedCompany"></fxt-admin-table-users>
+</div>

@@ -1,0 +1,13 @@
+<div class="fxt-gauge">
+
+  <div class="rect-gauge-container">
+    <svg class="svg-shadow">
+      <rect class="gauge-rect" height="0%" width="100%" [ngStyle]="{
+        'height': circleStyle, 
+        'transform': transformY
+      }" *ngIf="!isOutOfMonth" />
+      <rect height="100%" width="100%" fill="#F5F5F5" *ngIf="isOutOfMonth" />
+    </svg>
+  </div>
+
+</div>

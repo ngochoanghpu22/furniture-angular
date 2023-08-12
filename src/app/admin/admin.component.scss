@@ -1,0 +1,19 @@
+@import "abstracts/variables";
+
+$content-background-color: #f2f2f2;
+
+#admin-page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: var(--fxt-manager-page-sidebar-width) auto;
+
+  .sidebar {
+    flex-shrink: 0;
+  }
+
+  .content {
+    background: $content-background-color;
+    height: 100%;
+    width: calc(100vw - 160px);
+  }
+}

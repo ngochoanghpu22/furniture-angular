@@ -1,0 +1,18 @@
+<div class="map-pin">
+  <div class="org-name">
+    <div class="name">
+      <h5>{{ pin.name }}</h5>
+      <span class="icon"><i class="fas fa-{{pin.faIconName}}"></i></span>
+    </div>
+
+    <div class="address">
+      <p>{{ text }}</p>
+    </div>
+
+    <img class="map-pin-image" [src]="pin.photo" />
+
+    <div class="more-details">
+      <a target="_blank" [href]="pin.link">{{'manager.more_details' | transloco}}</a>
+    </div>
+  </div>
+</div>

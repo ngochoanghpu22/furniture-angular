@@ -1,0 +1,37 @@
+// Custom popover
+
+.popover-offices-wrapper {
+  background: #ffffff;
+  box-shadow: 0px 2px 12px rgb(0 0 0 / 8%);
+  border-radius: 0px;
+  padding: 0 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 15px;
+  box-shadow: 0px 2px 8px rgb(0 0 0 / 20%) !important;
+  border: none !important;
+}
+
+.popover-change-location-container {
+  top: -46px !important;
+  background: transparent !important;
+  border: none !important;
+
+  &.position-left {
+    top: 0px !important;
+  }
+
+  .popover-arrow {
+    display: none !important;
+  }
+
+  .popover-content.popover-body {
+    padding: 2px !important;
+  }
+}
+
+.popover-seat {
+  &.unable-book {
+    background-color: rgb(243 196 178) !important;
+  }
+}

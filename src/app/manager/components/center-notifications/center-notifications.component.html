@@ -1,0 +1,18 @@
+<div class="btn-group" dropdown [isAnimated]="false" [autoClose]="true" [insideClick]="true">
+  <span class="btn-bell c-pointer" dropdownToggle aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-bell"></i>
+    <span class="badge" *ngIf="notifications.length > 0">{{notifications.length}}</span>
+  </span>
+  <div class="dropdown-menu dropdown-menu-left" *dropdownMenu role="menu">
+    <div class="notifications" *ngIf="notifications.length > 0; else nodata">
+      <fxt-notification *ngFor="let notif of notifications; trackBy: trackByFn" [@fadeOut]="'in'" 
+      [notification]="notif"
+        (closed)="closeNotification($event)" (actionClicked)="onNotificationActionClicked($event)">
+      </fxt-notification>
+    </div>
+  </div>
+</div>
+
+<ng-template #nodata>
+  <span class="no-data">{{'dashboard.no_notification' | transloco}}</span>
+</ng-template>

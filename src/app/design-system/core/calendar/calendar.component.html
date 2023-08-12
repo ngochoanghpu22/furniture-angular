@@ -1,0 +1,33 @@
+
+<div class="container calendar-header">
+  <div class="day" *ngFor="let d of workingDays">
+    <span>{{d}}</span>
+  </div>
+</div>
+
+<div class="container calendar-body">
+  <swiper #swiper [lazy]="true" [watchSlidesVisibility]="true" [slidesOffsetAfter]="1" [slidesOffsetBefore]="1"
+    [threshold]="20" (slideChange)="slideChanged.emit()">
+
+    <ng-template swiperSlide *ngFor="let item of slides">
+
+      <div class="month-panel">
+
+        <div *ngFor="let week of item" class="row-week">
+
+          <div class="row-icon">
+            <ng-container *ngFor="let day of week.days; trackBy:trackByFn">
+              <fxt-circle-day [canEdit]="canEdit" [day]="day" [showGauge]="!hideGauge" 
+                [isSelected]="daySelected.dayDate === day[0].dayDate" 
+                [isToday]="activeDayInCalendar != 0 && day[0].dayOfMonth == activeDayInCalendar"
+                (click)="onDayClicked(day, week, $event)">
+              </fxt-circle-day>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-template>
+  </swiper>
+</div>

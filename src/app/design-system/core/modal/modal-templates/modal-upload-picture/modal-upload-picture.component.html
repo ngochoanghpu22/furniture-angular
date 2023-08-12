@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="row">
+    <div class="col text-center">
+      <video [class.disabled]="permissionDenied" #video [attr.width]="WIDTH + 'px'" [attr.height]="HEIGHT + 'px'"
+        autoplay></video>
+      <div class="row" *ngIf="loading">
+        <div class="loader"></div>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="m-3 text-center alert alert-warning" role="alert" *ngIf="!loading && permissionDenied">
+          {{'profile.camera_permission_denied' | transloco}}
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-primary" (click)="snap()">{{'profile.take_a_photo' | transloco}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="row d-none body">
+      <div class="col">
+        <canvas #canvasSmall [attr.width]="SMALL_WIDTH_TARGET + 'px'"
+          [attr.height]="SMALL_HEIGHT_TARGET + 'px'"></canvas>
+      </div>
+      <div class="row">
+        <div class="col">
+          <canvas #canvasTiny [attr.width]="TINY_WIDTH_TARGET + 'px'"
+            [attr.height]="TINY_HEIGHT_TARGET + 'px'"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

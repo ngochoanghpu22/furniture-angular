@@ -1,0 +1,83 @@
+@import "abstracts/variables";
+
+$size: 25px;
+$animation-duration: 0.65s;
+
+@keyframes click-wave {
+  0% {
+    height: $size;
+    width: $size;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height:  calc(#{$size} * 2);
+    width: calc(#{$size} * 2);
+    margin-left: calc(#{-$size} / 2);
+    margin-top: calc(#{-$size} / 2);
+    opacity: 0;
+  }
+}
+
+:host {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  height: $size;
+  width: $size;
+  transition: all 0.15s ease-out 0s;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  position: relative;
+
+  &:hover {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)), #fafafa;
+  }
+
+  &.checked {
+    background: $main-color;
+    border: none;
+  }
+
+  &.checked::before {
+    height: $size;
+    width: $size;
+    position: absolute;
+    content: "✔";
+    display: inline-block;
+    font-size: calc(#{$size} - 5px);
+    text-align: center;
+    line-height: $size;
+    color: white;
+  }
+
+  &.checked::after {
+    -webkit-animation: click-wave $animation-duration;
+    -moz-animation: click-wave $animation-duration;
+    animation: click-wave $animation-duration;
+    background: $main-color;
+    content: "";
+    display: block;
+    position: relative;
+  }
+
+  &.radio {
+    border-radius: 50%;
+  }
+
+  &.radio::after {
+    border-radius: 50%;
+  }
+}

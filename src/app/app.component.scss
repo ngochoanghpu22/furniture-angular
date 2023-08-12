@@ -1,0 +1,13 @@
+.app-container {
+    &.full-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    &.top-container {
+        margin-bottom: 100px;
+    }
+}

@@ -1,0 +1,37 @@
+<div class="fxt-add-user-team">
+
+  <div class="form-group">
+    <span class="search "><i class="fal fa-search"></i></span>
+    <input #input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Add by name or email">
+    <span class="clear" [class.active]="showSuggestions" (click)="clear()"><i class="fas fa-times"></i></span>
+    <span *ngIf="showSuggestions && !users?.length && isEmail && !team.isPrefered; else elseBlock" (click)="onInviteByMailClicked()" class="btn-action"><i class="fas" [ngClass]="'fa-envelope'"></i></span>
+    <ng-template #elseBlock>
+      <span class="btn-action"><i class="fas" [ngClass]="'fa-user-plus'"></i></span>
+    </ng-template>
+  </div>
+  <hr>
+  <small *ngIf="showSuggestions && users && !users.length" class="helper">{{'manager.persons_not_found' | transloco}}
+    <span *ngIf="isEmail && !team.isPrefered"><a (click)="onInviteByMailClicked()">{{'manager.send_an_invitation_by_email' |
+        transloco}}</a></span>
+  </small>
+  <div class="results" *ngIf="showSuggestions">
+    <div *ngFor="let user of users; trackBy:trackByFn">
+      <ng-container [ngTemplateOutlet]="userTmp" [ngTemplateOutletContext]="{ $implicit: user } ">
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #userTmp let-user>
+  <div class="profile" (click)="onAddUserClicked(user)">
+    <div class="info">
+      <fxt-avatar class="mr-2" [imageSrc]="user.tinyPicture" [initial]="user.fullName" [size]="32"></fxt-avatar>
+      <span *ngIf="user.isOnboarded" class="name">{{user.fullName}} <br><span class="team">{{user.coreTeamName}}</span></span>
+      <span *ngIf="!user.isOnboarded" class="name">
+        {{user.fullName}} <span *ngIf="user.fullName"> - </span> <span>{{user.email}}</span> <br>
+        <span class="team">{{user.coreTeamName}}</span>
+      </span>
+    </div>
+    <span class="btn-action"><i class="fal fa-plus"></i></span>
+  </div>
+</ng-template>

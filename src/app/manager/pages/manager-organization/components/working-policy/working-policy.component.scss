@@ -1,0 +1,46 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+div.data {
+  min-height: 200px;
+  max-height: calc(100vh - 335px);
+  overflow-y: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  .loader {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+div.add-profile {
+  position: relative;
+  margin-top: 16px;
+
+  .btn-export-xls {
+    position: absolute;
+    left: 0;
+    color: rgba(0, 0, 0, 0.48);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 3px;
+    font-size: 14px;
+    @include hover-active-btn;
+  }
+
+  button {
+    border: 1px solid $grey-color80;
+    @include borderRadius(18px);
+    color: $grey-color80;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+    &.active {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+}

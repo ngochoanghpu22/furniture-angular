@@ -1,0 +1,91 @@
+@import "abstracts/variables";
+
+$grid-line-color: rgba(0, 0, 0, 0.4);
+
+:host {
+  display: flex;
+  flex-direction: column;
+  .fxt-dnd-map-seats-wrapper {
+    position: relative;
+    flex: 2;
+
+    .grid {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+
+      &.display-grid {
+        background-image: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 13px,
+            $grid-line-color 14px,
+            $grid-line-color 14px
+          ),
+          repeating-linear-gradient(90deg, transparent, transparent 13px, $grid-line-color 14px, $grid-line-color 14px);
+
+        &.deg125 {
+          background-image: repeating-linear-gradient(
+              12.5deg,
+              transparent,
+              transparent 13px,
+              rgba(0, 0, 0, 0.4) 15px,
+              rgba(0, 0, 0, 0.4) 15px
+            ),
+            repeating-linear-gradient(
+              -12.5deg,
+              transparent,
+              transparent 12px,
+              rgba(0, 0, 0, 0.4) 10px,
+              rgba(0, 0, 0, 0.4) 13px
+            );
+        }
+
+        &.deg45 {
+          background-image: repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 13px,
+              $grid-line-color 14px,
+              $grid-line-color 14px
+            ),
+            repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 13px,
+              $grid-line-color 14px,
+              $grid-line-color 14px
+            );
+        }
+      }
+    }
+
+    fxt-seat,
+    fxt-meeting-room {
+      position: absolute;
+    }
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    padding: 0 8px;
+
+    ::ng-deep fxt-radio-group {
+      .fxt-radio-group-wrapper {
+        display: flex;
+        column-gap: 4px;
+      }
+    }
+  }
+}
