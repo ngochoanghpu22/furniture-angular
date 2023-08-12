@@ -1,8 +1,0 @@
-<div class="fxt-weekly-chart-progress-bar">
-  <div class="space"></div>
-  <div class="indicator" [style.height.%]="_percent">
-    <div class="nb">{{value}}</div>
-    <div class="c-pointer bar {{name}}" [style.backgroundColor]="statusColor"
-      [class.disabled]="currentSort && currentSort !== name" (click)="onBarClicked()"></div>
-  </div>
-</div>

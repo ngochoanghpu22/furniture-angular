@@ -1,8 +1,0 @@
-<div class="fxt-radio-group-wrapper align-items-center">
-  <ng-container *ngFor="let option of options">
-    <label class="checkcontainer mb-0">{{option.name}}
-      <input type="radio" name="radio" [checked]="option.value == value" (change)="onChange(option.value)">
-      <span class="radiobtn"></span>
-    </label>
-  </ng-container>
-</div>

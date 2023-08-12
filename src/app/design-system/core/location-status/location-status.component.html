@@ -1,9 +1,0 @@
-<ng-container *ngFor="let _item of _items; let first = first; let last = last">
-  <span title="{{_item?.address}}" class="fxt-icon-status level-{{_item?.hierarchyLevel}} }}"
-    [class.uncertain]="!disableUnconfirmed && !_item?.isConfirmed" [style.color]="_item?.color" [class.disabled]="disabled"
-    [class.selected]="selected">
-    <i class="fas fa-info-circle info-metadata" [class.first]="first" [class.last]="last" *ngIf="_item?.metadataValues?.length > 0 && _item?.info"
-      [tooltip]="_item?.info" placement="right" container="body"></i>
-    <i class="fas fa-{{_item?.name}}"></i>
-  </span>
-</ng-container>
