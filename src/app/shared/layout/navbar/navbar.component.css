@@ -1,3 +1,21 @@
 .navbar-brand.logo {
     font-family: ui-monospace;
 }
+
+.navbar-collapse .shopping-cart {
+    color: #7cbf75;
+    font-size: 28px;
+}
+
+.badge:after{
+    content:attr(value);
+    font-size:12px;
+    color: #fff;
+    background: red;
+    border-radius:50%;
+    padding: 0 5px;
+    position:relative;
+    left:-8px;
+    top:-10px;
+    opacity:0.9;
+}

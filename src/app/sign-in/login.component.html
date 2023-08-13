@@ -1,0 +1,35 @@
+
+<div class="">
+    <div class="mt-5 rounded d-flex justify-content-center">
+        <div class="col-md-6 col-sm-12 shadow-lg p-5 bg-light">
+            <div class="text-center">
+                <h3 class="text-primary">Sign In</h3>
+            </div>
+            <form [formGroup]="signInForm" autocomplete="off">
+                <div class="p-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Email" aria-label="Email" formControlName="email" maxlength="64">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" formControlName="password">
+                    </div>
+                    <button class="btn btn-primary text-center mt-2" type="button" (click)="signIn()" [disabled]="signInForm.invalid">
+                        Login
+                    </button>
+                    <p class="text-center mt-5">Don't have an account?
+                        <a class="text-primary" routerLink="/sign-up">Sign Up</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<i class="fa fa-key" aria-hidden="true"></i>

@@ -1,11 +1,14 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { NavbarComponent } from "./shared/layout/navbar/navbar.component";
 
 const routes: Routes = [
   {
     path: 'sign-in',
-    loadChildren: () => import('../app/login').then(m => m.LoginModule)
+    loadChildren: () => import('../app/sign-in').then(m => m.LoginModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('../app/sign-up').then(m => m.SignUpModule)
   },
   {
     path: 'product',
@@ -29,7 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    //NavbarComponent
   ],
   imports: [
     RouterModule.forRoot(routes, {

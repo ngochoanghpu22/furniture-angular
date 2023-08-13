@@ -1,0 +1,49 @@
+
+<div class="">
+    <div class="mt-5 rounded d-flex justify-content-center">
+        <div class="col-md-7 col-sm-12 shadow-lg p-5 bg-light">
+            <div class="text-center">
+                <h3 class="text-primary">Sign Up</h3>
+            </div>
+            <form action="">
+                <div class="p-4">
+                    <!------Name-------->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                    </div>
+
+                    <!------Email-------->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Email" aria-label="Email">
+                    </div>
+
+                    <!------Password-------->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" (click)="showText()" role="button">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
+                        <input [type]="show ? 'text' : 'password'" class="form-control" placeholder="Password" aria-label="Password">
+                    </div>
+
+                    <!------Phone-------->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Phone" aria-label="Phone">
+                    </div>
+                    
+                    <button class="btn btn-primary text-center mt-2 float-end" type="submit">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
