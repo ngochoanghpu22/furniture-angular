@@ -1,10 +1,11 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { ProfileService } from "./profile/profile.service";
 
 const routes: Routes = [
   {
     path: 'sign-in',
-    loadChildren: () => import('../app/sign-in').then(m => m.LoginModule)
+    loadChildren: () => import('../app/sign-in').then(m => m.SignInModule)
   },
   {
     path: 'sign-up',
@@ -29,10 +30,12 @@ const routes: Routes = [
   },
 ];
 
+const services = [ProfileService];
 
 @NgModule({
   declarations: [
   ],
+  providers: [...services],
   imports: [
     RouterModule.forRoot(routes, {
       useHash: false,

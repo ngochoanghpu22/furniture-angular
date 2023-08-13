@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { SignUpComponent } from './sign-up.component';
+import { SignInService } from '../sign-in/sign-in.service';
 
 const routes: Routes = [
   {
@@ -10,6 +11,10 @@ const routes: Routes = [
     component: SignUpComponent
   }
 ];
+
+// const services: any[] = [
+//   SignInService
+// ]
 
 
 @NgModule({
@@ -19,6 +24,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SignUpComponent]
+  declarations: [SignUpComponent],
+  // providers: [
+  //   ...services
+  // ]
 })
 export class SignUpModule { }

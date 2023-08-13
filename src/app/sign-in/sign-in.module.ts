@@ -2,15 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login.component';
+import { SignInComponent } from './sign-in.component';
+import { SignInService } from './sign-in.service';
+import { ProfileService } from '../profile/profile.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: SignInComponent
   }
 ];
 
+const services = [
+  SignInService,
+  ProfileService
+];
 
 @NgModule({
   imports: [
@@ -19,6 +25,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginComponent]
+  declarations: [SignInComponent],
+  providers: [...services],
+  exports: [SignInComponent],
 })
-export class LoginModule { }
+export class SignInModule { }

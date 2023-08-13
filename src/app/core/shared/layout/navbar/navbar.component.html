@@ -1,0 +1,82 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a [routerLink]="['/product']">
+      <img src="../../../../assets/img/logo.png" routerLink="/product" />
+    </a>
+    <a class="navbar-brand p-2 logo" routerLink="/product">VAN THIEL & CO.</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sign-in">Sign-In</a>
+        </li>
+        <li class="nav-item">
+          <a role="button" class="nav-link" (click)="open(profileModal)">Profile</a>
+        </li>
+        <li class="nav-item">
+          <i class="fa badge fa-lg shopping-cart" [attr.value]="numOfItem" role="button">&#xf07a;</i>
+        </li>
+
+        
+      </ul>
+      <form class="d-flex">
+        <span>Hi, <b class="text-info">{{profile.name}}</b></span>        
+      </form>
+    </div>
+  </div>
+</nav>
+
+<ng-template #profileModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="profile-modal">Profile</h4>
+    <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body p-0">
+    <form action="">
+      <div class="p-4">
+          <!------Name-------->
+          <div class="input-group mb-3">
+              <span class="input-group-text">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <input [value] = "profile.name" type="text" class="form-control" placeholder="Name" aria-label="Name">
+          </div>
+
+          <!------Email-------->
+          <div class="input-group mb-3">
+              <span class="input-group-text">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+              </span>
+              <input [value] = "profile.email" type="text" class="form-control" placeholder="Email" aria-label="Email">
+          </div>
+
+          <!------Phone-------->
+          <div class="input-group mb-3">
+              <span class="input-group-text">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+              </span>
+              <input [value] = "profile.phone" type="text" class="form-control" placeholder="Phone" aria-label="Phone">
+          </div>
+
+          <!------Role-------->
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <i class="fa fa-users"></i>
+            </span>
+            <input [value] = "profile.role" type="text" class="form-control" placeholder="Role" aria-label="Role">
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
