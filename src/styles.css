@@ -3,3 +3,14 @@
 .clearfix {
     clear: both;
 }
+
+@font-face {
+    font-family:"Futura-LT-W01-Light";
+    src:url("./assets/font/user-site-fonts/font_1.eot");
+    src:url("./assets/font/user-site-fonts/font_2.eot") format("eot"),
+        url("./assets/font/user-site-fonts/font_3.woff2") format("woff2"),
+        url("./assets/font/user-site-fonts/font_4.woff") format("woff"),
+        url("./assets/font/user-site-fonts/font_5.ttf") format("truetype"),
+        url("http://static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/14d6bf5d-15f1-4794-b18e-c03fb9a5187e.svg#14d6bf5d-15f1-4794-b18e-c03fb9a5187e") format("svg");
+    font-display: block;
+}
