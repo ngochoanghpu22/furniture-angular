@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: AppSettings.ROUTE.Product,
-    loadChildren: () => import('../app/product').then(m => m.ProductModule)
+    loadChildren: () => import('../app/category').then(m => m.ProductModule)
   },
   { 
     path: '',

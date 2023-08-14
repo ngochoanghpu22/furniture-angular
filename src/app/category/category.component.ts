@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './category.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { CategoryService } from '../category/category.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
-export class ProductComponent implements OnInit {
-  products:any = [];
+export class CategoryComponent implements OnInit {
+  categories:any = [];
 
   constructor(private categoryService: CategoryService,
     private toastr: ToastrService,
@@ -26,7 +26,7 @@ export class ProductComponent implements OnInit {
     .subscribe(
       (data: any) => {
         if (data.isSuccessed) {
-          this.products = data.resultObj;
+          this.categories = data.resultObj;
         }
         else {
           this.toastr.error(data.message);
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  getProductDetail(product: any) {
+  getProductList(category: any) {
     let a = 1;
   }
 }

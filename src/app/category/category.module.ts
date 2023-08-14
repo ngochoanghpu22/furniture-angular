@@ -2,18 +2,19 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product.component';
+import { CategoryComponent } from './category.component';
+import { ProductComponent } from '../product';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductComponent,
-    // children: [
-    //   {
-    //     path:'coins', 
-    //     component: DepositaComponent
-    //   },
-    // ]
+    component: CategoryComponent,
+    children: [
+      {
+        path:':name', 
+        component: ProductComponent
+      },
+    ]
   }
 ];
 
@@ -24,6 +25,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProductComponent]
+  declarations: [CategoryComponent]
 })
 export class ProductModule { }
