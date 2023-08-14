@@ -20,10 +20,10 @@ const routes: Routes = [
     pathMatch: 'full', 
     redirectTo: 'product' 
   },
-  {
-    path: 'profile',
-    loadChildren: () => import('../app/profile').then(m => m.ProfileModule)
-  },
+  // {
+  //   path: 'profile',
+  //   loadChildren: () => import('../app/profile').then(m => m.ProfileModule)
+  // },
   {
     path: 'about-us',
     loadChildren: () => import('../app/about-us').then(m => m.AboutUsModule)

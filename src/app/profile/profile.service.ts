@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class ProfileService {
-
     private profile$ = new BehaviorSubject<any>({});
     selectedProfile$ = this.profile$.asObservable();
 

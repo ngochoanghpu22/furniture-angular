@@ -8,7 +8,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Product</a>
@@ -16,20 +16,23 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/about-us">About Us</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item sign-in">
           <a class="nav-link" routerLink="/sign-in">Sign-In</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-none profile">
           <a role="button" class="nav-link" (click)="open(profileModal)">Profile</a>
+        </li>
+        <li class="nav-item sign-out d-none" [hidden]="isSignedIn">
+          <a (click)="signOut()" class="nav-link" routerLink="/sign-in">Sign-Out</a>
         </li>
         <li class="nav-item">
           <i class="fa badge fa-lg shopping-cart" [attr.value]="numOfItem" role="button">&#xf07a;</i>
         </li>
-
-        
       </ul>
       <form class="d-flex">
-        <span>Hi, <b class="text-info">{{profile.name}}</b></span>        
+        <span class="welcome d-none">
+           Hi, <b class="text-info welcome-user"></b>
+        </span>        
       </form>
     </div>
   </div>

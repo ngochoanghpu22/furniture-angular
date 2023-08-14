@@ -8,6 +8,8 @@ import { ProfileService } from '../profile/profile.service';
 import { Router } from '@angular/router';
 import { REGEX_PATTERN } from '../core/regex/regex';
 
+declare var $:any;
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -15,7 +17,7 @@ import { REGEX_PATTERN } from '../core/regex/regex';
   providers: [ProfileService]
 })
 export class SignInComponent {
-  signInForm: FormGroup = new FormGroup({});;
+  signInForm: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,9 +49,14 @@ export class SignInComponent {
           if (data.isSuccessed) {
             this.profileService.setProfile(data.resultObj);
             localStorage.setItem('profile', JSON.stringify(data.resultObj));
-            this.router.navigate(['/profile']);
+            this.router.navigate(['/product']);
 
             this.toastr.success("Login successfully.");
+            $(".sign-in").hide();
+            $(".welcome").removeClass("d-none");
+            $("li.nav-item.sign-out").removeClass("d-none");
+            $("li.nav-item.profile").removeClass("d-none");
+            $(".welcome-user").text(data.resultObj.name);
           }
           else {
             this.toastr.error(data.message);

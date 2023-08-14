@@ -6,9 +6,9 @@ import { BaseApiService } from '../core/service/base-api.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class SignInService extends BaseApiService {
+export class SignUpService extends BaseApiService {
 
-  private routeSignIn: string = "Authentication"
+  private routeSignIn: string = "Users"
 
   constructor(
     protected override http: HttpClient
@@ -16,7 +16,7 @@ export class SignInService extends BaseApiService {
     super(http);
   }
 
-  public signIn(body: any) {
-    return this.http.post<any>(`${this.baseUrl}/api/${this.routeSignIn}/login`, body);
+  public signUp(body: any) {
+    return this.http.post<any>(`${this.baseUrl}/api/${this.routeSignIn}/signUp`, body);
   }
 }

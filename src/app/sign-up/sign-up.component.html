@@ -5,14 +5,21 @@
             <div class="text-center">
                 <h3 class="text-primary">Sign Up</h3>
             </div>
-            <form action="">
+            <form [formGroup]="signUpForm" autocomplete="off">
                 <div class="p-4">
                     <!------Name-------->
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
+                        <span class="input-group-text">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                        <input type="text" class="form-control" formControlName="name"
+                        [ngClass]="{ 'is-invalid': f.name.errors && f.name.touched}"
+                        placeholder="Name" aria-label="Name">
+                        <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">
+                                  Name is required
+                            </div>
+                        </div>
                     </div>
 
                     <!------Email-------->
@@ -20,7 +27,17 @@
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Email" aria-label="Email">
+                        <input type="text" class="form-control" placeholder="Email"
+                        [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched}"
+                        formControlName="email" maxlength="64" aria-label="Email">
+                        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">
+                                  Email is required
+                            </div>
+                            <div *ngIf="f.email.errors.pattern">
+                                Invalid Email
+                            </div>
+                        </div>
                     </div>
 
                     <!------Password-------->
@@ -28,7 +45,14 @@
                         <span class="input-group-text" (click)="showText()" role="button">
                             <i class="fa fa-key" aria-hidden="true"></i>
                         </span>
-                        <input [type]="show ? 'text' : 'password'" class="form-control" placeholder="Password" aria-label="Password">
+                        <input formControlName="password" [type]="show ? 'text' : 'password'" class="form-control" 
+                        [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}" 
+                        placeholder="Password" aria-label="Password">
+                        <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">
+                                  Password is required
+                            </div>
+                        </div>
                     </div>
 
                     <!------Phone-------->
@@ -36,10 +60,20 @@
                         <span class="input-group-text">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="Phone" aria-label="Phone">
+                        <input formControlName="phone" type="text" class="form-control" 
+                        [ngClass]="{ 'is-invalid': f.phone.errors && f.phone.touched}"
+                        placeholder="Phone" aria-label="Phone">
+                        <div *ngIf="f.phone.touched && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.required">
+                                  Phone is required
+                            </div>
+                            <div *ngIf="f.phone.errors.pattern">
+                                Invalid Phone
+                            </div>
+                        </div>
                     </div>
                     
-                    <button class="btn btn-primary text-center mt-2 float-end" type="submit">
+                    <button class="btn btn-primary text-center mt-2 float-end" type="submit" (click)="signUp()" [disabled]="signUpForm.invalid">
                         Register
                     </button>
                 </div>
