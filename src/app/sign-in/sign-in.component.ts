@@ -7,6 +7,8 @@ import { Observable, Subject } from 'rxjs';
 import { ProfileService } from '../profile/profile.service';
 import { Router } from '@angular/router';
 import { REGEX_PATTERN } from '../core/regex/regex';
+import { LocalStorageService } from '../core/service/localStorage.service';
+import { AppSettings } from '../core/constant/appSetting';
 
 declare var $:any;
 
@@ -24,6 +26,7 @@ export class SignInComponent {
     private signInService: SignInService,
     private toastr: ToastrService,
     private profileService: ProfileService,
+    private localStorageService: LocalStorageService,
     protected router: Router
   ) {
     this.initSignInForm();
@@ -48,7 +51,7 @@ export class SignInComponent {
         (data: any) => {
           if (data.isSuccessed) {
             this.profileService.setProfile(data.resultObj);
-            localStorage.setItem('profile', JSON.stringify(data.resultObj));
+            this.localStorageService.setItem(AppSettings.STORAGE.Profile, data.resultObj);
             this.router.navigate(['/product']);
 
             this.toastr.success("Login successfully.");

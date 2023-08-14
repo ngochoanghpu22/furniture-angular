@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { ProfileService } from "./profile/profile.service";
 import { AppSettings } from "./core/constant/appSetting";
+import { LocalStorageService } from "./core/service/localStorage.service";
 
 const routes: Routes = [
   {
@@ -14,7 +15,11 @@ const routes: Routes = [
   },
   {
     path: AppSettings.ROUTE.Product,
-    loadChildren: () => import('../app/category').then(m => m.ProductModule)
+    loadChildren: () => import('../app/category').then(m => m.CategoryModule)
+  },
+  {
+    path: `${AppSettings.ROUTE.Product}/:name`,
+    loadChildren: () => import('../app/product').then(m => m.ProductModule)
   },
   { 
     path: '',
@@ -27,7 +32,7 @@ const routes: Routes = [
   },
 ];
 
-const services = [ProfileService];
+const services = [ProfileService, LocalStorageService];
 
 @NgModule({
   declarations: [

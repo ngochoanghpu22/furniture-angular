@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil } from 'rxjs';
 import { ProfileService } from 'src/app/profile/profile.service';
+import { LocalStorageService } from '../../service/localStorage.service';
+import { AppSettings } from '../../constant/appSetting';
 
 declare var $:any;
 
@@ -9,7 +11,7 @@ declare var $:any;
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [ProfileService]
+  //providers: [ProfileService, LocalStorageService]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   numOfItem = 9;
@@ -17,7 +19,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   profile: any = {};
   isSignedIn = false;
 
-  constructor(private profileService: ProfileService, private modalService: NgbModal) {    
+  constructor(private profileService: ProfileService, 
+              private modalService: NgbModal,
+              private localStorageService: LocalStorageService) {    
     
   }
 
@@ -30,7 +34,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   getProfile() {
-    let data = localStorage.getItem("profile");
+    let data = this.localStorageService.getItem(AppSettings.STORAGE.Profile);
     if (data) {
       this.afterSignedIn(data);
     }

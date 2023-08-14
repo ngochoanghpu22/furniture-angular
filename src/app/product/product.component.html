@@ -2,7 +2,7 @@
     <div class="row">
         <div *ngFor="let product of products" class="col-sm-2 col-md-3 col-lg-4 mb-4">
             <div class="card" role="button" (click)="getProductDetail(product)">
-                <img [src]="product.image" class="card-img-top" [title]="product.name">
+                <img [src]="product.thumbnailImage" class="card-img-top" [title]="product.name">
                 <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
                 </div>

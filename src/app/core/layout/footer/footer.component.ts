@@ -1,7 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject, takeUntil } from 'rxjs';
-import { ProfileService } from 'src/app/profile/profile.service';
 
 declare var $:any;
 

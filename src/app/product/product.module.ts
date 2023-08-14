@@ -2,13 +2,18 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './category.component';
-import { ProductComponent } from '../product';
+import { ProductComponent } from './product.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoryComponent,
+    component: ProductComponent,
+    children: [
+      {
+        path:':name', 
+        component: ProductComponent
+      },
+    ]
   }
 ];
 
@@ -19,6 +24,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CategoryComponent]
+  declarations: [ProductComponent]
 })
-export class CategoryModule { }
+export class ProductModule { }

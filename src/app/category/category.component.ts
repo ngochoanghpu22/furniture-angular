@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from './category.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Slug } from '../core/utils/slug';
+import { LocalStorageService } from '../core/service/localStorage.service';
+import { AppSettings } from '../core/constant/appSetting';
+
 
 @Component({
   selector: 'app-category',
@@ -13,6 +17,7 @@ export class CategoryComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
     private toastr: ToastrService,
+    private localStorageService: LocalStorageService,
     protected router: Router) {
   }
 
@@ -39,6 +44,8 @@ export class CategoryComponent implements OnInit {
   }
 
   getProductList(category: any) {
-    let a = 1;
+    this.localStorageService.setItem(AppSettings.STORAGE.CategoryId, category.id);
+    let categoryName = Slug(category.name);
+    this.router.navigate([`/product/${categoryName}`]);
   }
 }
