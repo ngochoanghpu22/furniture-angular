@@ -21,6 +21,6 @@
 }
 
 .modal-header button.close {
-    border: none !important;
     border: transparent !important;
+    outline-style: none !important;
 }
