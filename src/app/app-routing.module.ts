@@ -1,31 +1,28 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { ProfileService } from "./profile/profile.service";
+import { AppSettings } from "./core/constant/appSetting";
 
 const routes: Routes = [
   {
-    path: 'sign-in',
+    path: AppSettings.ROUTE.SignIn,
     loadChildren: () => import('../app/sign-in').then(m => m.SignInModule)
   },
   {
-    path: 'sign-up',
+    path: AppSettings.ROUTE.SignUp,
     loadChildren: () => import('../app/sign-up').then(m => m.SignUpModule)
   },
   {
-    path: 'product',
+    path: AppSettings.ROUTE.Product,
     loadChildren: () => import('../app/product').then(m => m.ProductModule)
   },
   { 
     path: '',
     pathMatch: 'full', 
-    redirectTo: 'product' 
+    redirectTo: AppSettings.ROUTE.Product 
   },
-  // {
-  //   path: 'profile',
-  //   loadChildren: () => import('../app/profile').then(m => m.ProfileModule)
-  // },
   {
-    path: 'about-us',
+    path: AppSettings.ROUTE.AboutUs,
     loadChildren: () => import('../app/about-us').then(m => m.AboutUsModule)
   },
 ];

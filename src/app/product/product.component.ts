@@ -38,5 +38,7 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  
+  getProductList(category: any) {
+    let a = 1;
+  }
 }

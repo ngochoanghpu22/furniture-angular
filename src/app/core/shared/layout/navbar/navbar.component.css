@@ -32,3 +32,13 @@
     width: 100%;
     z-index: 10;
 }
+
+.nav-link_active {
+    background: #464242;
+    color: white;
+    padding: 10px;
+}
+
+li.nav-item {
+    margin-right: 15px;
+}

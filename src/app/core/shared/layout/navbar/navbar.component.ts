@@ -36,8 +36,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  open(content:any) {
+  open(content: any, event: any) {
     this.getProfile();
+    this.gotoPage(event);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       
     });
@@ -49,6 +50,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     $(".sign-out").hide();
     $(".welcome, .profile").addClass("d-none");
     localStorage.removeItem("profile");
+
+    $("a.nav-link").removeClass("nav-link_active");
+    $("li.sign-in").find("a").addClass("nav-link_active");
   }
 
   afterSignedIn(data: any) {
@@ -64,6 +68,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     $(".welcome-user").text(myProfile.name);
     $("li.nav-item.sign-out").removeClass("d-none");
   }
+
+  gotoPage(event: any) {
+    $("a.nav-link").removeClass("nav-link_active");
+    $(event.currentTarget).addClass("nav-link_active");
+  }
+
+
 
   ngOnDestroy() {
     

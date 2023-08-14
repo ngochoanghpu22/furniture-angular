@@ -7,7 +7,13 @@ import { ProductComponent } from './product.component';
 const routes: Routes = [
   {
     path: '',
-    component: ProductComponent
+    component: ProductComponent,
+    // children: [
+    //   {
+    //     path:'coins', 
+    //     component: DepositaComponent
+    //   },
+    // ]
   }
 ];
 

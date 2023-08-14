@@ -11,16 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/product">Product</a>
+          <a class="nav-link product" aria-current="page" routerLink="/product" (click)="gotoPage($event)">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about-us">About Us</a>
+          <a class="nav-link" routerLink="/about-us" (click)="gotoPage($event)">About Us</a>
         </li>
         <li class="nav-item sign-in">
-          <a class="nav-link" routerLink="/sign-in">Sign-In</a>
+          <a class="nav-link sign-in" routerLink="/sign-in" (click)="gotoPage($event)">Sign-In</a>
         </li>
         <li class="nav-item d-none profile">
-          <a role="button" class="nav-link" (click)="open(profileModal)">Profile</a>
+          <a role="button" class="nav-link" (click)="open(profileModal, $event)">Profile</a>
         </li>
         <li class="nav-item sign-out d-none" [hidden]="isSignedIn">
           <a (click)="signOut()" class="nav-link" routerLink="/sign-in">Sign-Out</a>
@@ -31,7 +31,7 @@
       </ul>
       <form class="d-flex">
         <span class="welcome d-none">
-           Hi, <b class="text-info welcome-user"></b>
+           Hello, <b class="text-info welcome-user"></b>
         </span>        
       </form>
     </div>
