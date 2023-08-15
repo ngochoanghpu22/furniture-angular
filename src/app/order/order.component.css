@@ -1,0 +1,22 @@
+.modal-dialog .modal-content {
+    width: 600px !important;
+}
+
+.orderByInfo {
+    width: 100px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.orderBy .line {
+    border-collapse: collapse;
+    border-bottom: 1px solid #ccc;
+}
+
+.orders {
+    max-height: 500px;
+}
+
+.products.overflow-auto {
+    max-height: 500px;
+}

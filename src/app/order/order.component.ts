@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../core/service/localStorage.service';
-import { AppSettings } from '../core/constant/appSetting';
-import { Slug } from '../core/utils/slug';
+import { OrderService } from './order.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConvertToVND } from '../core/utils/currency';
-import { ProductService } from './order.service';
 
 @Component({
   selector: 'app-order',
@@ -13,28 +11,27 @@ import { ProductService } from './order.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  products:any = [];
+  orders:any = [];
+  orderDetail: any = {};
+  title = "";
 
-  constructor(private productService: ProductService,
+  constructor(private orderService: OrderService,
     private toastr: ToastrService,
-    private localStorageService: LocalStorageService,
+    private modalService: NgbModal,
     protected router: Router) {
   }
 
   ngOnInit(): void {
-    const categoryId = this.localStorageService.getItem(AppSettings.STORAGE.CategoryId);
-    if (categoryId) {
-      this.getProducts(categoryId);
-    }
+      this.getOders();
   }
 
-  getProducts(categoryId: any) {
-    this.productService
-    .getProducts(categoryId)
+  getOders() {
+    this.orderService
+    .getOrders()
     .subscribe(
       (data: any) => {
         if (data.isSuccessed) {
-          this.products = data.resultObj;
+          this.orders = data.resultObj;
         }
         else {
           this.toastr.error(data.message);
@@ -46,10 +43,30 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  getProductDetail(product: any) {
-    this.localStorageService.setItem(AppSettings.STORAGE.ProductId, product.id);
-    let productName = Slug(product.name);
-    this.router.navigate([`/product-detail/${productName}`]);
+  getOrderDetail(order: any) {
+    this.orderService
+    .getOrderDetail(order.id)
+    .subscribe(
+      (data: any) => {
+        if (data.isSuccessed) {
+          this.orderDetail = data.resultObj;
+        }
+        else {
+          this.toastr.error(data.message);
+        }
+      },
+      (error: { message: string; }) => {
+        this.toastr.error(error.message);
+      }
+    );
+  }
+
+  open(content: any, event: any, order: any, currentIndex: any) {
+    this.title = currentIndex + 1;
+    this.getOrderDetail(order);
+    this.modalService.open(content, { size: 'lg', backdrop: 'static' }).result.then((result) => {
+      
+    });
   }
 
   formatPrice(price: any) {

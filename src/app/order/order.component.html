@@ -1,1 +1,77 @@
-hello order
+<div class="fs-5 mt-4">List of Order:</div>
+
+<div class="orders overflow-auto" role="button">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ordered By</th>
+            <th scope="col">Created Date (UTC)</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders;let currentIndex=index;" (click)="open(orderDetailModal, $event, order, currentIndex)">
+            <th>{{ currentIndex + 1 }}</th>
+            <td>{{order.createdBy}}</td>
+            <td>{{order.createdDate}}</td>
+            <td>{{order.status}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+<!----------Profile Popup------------>
+<ng-template #orderDetailModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="profile-modal">Order Detail - {{title}}</h4>
+    <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body p-0 overflow-auto products">
+    <form action="">
+      <div class="p-4">
+        <div class="orderBy">
+            <div class="line">
+                <span class="orderByInfo">Name:</span> 
+                <span>{{orderDetail.name}}</span>
+            </div>
+            <div class="line">
+                <span class="orderByInfo">Phone:</span> 
+                <span>{{orderDetail.phone}}</span>
+            </div>
+            <div class="line">
+                <span class="orderByInfo">Email:</span> 
+                <span>{{orderDetail.email}}</span>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of orderDetail.products;let currentIndex=index;">
+                    <th>{{ currentIndex + 1 }}</th>
+                    <td>{{product.name}}</td>
+                    <td><img [src]="product.thumbnailImage" width="200" /></td>
+                    <td>{{product.quantityOrder}}</td>
+                    <td>{{formatPrice(product.price)}}</td>
+                    <td>{{formatPrice(product.price * product.quantityOrder)}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

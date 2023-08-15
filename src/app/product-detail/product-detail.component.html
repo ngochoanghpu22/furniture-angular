@@ -6,18 +6,45 @@
         <img class="w-50 img-fluid" [src]="product.thumbnailImage" [title]="product.name" />
     </div>
     <div class="price w-100 text-end mb-4">
-        <b>{{formatPrice(product.price)}}</b>
+        <b>{{formatPrice(currentPrice)}}</b>
     </div>
     <div class="wishlist w-100 text-end mb-4">
         <span class="p-3">
             <label class="quantity">Quantity</label>
-            <input min="0" [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
-        </span>  
-        <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>      
-        <button (click)="purchaseOrder()" class="btn btn-secondary">Purchase Orders</button>
-        
+            <input min="0" (ngModelChange)='onChange($event)' [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
+        </span>
+
+        <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>
+        <button (click)="purchaseOrder()" class="btn btn-secondary addToCart">Purchase Orders</button>
+        <span (click)="open(clearCartModal, $event)" title="Clear items in cart" (click)="clearCart()" class="btn btn-secondary clearCart">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </span>
+        <span title="Back to product list" (click)="backToList()" class="btn btn-secondary">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </span>
     </div>
     <div class="description fs-4">
         {{product.description}}
     </div>
 </div>
+
+
+<!----------Profile Confirm clear cart------------>
+<ng-template #clearCartModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="profile-modal">Confirmation</h4>
+      <button type="button" class="close border-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body p-0">
+      <form action="">
+        <div class="p-4">
+           Are you sure you want to clear products in cart?
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark clear__cart" (click)="modal.close('Save click')">OK</button>
+    </div>
+  </ng-template>

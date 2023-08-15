@@ -14,3 +14,12 @@
         url("http://static.parastorage.com/services/third-party/fonts/user-site-fonts/fonts/14d6bf5d-15f1-4794-b18e-c03fb9a5187e.svg#14d6bf5d-15f1-4794-b18e-c03fb9a5187e") format("svg");
     font-display: block;
 }
+
+.container {
+    min-height: calc(100vh - 85px - 24px);
+}
+
+.modal-header button.close {
+    border: transparent !important;
+    outline-style: none !important;
+}

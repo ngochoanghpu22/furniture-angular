@@ -20,10 +20,7 @@
     opacity:0.9;
 }
 
-.modal-header button.close {
-    border: transparent !important;
-    outline-style: none !important;
-}
+
 
 .navbar {
     position: fixed; 

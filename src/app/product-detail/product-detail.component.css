@@ -18,3 +18,14 @@
 .product-detail .addToCart {
     margin-right: 15px;
 }
+
+.product-detail .clearCart {
+    margin-right: 15px;
+    background-color: #e96060;
+    border: none;
+    outline: none;
+}
+
+button.clear__cart {
+    outline: none;
+}

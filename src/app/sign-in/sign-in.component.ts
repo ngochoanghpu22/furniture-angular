@@ -52,14 +52,13 @@ export class SignInComponent {
           if (data.isSuccessed) {
             this.profileService.setProfile(data.resultObj);
             this.localStorageService.setItem(AppSettings.STORAGE.Profile, data.resultObj);
-            this.router.navigate(['/product']);
+           
+            $(".sign-in").hide();
+            $(".welcome, .sign-out, .profile, .order").removeClass("d-none");
+            $(".welcome-user").text(data.resultObj.name);
 
             this.toastr.success("Login successfully.");
-            $(".sign-in").hide();
-            $(".welcome").removeClass("d-none");
-            $("li.nav-item.sign-out").removeClass("d-none");
-            $("li.nav-item.profile").removeClass("d-none");
-            $(".welcome-user").text(data.resultObj.name);
+            this.router.navigate(['/product']);
           }
           else {
             this.toastr.error(data.message);

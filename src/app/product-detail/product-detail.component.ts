@@ -6,6 +6,7 @@ import { LocalStorageService } from '../core/service/localStorage.service';
 import { AppSettings } from '../core/constant/appSetting';
 import { ProductService } from '../product/product.service';
 import { ConvertToVND } from '../core/utils/currency';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var $:any;
 
@@ -17,10 +18,12 @@ declare var $:any;
 export class ProductDetailComponent implements OnInit {
   product:any = {};
   quantityOrder = 1;
+  currentPrice = 0;
 
   constructor(private productService: ProductService,
     private toastr: ToastrService,
     private localStorageService: LocalStorageService,
+    private modalService: NgbModal,
     protected router: Router) {
   }
 
@@ -28,6 +31,9 @@ export class ProductDetailComponent implements OnInit {
     const productId = this.localStorageService.getItem(AppSettings.STORAGE.ProductId);
     if (productId) {
       this.getProductDetail(productId);
+    }
+    else {
+      this.backToList();
     }
   }
 
@@ -37,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
     .subscribe(
       (data: any) => {
         if (data.isSuccessed) {
+          this.currentPrice = data.resultObj.price;
           this.product = data.resultObj;
         }
         else {
@@ -50,9 +57,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart() {
-    //const totalItemInCart = parseInt($(".shopping-cart").attr("value"));
-    //$(".shopping-cart").attr("value", totalItemInCart + this.quantityOrder);
-    
     let myCart:any = [];
     let cart:any = this.localStorageService.getItem(AppSettings.STORAGE.Cart);    
     
@@ -128,6 +132,11 @@ export class ProductDetailComponent implements OnInit {
     $(".shopping-cart").attr("value", totalItemInCart);
   }
 
+  clearCart() {
+    this.localStorageService.removeItem(AppSettings.STORAGE.Cart);
+    $(".shopping-cart").attr("value", 0);
+  }
+
   purchaseOrder() {
     const currentUser = this.localStorageService.getItem(AppSettings.STORAGE.Profile);
     if (!currentUser) {
@@ -151,7 +160,7 @@ export class ProductDetailComponent implements OnInit {
           if (data.isSuccessed) {
             this.localStorageService.removeItem(AppSettings.STORAGE.Cart);
             $(".shopping-cart").attr("value", 0);
-            this.router.navigate(["/product"]);
+            this.backToList();
             this.toastr.success("purchase order successfully");
           }
           else {
@@ -176,5 +185,24 @@ export class ProductDetailComponent implements OnInit {
     }
 
     return true;
+  }
+
+  backToList() {
+    this.router.navigate(["/product"]);
+  }
+
+  onChange(value: any) {
+    if (!value) {
+      value = 0
+    }
+
+    const price = this.product.price;
+    this.currentPrice = value * price;
+  }
+
+  open(content: any, event: any) {    
+    this.modalService.open(content, { size: 'md', backdrop: 'static' }).result.then((result) => {
+      
+    });
   }
 }

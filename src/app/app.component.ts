@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   highLightHyperLink(url: any) {
-    if (!url) {
+    if (!url || url == "/") {
       url = AppSettings.ROUTE.Product;
     }
 

@@ -4,9 +4,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BaseApiService } from '../core/service/base-api.service';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService extends BaseApiService {
+export class OrderService extends BaseApiService {
 
-  private routeProduct: string = "product"
+  private routeOrder: string = "order"
 
   constructor(
     protected override http: HttpClient
@@ -14,15 +14,11 @@ export class ProductService extends BaseApiService {
     super(http);
   }
 
-  public getProducts(categoryId: any) {
-    return this.http.get<any>(`${this.baseUrl}/api/${this.routeProduct}/get-by-categoryId?categoryId=${categoryId}`);
+  public getOrders() {
+    return this.http.get<any>(`${this.baseUrl}/api/${this.routeOrder}/all`);
   }
 
-  public getProductDetail(productId: any) {
-    return this.http.get<any>(`${this.baseUrl}/api/${this.routeProduct}/get-by-id?productId=${productId}`);
-  }
-
-  public createOrder(body: any) {
-    return this.http.post<any>(`${this.baseUrl}/api/order/create`, body);
+  public getOrderDetail(orderId: any) {
+    return this.http.get<any>(`${this.baseUrl}/api/${this.routeOrder}/detail?orderId=${orderId}`);
   }
 }

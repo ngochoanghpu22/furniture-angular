@@ -22,14 +22,14 @@
         <li class="nav-item d-none profile">
           <a role="button" class="nav-link" (click)="open(profileModal, $event)">Profile</a>
         </li>
-        <li class="nav-item d-none2 order">
+        <li class="nav-item d-none order">
           <a role="button" class="nav-link" routerLink="/order" (click)="gotoPage($event)">Order</a>
         </li>
-        <li class="nav-item sign-out d-none" [hidden]="isSignedIn">
+        <li class="nav-item sign-out d-none">
           <a (click)="signOut()" class="nav-link" routerLink="/sign-in">Sign-Out</a>
         </li>
         <li class="nav-item">
-          <i class="fa badge fa-lg shopping-cart" [attr.value]="numOfItem" role="button">&#xf07a;</i>
+          <i class="fa badge fa-lg shopping-cart" [attr.value]="numOfItem">&#xf07a;</i>
         </li>
       </ul>
       <form class="d-flex">

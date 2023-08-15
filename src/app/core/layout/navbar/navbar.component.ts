@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
   numOfItem = 0;
   title = 'furniture';
   profile: any = {};
-  isSignedIn = false;
 
   constructor(private profileService: ProfileService, 
               private modalService: NgbModal,
@@ -51,8 +50,7 @@ export class NavbarComponent implements OnInit {
   signOut() {
     this.profile = {};
     $(".sign-in").show();
-    $(".sign-out").hide();
-    $(".welcome, .profile").addClass("d-none");
+    $(".welcome, .profile, .order, .sign-out").addClass("d-none");
     localStorage.removeItem("profile");
 
     $("a.nav-link").removeClass("nav-link_active");
@@ -67,10 +65,8 @@ export class NavbarComponent implements OnInit {
     this.profile['role'] = myProfile.role;
 
     $(".sign-in").hide();
-    $(".sign-out").show();
-    $(".welcome, .profile").removeClass("d-none");
+    $(".welcome, .profile, .sign-out, .order").removeClass("d-none");
     $(".welcome-user").text(myProfile.name);
-    $("li.nav-item.sign-out").removeClass("d-none");
   }
 
   gotoPage(event: any) {
