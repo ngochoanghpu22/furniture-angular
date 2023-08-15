@@ -53,9 +53,7 @@ export class AppComponent implements OnInit {
     }
 
     url = url.toLowerCase().replace("/", "");
-    if (AppSettings.ROUTE.SignIn == url || AppSettings.ROUTE.Product == url) {
-      $("a.nav-link").removeClass("nav-link_active");
-      $(`a.nav-link.${url}`).addClass("nav-link_active");
-    }
+    $("a.nav-link").removeClass("nav-link_active");
+    $(`a.nav-link.${url}`).addClass("nav-link_active");
   }
 }

@@ -1,31 +1,33 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a [routerLink]="['/product']">
-      <img src="../../../../assets/img/logo.png" routerLink="/product" />
-    </a>
+    <span class="logo">
+      <a [routerLink]="['/product']">
+        <img src="../../../../assets/img/logo.png" routerLink="/product" />
+      </a>
+    </span>
     <a class="navbar-brand p-2 logo" routerLink="/product">VAN THIEL & CO.</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <li class="nav-item hover">
           <a class="nav-link product" aria-current="page" routerLink="/product" (click)="gotoPage($event)">Product</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about-us" (click)="gotoPage($event)">About Us</a>
+        <li class="nav-item hover">
+          <a class="nav-link about-us" routerLink="/about-us" (click)="gotoPage($event)">About Us</a>
         </li>
-        <li class="nav-item sign-in">
+        <li class="nav-item hover sign-in">
           <a class="nav-link sign-in" routerLink="/sign-in" (click)="gotoPage($event)">Sign-In</a>
         </li>
-        <li class="nav-item d-none profile">
+        <li class="nav-item hover d-none profile">
           <a role="button" class="nav-link" (click)="open(profileModal, $event)">Profile</a>
         </li>
-        <li class="nav-item d-none order">
-          <a role="button" class="nav-link" routerLink="/order" (click)="gotoPage($event)">Order</a>
+        <li class="nav-item hover d-none order">
+          <a role="button" class="nav-link order" routerLink="/order" (click)="gotoPage($event)">Order</a>
         </li>
-        <li class="nav-item sign-out d-none">
+        <li class="nav-item hover sign-out d-none">
           <a (click)="signOut()" class="nav-link" routerLink="/sign-in">Sign-Out</a>
         </li>
         <li class="nav-item">

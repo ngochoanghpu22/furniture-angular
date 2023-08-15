@@ -20,8 +20,6 @@
     opacity:0.9;
 }
 
-
-
 .navbar {
     position: fixed; 
     top:0;
@@ -38,4 +36,14 @@
 
 li.nav-item {
     margin-right: 15px;
+}
+
+li.hover:hover {
+    background-color: #464242;
+    transition: 0.3s;
+}
+
+li.hover:hover a {
+    color: white;
+    transition: 0.3s;
 }
