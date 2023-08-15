@@ -33,3 +33,35 @@ button.clear__cart {
 .modal-body.clear__cart {
     font-size: 17px;
 }
+
+@media screen and (max-width: 768px) {
+    .wishlist .clearCart, .wishlist .backToList {
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .wishlist  {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wishlist span {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .wishlist span button {
+        width: 100%;
+    }
+
+    .wishlist .clearCart {
+        margin-right: 0;
+    }
+
+    .wishlist .clearCart, .wishlist .backToList {
+        margin-top: 0;
+        margin-right: 0;
+    }
+}

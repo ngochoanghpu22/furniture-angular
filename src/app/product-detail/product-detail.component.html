@@ -13,13 +13,17 @@
             <label class="quantity">Quantity</label>
             <input min="0" (ngModelChange)='onChange($event)' [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
         </span>
-
-        <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>
-        <button (click)="purchaseOrder()" class="btn btn-secondary addToCart">Purchase Orders</button>
+        <span>
+            <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>
+        </span>
+        <span>
+            <button (click)="purchaseOrder()" class="btn btn-secondary addToCart">Purchase Orders</button>
+        </span>
+        
         <span (click)="open(clearCartModal, $event)" title="Clear items in cart" class="btn btn-secondary clearCart">
             <i class="fa fa-trash" aria-hidden="true"></i>
         </span>
-        <span title="Back to product list" (click)="backToList()" class="btn btn-secondary">
+        <span title="Back to product list" (click)="backToList()" class="btn btn-secondary backToList">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </span>
     </div>
