@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./navbar.component.css'],
   //providers: [ProfileService, LocalStorageService]
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
   numOfItem = 0;
   title = 'furniture';
   profile: any = {};
@@ -76,11 +76,5 @@ export class NavbarComponent implements OnInit, OnDestroy {
   gotoPage(event: any) {
     $("a.nav-link").removeClass("nav-link_active");
     $(event.currentTarget).addClass("nav-link_active");
-  }
-
-
-
-  ngOnDestroy() {
-    
   }
 }

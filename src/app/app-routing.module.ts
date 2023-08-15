@@ -34,6 +34,10 @@ const routes: Routes = [
     path: AppSettings.ROUTE.AboutUs,
     loadChildren: () => import('../app/about-us').then(m => m.AboutUsModule)
   },
+  {
+    path: AppSettings.ROUTE.Order,
+    loadChildren: () => import('../app/order').then(m => m.OrderModule)
+  },
 ];
 
 const services = [ProfileService, LocalStorageService];

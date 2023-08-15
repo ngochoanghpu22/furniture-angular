@@ -43,56 +43,89 @@ export class ProductDetailComponent implements OnInit {
           this.toastr.error(data.message);
         }
       },
-      (error: { message: string; }) => {
-        this.toastr.error(error.message);
+      (error: any) => {
+        this.toastr.error(error.error.message);
       }
     );
   }
 
   addToCart() {
-    const totalItemInCart = parseInt($(".shopping-cart").attr("value"));
-    $(".shopping-cart").attr("value", totalItemInCart + this.quantityOrder);
-
+    //const totalItemInCart = parseInt($(".shopping-cart").attr("value"));
+    //$(".shopping-cart").attr("value", totalItemInCart + this.quantityOrder);
+    
     let myCart:any = [];
-    let cart:any = this.localStorageService.getItem(AppSettings.STORAGE.Cart);
-    if (!cart) {
-      myCart.push({
-        productId: this.product.id,
-        quantity: this.quantityOrder
-      })
+    let cart:any = this.localStorageService.getItem(AppSettings.STORAGE.Cart);    
+    
+    if (this.quantityOrder > 0) {
+      if (!cart) {
+        myCart.push({
+          productId: this.product.id,
+          quantity: this.quantityOrder
+        })
+      }
+      else {
+        cart = JSON.parse(cart);
+        let isExistedProductInCart = false;
+
+        if (cart) {
+          cart.forEach((item: any) => {
+            // existed product in cart => update quantity
+            if (item.productId == this.product.id) {
+              isExistedProductInCart = true;
+              myCart.push({
+                productId: item.productId,
+                quantity: item.quantity + this.quantityOrder
+              });
+            }
+            else {
+              myCart.push({
+                productId: item.productId,
+                quantity: item.quantity
+              });
+            }
+          });
+  
+          // add new product into cart
+          if (!isExistedProductInCart) {
+            myCart.push({
+              productId: this.product.id,
+              quantity: this.quantityOrder
+            });
+          }
+        }
+      }
     }
     else {
-      cart = JSON.parse(cart);
-      let isExistedProductInCart = false;
       if (cart) {
+        cart = JSON.parse(cart);
+
+        // remove item in cart
         cart.forEach((item: any) => {
-          if (item.id == this.product.id) {
-            isExistedProductInCart = true;
+          if (item.productId != this.product.id) {
             myCart.push({
-              productId: item.id,
+              productId: item.productId,
               quantity: item.quantity + this.quantityOrder
             });
           }
-          else {
-            myCart.push({
-              productId: item.id,
-              quantity: item.quantity
-            });
-          }
         });
-
-        if (!isExistedProductInCart) {
-          myCart.push({
-            productId: this.product.id,
-            quantity: this.quantityOrder
-          });
-        }
       }
     }
 
     if (myCart.length > 0) {
       this.localStorageService.setItem(AppSettings.STORAGE.Cart, myCart);
     }
+    else {
+      this.localStorageService.removeItem(AppSettings.STORAGE.Cart);
+    }
+
+    // count total item in cart
+    let totalItemInCart = 0;
+
+    myCart.forEach((item: any) => {
+      totalItemInCart += item.quantity;
+    });
+
+    $(".shopping-cart").attr("value", totalItemInCart);
   }
 
   purchaseOrder() {
@@ -105,6 +138,11 @@ export class ProductDetailComponent implements OnInit {
     let products = this.localStorageService.getItem(AppSettings.STORAGE.Cart);
     if (products) {
       products = JSON.parse(products);
+
+      if (products?.length == 0) {
+        this.toastr.error("There is no any product in cart. Please select product before purchase");
+        return;
+      }
 
       this.productService
       .createOrder(products)
@@ -120,8 +158,8 @@ export class ProductDetailComponent implements OnInit {
             this.toastr.error(data.message);
           }
         },
-        (error: { message: string; }) => {
-          this.toastr.error(error.message);
+        (error: any) => {
+          this.toastr.error(error.error.message);
         }
       );
     }

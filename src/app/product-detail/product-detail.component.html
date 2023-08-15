@@ -11,13 +11,13 @@
     <div class="wishlist w-100 text-end mb-4">
         <span class="p-3">
             <label class="quantity">Quantity</label>
-            <input min="1" [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
+            <input min="0" [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
         </span>  
         <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>      
         <button (click)="purchaseOrder()" class="btn btn-secondary">Purchase Orders</button>
         
     </div>
-    <div class="description fs-5">
+    <div class="description fs-4">
         {{product.description}}
     </div>
 </div>

@@ -22,6 +22,9 @@
         <li class="nav-item d-none profile">
           <a role="button" class="nav-link" (click)="open(profileModal, $event)">Profile</a>
         </li>
+        <li class="nav-item d-none2 order">
+          <a role="button" class="nav-link" routerLink="/order" (click)="gotoPage($event)">Order</a>
+        </li>
         <li class="nav-item sign-out d-none" [hidden]="isSignedIn">
           <a (click)="signOut()" class="nav-link" routerLink="/sign-in">Sign-Out</a>
         </li>

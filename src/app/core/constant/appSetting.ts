@@ -4,7 +4,8 @@ export const AppSettings = {
         "SignUp": "sign-up",
         "Product": "product",
         "ProductDetail": "product-detail",
-        "AboutUs": "about-us"
+        "AboutUs": "about-us",
+        "Order": "order"
     },
     STORAGE: {
         "Profile": "profile",

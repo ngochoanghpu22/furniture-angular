@@ -3,6 +3,7 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { AppSettings } from './core/constant/appSetting';
+import { LocalStorageService } from './core/service/localStorage.service';
 
 declare var $:any;
 
@@ -19,13 +20,31 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService,
   ) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)  
     ).subscribe((event: any) => {
       this.highLightHyperLink(event.url);
+      this.updateShoppingCart();
     });
+  }
+
+  updateShoppingCart() {
+    let totalItemInCart = 0;
+    let cart:any = this.localStorageService.getItem(AppSettings.STORAGE.Cart);
+    
+    if (cart) {
+      // count total item in cart
+      cart = JSON.parse(cart);
+
+      cart.forEach((item: any) => {
+        totalItemInCart += item.quantity;
+      });
+    }
+    
+    $(".shopping-cart").attr("value", totalItemInCart);
   }
 
   highLightHyperLink(url: any) {
