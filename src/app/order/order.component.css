@@ -16,7 +16,3 @@
 .orders {
     max-height: 500px;
 }
-
-.products.overflow-auto {
-    max-height: 500px;
-}

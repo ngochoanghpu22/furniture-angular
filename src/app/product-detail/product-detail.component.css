@@ -29,3 +29,7 @@
 button.clear__cart {
     outline: none;
 }
+
+.modal-body.clear__cart {
+    font-size: 17px;
+}

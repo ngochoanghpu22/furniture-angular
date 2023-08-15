@@ -202,7 +202,9 @@ export class ProductDetailComponent implements OnInit {
 
   open(content: any, event: any) {    
     this.modalService.open(content, { size: 'md', backdrop: 'static' }).result.then((result) => {
-      
+      if (result == "OK") {
+        this.clearCart();
+      }
     });
   }
 }

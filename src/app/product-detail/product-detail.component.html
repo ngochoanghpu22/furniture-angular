@@ -16,7 +16,7 @@
 
         <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>
         <button (click)="purchaseOrder()" class="btn btn-secondary addToCart">Purchase Orders</button>
-        <span (click)="open(clearCartModal, $event)" title="Clear items in cart" (click)="clearCart()" class="btn btn-secondary clearCart">
+        <span (click)="open(clearCartModal, $event)" title="Clear items in cart" class="btn btn-secondary clearCart">
             <i class="fa fa-trash" aria-hidden="true"></i>
         </span>
         <span title="Back to product list" (click)="backToList()" class="btn btn-secondary">
@@ -37,7 +37,7 @@
         <span aria-hidden="true">×</span>
       </button>
     </div>
-    <div class="modal-body p-0">
+    <div class="modal-body p-0 clear__cart">
       <form action="">
         <div class="p-4">
            Are you sure you want to clear products in cart?
@@ -45,6 +45,6 @@
       </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark clear__cart" (click)="modal.close('Save click')">OK</button>
+        <button type="button" class="btn btn-outline-dark clear__cart" (click)="modal.close('OK')">OK</button>
     </div>
   </ng-template>
