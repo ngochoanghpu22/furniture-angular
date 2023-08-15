@@ -9,4 +9,8 @@ export class LocalStorageService {
         const data = localStorage.getItem(key);
         return data;
     }
+
+    removeItem (key: any) {
+        localStorage.removeItem(key);
+    }
   }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ProductService } from './product.service';
 import { LocalStorageService } from '../core/service/localStorage.service';
 import { AppSettings } from '../core/constant/appSetting';
+import { Slug } from '../core/utils/slug';
+import { ConvertToVND } from '../core/utils/currency';
 
 @Component({
   selector: 'app-product',
@@ -45,6 +47,12 @@ export class ProductComponent implements OnInit {
   }
 
   getProductDetail(product: any) {
-    let a = 1;
+    this.localStorageService.setItem(AppSettings.STORAGE.ProductId, product.id);
+    let productName = Slug(product.name);
+    this.router.navigate([`/product-detail/${productName}`]);
+  }
+
+  formatPrice(price: any) {
+    return ConvertToVND(price);
   }
 }

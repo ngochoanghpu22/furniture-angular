@@ -1,0 +1,20 @@
+.product-detail .price {
+    font-size: 22px;
+}
+
+.product-detail .quantity {
+    font-size: 18px;
+    padding-right: 5px;
+}
+
+.product-detail .description {
+    font-family: "Futura-LT-W01-Light";
+}
+
+.quantity__order {
+    width: 100px !important;
+}
+
+.product-detail .addToCart {
+    margin-right: 15px;
+}

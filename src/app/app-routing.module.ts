@@ -21,6 +21,10 @@ const routes: Routes = [
     path: `${AppSettings.ROUTE.Product}/:name`,
     loadChildren: () => import('../app/product').then(m => m.ProductModule)
   },
+  {
+    path: `${AppSettings.ROUTE.ProductDetail}/:name`,
+    loadChildren: () => import('../app/product-detail').then(m => m.ProductDetailModule)
+  },
   { 
     path: '',
     pathMatch: 'full', 

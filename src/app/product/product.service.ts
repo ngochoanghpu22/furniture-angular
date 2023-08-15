@@ -17,4 +17,12 @@ export class ProductService extends BaseApiService {
   public getProducts(categoryId: any) {
     return this.http.get<any>(`${this.baseUrl}/api/${this.routeProduct}/get-by-categoryId?categoryId=${categoryId}`);
   }
+
+  public getProductDetail(productId: any) {
+    return this.http.get<any>(`${this.baseUrl}/api/${this.routeProduct}/get-by-id?productId=${productId}`);
+  }
+
+  public createOrder(body: any) {
+    return this.http.post<any>(`${this.baseUrl}/api/order/create`, body);
+  }
 }

@@ -14,7 +14,7 @@ declare var $:any;
   //providers: [ProfileService, LocalStorageService]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  numOfItem = 9;
+  numOfItem = 0;
   title = 'furniture';
   profile: any = {};
   isSignedIn = false;

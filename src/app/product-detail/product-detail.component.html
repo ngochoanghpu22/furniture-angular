@@ -1,0 +1,23 @@
+<div class="container mt-3 product-detail">
+    <div class="name fs-1 text-center">
+        {{product.name}}
+    </div>
+    <div class="image text-center">
+        <img class="w-50 img-fluid" [src]="product.thumbnailImage" [title]="product.name" />
+    </div>
+    <div class="price w-100 text-end mb-4">
+        <b>{{formatPrice(product.price)}}</b>
+    </div>
+    <div class="wishlist w-100 text-end mb-4">
+        <span class="p-3">
+            <label class="quantity">Quantity</label>
+            <input min="1" [(ngModel)]="quantityOrder" class="form-control quantity__order d-inline" (keypress)="numberOnly($event)" type="number">
+        </span>  
+        <button (click)="addToCart()" class="btn btn-primary addToCart">Add To Cart</button>      
+        <button (click)="purchaseOrder()" class="btn btn-secondary">Purchase Orders</button>
+        
+    </div>
+    <div class="description fs-5">
+        {{product.description}}
+    </div>
+</div>
