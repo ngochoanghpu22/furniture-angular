@@ -73,4 +73,12 @@ export class SignInComponent {
   get f() {
     return this.signInForm.controls;
   }
+
+  onKeyup(event: any) {
+    if (event.key === "Enter") {
+      if (this.signInForm.valid) {
+        this.signIn();
+      }
+    }
+  }
 }

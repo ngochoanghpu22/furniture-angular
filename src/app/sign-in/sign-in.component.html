@@ -13,6 +13,7 @@
                         </span>
                         <input type="text" class="form-control" placeholder="Email" aria-label="Email" 
                         [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched}"
+                        (keyup)="onKeyup($event)"
                         formControlName="email" maxlength="64">
                         <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
                             <div *ngIf="f.email.errors.required">
@@ -29,6 +30,7 @@
                         </span>
                         <input type="password" class="form-control" placeholder="Password" 
                         [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}" 
+                        (keyup)="onKeyup($event)"
                         aria-label="Password" formControlName="password">
                         <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">
