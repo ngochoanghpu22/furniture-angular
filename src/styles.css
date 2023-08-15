@@ -1,9 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-.clearfix {
-    clear: both;
-}
-
 @font-face {
     font-family:"Futura-LT-W01-Light";
     src:url("./assets/font/user-site-fonts/font_1.eot");
@@ -15,11 +10,35 @@
     font-display: block;
 }
 
-/* .container {
-    min-height: calc(100vh - 99px - 24px);
-} */
+.clearfix {
+    clear: both;
+}
 
 .modal-header button.close {
     border: transparent !important;
     outline-style: none !important;
+}
+
+/* .container {
+    min-height: calc(100vh - 99px - 24px);
+} */
+
+.my-overlay {
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 10000 !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed !important;
+    background-color: rgba(0,0,0,0.3) !important;
+    visibility: visible !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: wait !important;
+}
+
+.my-overlay i.fa.fa-spinner.fa-spin {
+    font-size:50px;
+    color: rgba(230, 47, 13, 0.85);
 }
