@@ -4,6 +4,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
 import { AppSettings } from './core/constant/appSetting';
 import { LocalStorageService } from './core/service/localStorage.service';
+import { SpinnerService } from './core/service/spinner.service';
 
 declare var $:any;
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService,
+    public spinnerService: SpinnerService
   ) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)  

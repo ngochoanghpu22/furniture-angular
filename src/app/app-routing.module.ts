@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { ProfileService } from "./profile/profile.service";
 import { AppSettings } from "./core/constant/appSetting";
 import { LocalStorageService } from "./core/service/localStorage.service";
+import { SpinnerService } from "./core/service/spinner.service";
+
 
 const routes: Routes = [
   {
@@ -40,7 +42,7 @@ const routes: Routes = [
   },
 ];
 
-const services = [ProfileService, LocalStorageService];
+const services = [ProfileService, LocalStorageService, SpinnerService];
 
 @NgModule({
   declarations: [

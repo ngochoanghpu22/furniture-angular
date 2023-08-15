@@ -3,16 +3,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '../service/localStorage.service';
 import { AppSettings } from '../constant/appSetting';
+import { SpinnerService } from '../service/spinner.service';
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService,
+              private spinnerService: SpinnerService
+    ) {
     
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    this.spinnerService.showOverflow = true;
     const currentUser = this.localStorageService.getItem(AppSettings.STORAGE.Profile);
     let headers = new HttpHeaders();
 

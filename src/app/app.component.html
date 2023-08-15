@@ -6,6 +6,10 @@
 
     </div>
 
+    <div class="my-overlay" *ngIf="spinnerService.showOverflow">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+
     <router-outlet></router-outlet>
 </div>
 

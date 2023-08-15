@@ -12,6 +12,8 @@ import { FooterComponent } from './core/layout/footer/footer.component';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { AuthExpiredInterceptor } from './core/interceptor/auth-expired.interceptor copy';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,11 @@ import { AuthInterceptor } from './core/interceptor/auth.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthExpiredInterceptor,
       multi: true
     }
   ],

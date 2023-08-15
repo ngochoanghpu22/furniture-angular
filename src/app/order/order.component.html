@@ -1,4 +1,4 @@
-<div class="orders" role="button">
+<div class="orders">
     <table class="table table-hover">
         <thead>
           <tr>
@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orders;let currentIndex=index;" (click)="open(orderDetailModal, $event, order, currentIndex)">
+          <tr *ngFor="let order of orders;let currentIndex=index;" (click)="open(orderDetailModal, $event, order, currentIndex)" role="button">
             <th>{{ currentIndex + 1 }}</th>
             <td>{{order.createdBy}}</td>
             <td>{{order.createdDate}}</td>
