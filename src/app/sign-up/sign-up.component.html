@@ -13,6 +13,7 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                         <input type="text" class="form-control" formControlName="name"
+                        (keyup)="onKeyup($event)"
                         [ngClass]="{ 'is-invalid': f.name.errors && f.name.touched}"
                         placeholder="Name" aria-label="Name">
                         <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">
@@ -28,6 +29,7 @@
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                         <input type="text" class="form-control" placeholder="Email"
+                        (keyup)="onKeyup($event)"
                         [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched}"
                         formControlName="email" maxlength="64" aria-label="Email">
                         <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
@@ -46,6 +48,7 @@
                             <i class="fa fa-key" aria-hidden="true"></i>
                         </span>
                         <input formControlName="password" [type]="show ? 'text' : 'password'" class="form-control" 
+                        (keyup)="onKeyup($event)"
                         [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched}" 
                         placeholder="Password" aria-label="Password">
                         <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
@@ -62,13 +65,14 @@
                         </span>
                         <input formControlName="phone" type="text" class="form-control" 
                         [ngClass]="{ 'is-invalid': f.phone.errors && f.phone.touched}"
+                        (keyup)="onKeyup($event)"
                         placeholder="Phone" aria-label="Phone">
                         <div *ngIf="f.phone.touched && f.phone.errors" class="invalid-feedback">
                             <div *ngIf="f.phone.errors.required">
                                   Phone is required
                             </div>
                             <div *ngIf="f.phone.errors.pattern">
-                                Invalid Phone
+                                Phone Number must be 10-15 digit number.
                             </div>
                         </div>
                     </div>

@@ -51,10 +51,12 @@ export class NavbarComponent implements OnInit {
     this.profile = {};
     $(".sign-in").show();
     $(".welcome, .profile, .order, .sign-out").addClass("d-none");
-    localStorage.removeItem("profile");
-
     $("a.nav-link").removeClass("nav-link_active");
     $("li.sign-in").find("a").addClass("nav-link_active");
+
+    localStorage.removeItem(AppSettings.STORAGE.Profile);
+    localStorage.removeItem(AppSettings.STORAGE.CategoryId);
+    localStorage.removeItem(AppSettings.STORAGE.ProductId);
   }
 
   afterSignedIn(data: any) {

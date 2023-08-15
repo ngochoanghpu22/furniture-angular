@@ -7,7 +7,7 @@ import { createRequestOption } from '../core/utils/request';
 @Injectable({ providedIn: 'root' })
 export class SignInService extends BaseApiService {
 
-  private routeSignIn: string = "Authentication"
+  private routeSignIn: string = "User"
 
   constructor(
     protected override http: HttpClient
@@ -16,6 +16,6 @@ export class SignInService extends BaseApiService {
   }
 
   public signIn(body: any) {
-    return this.http.post<any>(`${this.baseUrl}/api/${this.routeSignIn}/login`, body);
+    return this.http.post<any>(`${this.baseUrl}/api/${this.routeSignIn}/signin`, body);
   }
 }

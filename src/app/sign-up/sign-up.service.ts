@@ -7,7 +7,7 @@ import { createRequestOption } from '../core/utils/request';
 @Injectable({ providedIn: 'root' })
 export class SignUpService extends BaseApiService {
 
-  private routeSignIn: string = "Users"
+  private routeSignIn: string = "User"
 
   constructor(
     protected override http: HttpClient

@@ -149,7 +149,7 @@ export class ProductDetailComponent implements OnInit {
       products = JSON.parse(products);
 
       if (products?.length == 0) {
-        this.toastr.error("There is no any product in cart. Please select product before purchase");
+        this.showErrorMessage();
         return;
       }
 
@@ -172,7 +172,14 @@ export class ProductDetailComponent implements OnInit {
         }
       );
     }
-  }  
+    else {
+      this.showErrorMessage();
+    }
+  }
+
+  showErrorMessage() {
+    this.toastr.error("There is no any product in cart. Please select products before purchase");
+  }
 
   formatPrice(price: any) {
     return ConvertToVND(price);
